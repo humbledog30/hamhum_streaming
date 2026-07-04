@@ -23,15 +23,15 @@ const HeroSection: NextPage<Props> = ({}) => {
 
 			<div className="container px-5 h-full z-20 mx-auto relative flex flex-col justify-end pb-10">
 				<div className="py-5 border-b border-muted-foreground">
-					<p className="mb-4 font-jetbrains-mono text-xs flex gap-1 items-center text-primary">
+					<div className="mb-4 font-jetbrains-mono text-xs flex gap-1 items-center text-primary">
 						<div className="relative ">
 							<Dot className="scale-[2] animate-ping absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
 							<Dot className="scale-[2]" />
-						</div>{" "}
-						NOW STREAMING
-					</p>
-					<div className="meta-information flex gap-3 mb-4 items-center text-muted-foreground">
-						<div className="flex gap-3 border-r border-muted-foreground pr-3">
+						</div>
+						<span>NOW STREAMING</span>
+					</div>
+					<div className="meta-information flex-wrap flex gap-3 mb-4 items-center text-muted-foreground">
+						<div className="flex gap-3 border-r  border-transparent sm:border-muted-foreground pr-3">
 							<span className="border p-1 px-2.5 rounded-md text-xs border-foreground">
 								PG
 							</span>
@@ -48,10 +48,12 @@ const HeroSection: NextPage<Props> = ({}) => {
 							<span>Abenteuer</span>
 						</div>
 					</div>
-					<p className="text-8xl font-fraunces text-foreground">Toy Story 5</p>
+					<p className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-fraunces text-foreground transition-all duration-250">
+						Toy Story 5
+					</p>
 				</div>
-				<div className="flex justify-between items-end gap-3 py-5">
-					<p className="italic text-muted-foreground max-w-[75%]">
+				<div className="flex justify-between flex-wrap items-end gap-5 py-5">
+					<p className="italic text-muted-foreground max-w-full md:max-w-[75%]">
 						"When Bonnie receives a Lilypad tablet as a gift and becomes obsessed, Buzz,
 						Woody, Jessie and the rest of the gang's jobs become exponentially harder
 						when they have to go head to head with the all-new threat to playtime."
