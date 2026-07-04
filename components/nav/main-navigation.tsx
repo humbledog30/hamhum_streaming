@@ -10,8 +10,8 @@ interface Props {}
 
 const MainNavigation: NextPage<Props> = ({}) => {
 	return (
-		<nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-			<div className="w-full max-w-5xl flex justify-between items-center p-3 px-5">
+		<nav className="w-full fixed z-10 bg-background flex justify-center border-b border-b-foreground/10 h-16">
+			<div className="w-full container flex justify-between items-center p-3 px-5">
 				<div className="flex gap-5 items-center font-semibold">
 					<Link className="flex text-3xl font-fraunces" href={"/"}>
 						Hamhum
