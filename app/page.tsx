@@ -10,21 +10,15 @@ import Link from "next/link";
 import { Suspense } from "react";
 import Tmdb from "@/components/tmdb";
 import MainNavigation from "@/components/nav/main-navigation";
+import HeroSection from "@/components/hero-section";
 
 export default function Home() {
 	return (
 		<main className="min-h-screen flex flex-col items-center">
-			<div className="flex-1 w-full flex flex-col gap-20 items-center">
+			<div className="flex-1 w-full flex flex-col items-center ">
 				<MainNavigation />
-				<div className="flex-1 flex flex-col gap-20 max-w-5xl p-5">
-					<Hero />
-					<main className="flex-1 flex flex-col gap-6 px-4">
-						<h2 className="font-medium text-xl mb-4">Next steps</h2>
-
-						<Tmdb />
-
-						{/* {hasEnvVars ? <SignUpUserSteps /> : <ConnectSupabaseSteps />} */}
-					</main>
+				<div className="mt-16 w-full">
+					<HeroSection />
 				</div>
 
 				<footer className="w-full flex items-center justify-center border-t mx-auto text-center text-xs gap-8 py-16">

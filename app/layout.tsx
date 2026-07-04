@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Geist, Inter } from "next/font/google";
+import { Fraunces, Geist, Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -26,6 +26,13 @@ const inter = Inter({
 	display: "swap",
 	subsets: ["latin"],
 });
+
+const jetbrains = JetBrains_Mono({
+	variable: "--font-jetbrains-mono",
+	display: "swap",
+	subsets: ["latin"],
+});
+
 export default function RootLayout({
 	children,
 }: Readonly<{
@@ -33,7 +40,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className={`${inter.className} ${fraunces.variable} antialiased`}>
+			<body
+				className={`${inter.className} ${fraunces.variable} ${jetbrains.variable} antialiased`}
+			>
 				<Providers>{children}</Providers>
 			</body>
 		</html>
