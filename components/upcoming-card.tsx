@@ -1,10 +1,11 @@
 "use client";
-import { useReleaseStatus } from "@/lib/hook";
+import { useReleaseStatus } from "@/lib/hooks/useReleaseStatus";
 import { NextPage } from "next";
 import { Button } from "./ui/button";
 import { Bell, Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Movie } from "@/types/movie";
+import { useGenresLabel } from "@/lib/hooks/useGenresLabel";
 
 const UpcomingCard = ({ items }: { items: Movie[] }) => {
 	const [today, setToday] = useState<Date | null>(null);
@@ -34,12 +35,24 @@ const UpcomingCard = ({ items }: { items: Movie[] }) => {
 						<span className="text-[10px] text-primary font-jetbrains-mono">Jul</span>
 					</div>
 					<div className="flex flex-col justify-end p-4 items-start gap-3 absolute h-full w-full left-0 top-0 z-10 translate-y-2 group-hover:translate-y-0 bg-linear-to-t from-background from-30% to-primary/20 opacity-0 group-hover:opacity-100 transition duration-300">
-						<div className="flex text-[10px] items-center uppercase text-muted-foreground">
-							<span>Genre</span>
+						<div className="flex flex-wrap text-[10px] gap-1 items-center uppercase text-muted-foreground">
+							{item.genre_ids.map((genre, genreIndex) => {
+								const { label } = useGenresLabel(genre);
+								return (
+									<>
+										<span>{label}</span>
+										<span>
+											{genreIndex + 1 < item.genre_ids.length ? "•" : null}
+										</span>
+									</>
+								);
+							})}
 						</div>
-						<div className="rounded-2xl text-xs bg-primary/20 p-0.5 px-3 border-primary border text-primary font-inter">
-							<span className="font-light">{status}</span>
-						</div>
+						{status ? (
+							<div className="rounded-2xl text-xs bg-primary/20 p-0.5 px-3 border-primary border text-primary font-inter">
+								<span className="font-light">{status}</span>
+							</div>
+						) : null}
 						<p className="text-xs line-clamp-4 opacity-80 font-inter">
 							{item.overview}
 						</p>

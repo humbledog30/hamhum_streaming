@@ -3,9 +3,30 @@ import { NextPage } from "next";
 import { Dot, Play, Plus } from "lucide-react";
 import { FaPlay } from "react-icons/fa6";
 import { Button } from "../ui/button";
+import { useGenresLabel } from "@/lib/hooks/useGenresLabel";
 
 interface Props {}
-
+const movieBannerList = [
+	{
+		adult: false,
+		backdrop_path: "/4D1pdB27uph7J8HQzNf8QvvH9bn.jpg",
+		genre_ids: [16, 10751, 35, 12],
+		id: 1084244,
+		title: "Toy Story 5",
+		original_language: "en",
+		original_title: "Toy Story 5",
+		overview:
+			"When Bonnie receives a Lilypad tablet as a gift and becomes obsessed, Buzz, Woody, Jessie and the rest of the gang's jobs become exponentially harder when they have to go head to head with the all-new threat to playtime.",
+		popularity: 510.8593,
+		poster_path: "/sfQtVlIHljToOwYjhe21KPGzZWK.jpg",
+		release_date: "2026-06-17",
+		softcore: false,
+		video: false,
+		vote_average: 7.403,
+		vote_count: 465,
+	},
+];
+const genreBanner = [16, 10751, 35, 12];
 const HeroSection: NextPage<Props> = ({}) => {
 	return (
 		<div className="w-full h-[calc(100dvh-64px)] min-h-150 relative overflow-hidden">
@@ -43,10 +64,10 @@ const HeroSection: NextPage<Props> = ({}) => {
 							</span>
 						</div>
 						<div className="flex gap-3">
-							<span>Animation</span>
-							<span>Familie</span>
-							<span>Komödie</span>
-							<span>Abenteuer</span>
+							{genreBanner.map((item) => {
+								const { label } = useGenresLabel(item);
+								return <span>{label}</span>;
+							})}
 						</div>
 					</div>
 					<p className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-fraunces text-foreground transition-all duration-250 font-bold">

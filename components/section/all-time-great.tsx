@@ -1,3 +1,4 @@
+import { useGenresLabel } from "@/lib/hooks/useGenresLabel";
 import { Movie } from "@/types/movie";
 import { Trophy } from "lucide-react";
 
@@ -176,10 +177,18 @@ const AllTimeGreat = ({}) => {
 									<p className="font-fraunces font-semibold text-xl">
 										{item.title}
 									</p>
-									<div className="flex gap-3 text-xs uppercase">
-										<span className="border p-1 px-2 rounded-md text-foreground/50 border-foreground/40">
-											Genre
-										</span>
+									<div className="flex gap-3 flex-wrap text-xs uppercase">
+										{item.genre_ids.map((genre, genreIndex) => {
+											const { label } = useGenresLabel(genre);
+											return (
+												<span
+													key={`genre-${genreIndex}`}
+													className="border p-1 px-2 rounded-md text-foreground/50 border-foreground/40"
+												>
+													{label}
+												</span>
+											);
+										})}
 									</div>
 								</div>
 								<div className="flex flex-col ml-auto items-end">
