@@ -37,7 +37,7 @@ const HeroSection: NextPage<Props> = ({}) => {
 							</span>
 							<span>2026</span>
 							<span>2h 11m</span>
-							<span className="flex items-center gap-1 text-sm text-primary">
+							<span className="flex items-center gap-1 text-sm text-primary dark:text-yellow-400">
 								<FaStar />
 								7.4
 							</span>

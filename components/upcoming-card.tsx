@@ -4,24 +4,7 @@ import { NextPage } from "next";
 import { Button } from "./ui/button";
 import { Bell, Plus } from "lucide-react";
 import { useEffect, useState } from "react";
-
-export interface Movie {
-	adult: boolean;
-	backdrop_path: string;
-	genre_ids: number[];
-	id: number;
-	title: string;
-	original_language: string;
-	original_title: string;
-	overview: string;
-	popularity: number;
-	poster_path: string;
-	release_date: string;
-	softcore: boolean;
-	video: boolean;
-	vote_average: number;
-	vote_count: number;
-}
+import { Movie } from "@/types/movie";
 
 const UpcomingCard = ({ items }: { items: Movie[] }) => {
 	const [today, setToday] = useState<Date | null>(null);
