@@ -1,8 +1,8 @@
 import { FaStar } from "react-icons/fa";
 import { NextPage } from "next";
 import { Dot, Play, Plus } from "lucide-react";
-import { Button } from "./ui/button";
 import { FaPlay } from "react-icons/fa6";
+import { Button } from "../ui/button";
 
 interface Props {}
 
@@ -49,7 +49,7 @@ const HeroSection: NextPage<Props> = ({}) => {
 							<span>Abenteuer</span>
 						</div>
 					</div>
-					<p className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-fraunces text-foreground transition-all duration-250">
+					<p className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-fraunces text-foreground transition-all duration-250 font-bold">
 						Toy Story 5
 					</p>
 				</div>

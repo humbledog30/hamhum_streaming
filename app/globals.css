@@ -43,7 +43,7 @@
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-sm: calc(var(--radius) - 4px);
 
-	--font-sans: var(--font-inter), sans-serif;
+	--font-inter: var(--font-inter), sans-serif;
 	--font-fraunces: var(--font-fraunces), serif;
 	--font-jetbrains-mono: var(--font-jetbrains-mono), serif;
 }
@@ -134,5 +134,8 @@
 @layer components {
 	.section-title {
 		@apply font-fraunces text-2xl;
+	}
+	.genre-cards {
+		@apply rounded-xl border h-40 flex items-end p-4 overflow-hidden;
 	}
 }
