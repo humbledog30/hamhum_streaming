@@ -14,14 +14,9 @@ const Trending: NextPage<Props> = ({}) => {
 	const nextRef = useRef<HTMLButtonElement>(null);
 	return (
 		<section className="p-5 container flex flex-col gap-5 mx-auto">
-			<div className="flex justify-between items-center gap-3 flex-wrap">
-				<h6 className="section-title flex gap-3 items-center">
-					Trending Now
-					<span className="text-muted-foreground text-[10px] px-1 py-0.5 rounded-sm border border-muted-foreground opacity-35">
-						TODAY
-					</span>
-				</h6>
-
+			<div className="flex justify-between items-center gap-5 flex-wrap ">
+				<h6 className="section-title flex gap-3 items-center ">Trending Now</h6>
+				<div className="border-b border-foreground/80 flex-1"></div>
 				<div className="flex gap-2 ">
 					<Link
 						href="#"

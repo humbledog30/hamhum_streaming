@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Geist, Inter, JetBrains_Mono } from "next/font/google";
+import { Fraunces, Geist, Inter, JetBrains_Mono, Outfit } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -34,6 +34,12 @@ const jetbrains = JetBrains_Mono({
 	subsets: ["latin"],
 });
 
+const outfit = Outfit({
+	variable: "--font-outfit",
+	display: "swap",
+	subsets: ["latin"],
+});
+
 export default function RootLayout({
 	children,
 }: Readonly<{
@@ -42,7 +48,7 @@ export default function RootLayout({
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body
-				className={`${inter.className} ${fraunces.variable} ${jetbrains.variable} antialiased`}
+				className={`${inter.className} ${fraunces.variable} ${jetbrains.variable} ${outfit.variable} antialiased`}
 			>
 				<Providers>{children}</Providers>
 			</body>

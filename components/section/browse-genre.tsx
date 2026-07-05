@@ -67,8 +67,12 @@ interface movieProps {
 const BrowseGenre = ({}) => {
 	return (
 		<section className="p-5 container mx-auto">
-			<div className="flex gap-3 flex-col w-full">
-				<h6 className="section-title">Browse by Genre</h6>
+			<div className="flex gap-5 flex-col w-full">
+				<div className="flex items-center gap-5">
+					<h6 className="section-title text-nowrap">Browse by Genre</h6>
+					<div className=" border-b border-foreground/80 w-full" />
+				</div>
+
 				<div className="w-full grid grid-cols-6 gap-3 mx-auto text-2xl font-fraunces font-medium uppercase">
 					{movieData.map((item: movieProps, index: number) => {
 						return (

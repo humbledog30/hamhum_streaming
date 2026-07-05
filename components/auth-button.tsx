@@ -35,7 +35,7 @@ export async function AuthButton() {
 				<LogoutButton />
 			) : (
 				<Button className="rounded-2xl px-5" asChild size="sm" variant={"outline"}>
-					<Link href="/auth/sign-up">Sign up</Link>
+					<Link href="/auth/sign-in">Sign in</Link>
 				</Button>
 			)}
 		</div>
