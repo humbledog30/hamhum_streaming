@@ -2,6 +2,9 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { FaStar } from "react-icons/fa6";
+import { RefObject } from "react";
+import "swiper/css/navigation";
+import { Navigation } from "swiper/modules";
 
 const movieData = [
 	{
@@ -129,13 +132,43 @@ export interface Movie {
 	vote_average: number;
 	vote_count: number;
 }
-const SwiperCarousel = ({}) => {
+interface SwiperCarouselProps {
+	navigation: {
+		prevRef: RefObject<HTMLButtonElement | null>;
+		nextRef: RefObject<HTMLButtonElement | null>;
+	};
+}
+const SwiperCarousel = ({ navigation }: SwiperCarouselProps) => {
+	const { prevRef, nextRef } = navigation;
 	return (
 		<Swiper
-			spaceBetween={20}
-			slidesPerView={4.5}
+			modules={[Navigation]}
+			spaceBetween={10}
+			slidesPerView={1}
 			onSlideChange={() => console.log("slide change")}
-			onSwiper={(swiper) => console.log(swiper)}
+			navigation={{
+				prevEl: prevRef.current,
+				nextEl: nextRef.current,
+			}}
+			onSwiper={(swiper) => {}}
+			onBeforeInit={(swiper) => {
+				console.log("prevRef.current:", prevRef.current);
+				console.log("nextRef.current:", nextRef.current);
+				if (swiper.params.navigation && typeof swiper.params.navigation !== "boolean") {
+					swiper.params.navigation.prevEl = prevRef.current;
+					swiper.params.navigation.nextEl = nextRef.current;
+				}
+			}}
+			breakpoints={{
+				640: {
+					slidesPerView: 3,
+					spaceBetween: 10,
+				},
+				1024: {
+					slidesPerView: 4.5,
+					spaceBetween: 20,
+				},
+			}}
 		>
 			{movieData.map((item: Movie, index: number) => {
 				return (
@@ -145,7 +178,7 @@ const SwiperCarousel = ({}) => {
 								{index + 1}
 							</span>
 							<img
-								className="relative z-0"
+								className="relative z-0 w-full h-full object-cover"
 								src={`${process.env.NEXT_PUBLIC_TMDB_IMAGE_PATH}/w500/${item.backdrop_path}`}
 								alt=""
 							/>
