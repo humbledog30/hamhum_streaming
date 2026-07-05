@@ -1,4 +1,5 @@
 "use client";
+import { LayoutGrid } from "lucide-react";
 import { NextPage } from "next";
 
 const movieData = [
@@ -69,7 +70,10 @@ const BrowseGenre = ({}) => {
 		<section className="p-5 container mx-auto">
 			<div className="flex gap-5 flex-col w-full">
 				<div className="flex items-center gap-5">
-					<h6 className="section-title text-nowrap">Browse by Genre</h6>
+					<h6 className="section-title text-nowrap flex items-center gap-3">
+						<LayoutGrid />
+						Browse by Genre
+					</h6>
 					<div className=" border-b border-foreground/80 w-full" />
 				</div>
 

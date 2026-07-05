@@ -1,7 +1,4 @@
-import { NextPage } from "next";
-import { Button } from "../ui/button";
-import { Bell, Dot, Plus } from "lucide-react";
-import { useReleaseStatus } from "@/lib/hook";
+import { Calendar } from "lucide-react";
 import UpcomingCard from "../upcoming-card";
 
 const upcomingData = [
@@ -186,30 +183,14 @@ const upcomingData = [
 	},
 ];
 
-export interface Movie {
-	adult: boolean;
-	backdrop_path: string;
-	genre_ids: number[];
-	id: number;
-	title: string;
-	original_language: string;
-	original_title: string;
-	overview: string;
-	popularity: number;
-	poster_path: string;
-	release_date: string;
-	softcore: boolean;
-	video: boolean;
-	vote_average: number;
-	vote_count: number;
-}
-
 const UpcomingSection = ({}) => {
 	return (
 		<section className="p-5 container mx-auto">
 			<div className="flex gap-5 flex-col">
 				<div className="flex items-center gap-5">
-					<h6 className="section-title text-nowrap">Upcoming Releases</h6>
+					<h6 className="section-title text-nowrap flex items-center gap-3">
+						<Calendar /> Upcoming Releases
+					</h6>
 					<div className=" border-b border-foreground/80 w-full" />
 				</div>
 
