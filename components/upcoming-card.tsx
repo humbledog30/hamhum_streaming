@@ -57,7 +57,7 @@ const UpcomingCard = ({ items }: { items: Movie[] }) => {
 						<div className="rounded-2xl text-xs bg-primary/20 p-0.5 px-3 border-primary border text-primary font-inter">
 							<span className="font-light">{status}</span>
 						</div>
-						<p className="text-xs line-clamp-8 opacity-80 font-inter">
+						<p className="text-xs line-clamp-4 opacity-80 font-inter">
 							{item.overview}
 						</p>
 						<div className="flex gap-2">

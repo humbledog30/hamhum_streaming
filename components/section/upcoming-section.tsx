@@ -207,8 +207,12 @@ export interface Movie {
 const UpcomingSection = ({}) => {
 	return (
 		<section className="p-5 container mx-auto">
-			<div className="flex gap-3 flex-col w-full">
-				<h6 className="section-title">Upcoming Releases</h6>
+			<div className="flex gap-5 flex-col">
+				<div className="flex items-center gap-5">
+					<h6 className="section-title text-nowrap">Upcoming Releases</h6>
+					<div className=" border-b border-foreground/80 w-full" />
+				</div>
+
 				<div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 mx-auto font-medium">
 					<UpcomingCard items={upcomingData} />
 				</div>
