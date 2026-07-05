@@ -11,6 +11,7 @@ import { Suspense } from "react";
 import Tmdb from "@/components/tmdb";
 import MainNavigation from "@/components/nav/main-navigation";
 import HeroSection from "@/components/hero-section";
+import BrowseGenre from "@/components/browse-genre";
 
 export default function Home() {
 	return (
@@ -19,6 +20,7 @@ export default function Home() {
 				<MainNavigation />
 				<div className="mt-16 w-full">
 					<HeroSection />
+					<BrowseGenre />
 				</div>
 
 				<footer className="w-full flex items-center justify-center border-t mx-auto text-center text-xs gap-8 py-16">

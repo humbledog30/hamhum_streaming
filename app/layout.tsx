@@ -11,8 +11,9 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata: Metadata = {
 	metadataBase: new URL(defaultUrl),
-	title: "Next.js and Supabase Starter Kit",
-	description: "The fastest way to build apps with Next.js and Supabase",
+	title: "Hamhum+ | Homepage",
+	description:
+		"Unlimited movies and series. Any device, anytime. New titles added every week — your next favorite is just a click away.",
 };
 
 const fraunces = Fraunces({

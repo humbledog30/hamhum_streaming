@@ -31,14 +31,15 @@ const HeroSection: NextPage<Props> = ({}) => {
 						<span>NOW STREAMING</span>
 					</div>
 					<div className="meta-information flex-wrap flex gap-3 mb-4 items-center text-muted-foreground">
-						<div className="flex gap-3 border-r  border-transparent sm:border-muted-foreground pr-3">
+						<div className="flex gap-3 border-r border-transparent sm:border-muted-foreground pr-3">
 							<span className="border p-1 px-2.5 rounded-md text-xs border-foreground">
 								PG
 							</span>
 							<span>2026</span>
 							<span>2h 11m</span>
 							<span className="flex items-center gap-1 text-sm text-primary">
-								<FaStar /> 8.4
+								<FaStar />
+								7.4
 							</span>
 						</div>
 						<div className="flex gap-3">

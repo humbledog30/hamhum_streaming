@@ -131,3 +131,8 @@
 		@apply bg-background text-foreground;
 	}
 }
+@layer components {
+	.section-title {
+		@apply font-fraunces text-2xl;
+	}
+}
