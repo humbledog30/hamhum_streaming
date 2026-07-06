@@ -39,12 +39,15 @@ const UpcomingCard = ({ items }: { items: Movie[] }) => {
 							{item.genre_ids.map((genre, genreIndex) => {
 								const { label } = useGenresLabel(genre);
 								return (
-									<>
+									<div
+										className="gap-1 flex"
+										key={`upcoming-genre-${genreIndex}`}
+									>
 										<span>{label}</span>
 										<span>
 											{genreIndex + 1 < item.genre_ids.length ? "•" : null}
 										</span>
-									</>
+									</div>
 								);
 							})}
 						</div>

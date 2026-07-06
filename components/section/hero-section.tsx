@@ -64,9 +64,9 @@ const HeroSection: NextPage<Props> = ({}) => {
 							</span>
 						</div>
 						<div className="flex gap-3">
-							{genreBanner.map((item) => {
+							{genreBanner.map((item, index) => {
 								const { label } = useGenresLabel(item);
-								return <span>{label}</span>;
+								return <span key={`genre-banner-${index}`}>{label}</span>;
 							})}
 						</div>
 					</div>
