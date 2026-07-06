@@ -3,16 +3,11 @@ import { useReleaseStatus } from "@/lib/hooks/useReleaseStatus";
 import { NextPage } from "next";
 import { Button } from "./ui/button";
 import { Bell, Plus } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Movie } from "@/types/movie";
 import { useGenresLabel } from "@/lib/hooks/useGenresLabel";
 
 const UpcomingCard = ({ items }: { items: Movie[] }) => {
-	const [today, setToday] = useState<Date | null>(null);
-
-	useEffect(() => {
-		setToday(new Date());
-	}, []);
 	if (!items) {
 		return null;
 	}
@@ -23,7 +18,7 @@ const UpcomingCard = ({ items }: { items: Movie[] }) => {
 			year: "numeric",
 		}).format(new Date(item.release_date));
 
-		const { status } = useReleaseStatus(item.release_date, today);
+		const { status } = useReleaseStatus(item.release_date);
 		return (
 			<div
 				key={`upcoming-card-${item.id}`}
@@ -51,11 +46,16 @@ const UpcomingCard = ({ items }: { items: Movie[] }) => {
 								);
 							})}
 						</div>
-						{status ? (
-							<div className="rounded-2xl text-xs bg-primary/20 p-0.5 px-3 border-primary border text-primary font-inter">
-								<span className="font-light">{status}</span>
-							</div>
-						) : null}
+						<Suspense>
+							{status ? (
+								<div
+									suppressHydrationWarning
+									className="rounded-2xl text-xs bg-primary/20 p-0.5 px-3 border-primary border text-primary font-inter"
+								>
+									<span className="font-light">{status}</span>
+								</div>
+							) : null}
+						</Suspense>
 						<p className="text-xs line-clamp-4 opacity-80 font-inter">
 							{item.overview}
 						</p>
