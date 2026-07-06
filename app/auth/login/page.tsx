@@ -2,6 +2,7 @@ import { LoginForm } from "@/components/login-form";
 import AuthHeroSection from "@/components/section/auth-hero-section";
 import { Dot } from "lucide-react";
 import { Suspense } from "react";
+import Link from "next/link";
 
 const bannerList = [
 	{
@@ -40,6 +41,21 @@ export default function Page() {
 					<div className="absolute inset-0 z-10 bg-[linear-gradient(90deg,hsl(var(--background)/0.75)_0%,hsl(var(--background)/0.15)_45%,hsl(var(--background)/0.05)_70%)]" />
 
 					<div className="container p-5 md:px-10 h-full z-20 mx-auto relative flex flex-col justify-end pb-10">
+						<div className="flex gap-2 items-center font-semibold mb-auto">
+							<Link
+								className="flex text-3xl font-fraunces border-r border-primary pr-2"
+								href={"/"}
+							>
+								Ham
+								<span className="text-primary font-extrabold text-2xl -mt-2 -ml-1 block">
+									+
+								</span>
+								Hum
+							</Link>
+							<p className="font-jetbrains-mono text-xs uppercase">
+								Your personal cinema
+							</p>
+						</div>
 						<div className="py-5 max-w-md">
 							<div className="mb-4 font-jetbrains-mono text-xs flex gap-1 items-center text-primary">
 								<div className="relative ">

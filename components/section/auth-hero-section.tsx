@@ -1,7 +1,8 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, EffectFade } from "swiper/modules";
+import "swiper/css/effect-fade";
 
 interface bannerListProps {
 	src: string;
@@ -12,6 +13,8 @@ const AuthHeroSection = ({ items }: { items: bannerListProps[] }) => {
 		<Swiper
 			className="h-full"
 			slidesPerView={1}
+			effect="fade"
+			speed={800}
 			onSlideChange={() => console.log("slide change")}
 			onSwiper={(swiper) => console.log(swiper)}
 			autoplay={{
@@ -19,7 +22,7 @@ const AuthHeroSection = ({ items }: { items: bannerListProps[] }) => {
 				disableOnInteraction: false,
 				pauseOnMouseEnter: true,
 			}}
-			modules={[Autoplay]}
+			modules={[Autoplay, EffectFade]}
 		>
 			{items?.map((items, index) => (
 				<SwiperSlide>

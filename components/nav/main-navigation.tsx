@@ -18,7 +18,7 @@ const MainNavigation: NextPage<Props> = ({}) => {
 						<span className="text-primary font-extrabold text-2xl -mt-2 -ml-1 block">
 							+
 						</span>
-						hum
+						Hum
 					</Link>
 				</div>
 				{!hasEnvVars ? (
