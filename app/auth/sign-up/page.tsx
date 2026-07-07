@@ -75,7 +75,9 @@ export default function Page() {
 				</div>
 
 				<div className="w-full h-full lg:w-md">
-					<SignUpForm />
+					<Suspense>
+						<SignUpForm />
+					</Suspense>
 				</div>
 			</div>
 		</div>
