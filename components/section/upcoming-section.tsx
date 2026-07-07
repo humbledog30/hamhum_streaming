@@ -185,7 +185,7 @@ const upcomingData = [
 
 const UpcomingSection = ({}) => {
 	return (
-		<section className="p-5 container mx-auto">
+		<section className="py-5 section-container">
 			<div className="flex gap-5 flex-col">
 				<div className="flex items-center gap-5">
 					<h6 className="section-title text-nowrap flex items-center gap-3">

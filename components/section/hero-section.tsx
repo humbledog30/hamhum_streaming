@@ -104,7 +104,7 @@ const HeroSection = ({}) => {
 			</Swiper>
 			<div
 				ref={paginationRef}
-				className="container mx-auto hero-pagination absolute left-1/2 -translate-x-1/2 top-5 z-30 flex gap-2 px-5 justify-end"
+				className="section-container hero-pagination absolute left-1/2 -translate-x-1/2 top-5 z-30 flex gap-2 justify-end"
 			/>
 		</div>
 	);

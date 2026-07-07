@@ -151,7 +151,7 @@ const allTimeGreatData = [
 ];
 const AllTimeGreat = ({}) => {
 	return (
-		<section className="p-5 container mx-auto">
+		<section className="py-5 section-container">
 			<div className="flex gap-5 flex-col">
 				<div className="flex justify-between items-center gap-5 flex-wrap">
 					<h6 className="section-title flex gap-3 items-center ">

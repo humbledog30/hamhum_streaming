@@ -44,7 +44,7 @@
 	--radius-sm: calc(var(--radius) - 4px);
 
 	--font-inter: var(--font-inter), sans-serif;
-	--font-fraunces: var(--font-fraunces), serif;
+	--font-fraunces: var(--font-fraunces), sans;
 	--font-outfit: var(--font-outfit), serif;
 	--font-jetbrains-mono: var(--font-jetbrains-mono), serif;
 }
@@ -149,6 +149,9 @@
 	}
 	.profile-step:hover {
 		@apply text-foreground border-primary bg-primary/20 duration-300 transition-all;
+	}
+	.section-container {
+		@apply container mx-auto px-5 md:px-10;
 	}
 }
 

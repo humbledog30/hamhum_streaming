@@ -1,100 +1,128 @@
+"use client";
 import BannerOverlay from "@/components/banner-overlay";
 import { Button } from "@/components/ui/button";
 import { useFormatImagePath } from "@/lib/hooks/useFormatImagePath";
 import { useFormatRuntime } from "@/lib/hooks/useFormatRuntime";
-import { Play, Plus, Share, Share2, Star } from "lucide-react";
+import { Genre, MovieDetails } from "@/types/movie";
+import { Dot, Play, Plus, Share, Share2, Star } from "lucide-react";
+import { movieDetails, creditsResponse, releaseResponse } from "./data/sample-data";
+import React from "react";
+import { CastMember, CrewMember } from "@/types/cast";
+import { cn } from "@/lib/utils";
 
-const details = {
-	adult: false,
-	backdrop_path: "/zMwhWailP1WY7sb6AoE6b8ugoy.jpg",
-	belongs_to_collection: null,
-	budget: 0,
-	genres: [
-		{
-			id: 12,
-			name: "Adventure",
-		},
-		{
-			id: 16,
-			name: "Animation",
-		},
-		{
-			id: 10751,
-			name: "Family",
-		},
-		{
-			id: 14,
-			name: "Fantasy",
-		},
-	],
-	homepage: "https://www.netflix.com/title/81749852",
-	id: 1007757,
-	imdb_id: "tt29552248",
-	origin_country: ["US"],
-	original_language: "en",
-	original_title: "Swapped",
-	overview:
-		"A small woodland creature and a majestic bird, two natural sworn enemies of the Valley, magically trade places and set off on an adventure of a lifetime to switch back. Their journey soon uncovers a greater threat—one that could endanger not only their species, but the entire valley they call home.",
-	popularity: 90.9091,
-	poster_path: "/tHhxWxge06goXU6ZQH1hj7vK8Hd.jpg",
-	production_companies: [
-		{
-			id: 115416,
-			logo_path: "/eP0uhxcvAl91Xfw5SBSGuCY6GVU.png",
-			name: "Skydance Animation",
-			origin_country: "US",
-		},
-		{
-			id: 179999,
-			logo_path: "/eP0uhxcvAl91Xfw5SBSGuCY6GVU.png",
-			name: "Skydance Animation",
-			origin_country: "ES",
-		},
-	],
-	production_countries: [
-		{
-			iso_3166_1: "US",
-			name: "United States of America",
-		},
-		{
-			iso_3166_1: "ES",
-			name: "Spain",
-		},
-	],
-	release_date: "2026-05-01",
-	revenue: 0,
-	runtime: 102,
-	softcore: false,
-	spoken_languages: [
-		{
-			english_name: "English",
-			iso_639_1: "en",
-			name: "English",
-		},
-	],
-	status: "Released",
-	tagline: "Transform your destiny.",
-	title: "Swapped",
-	video: false,
-	vote_average: 8.945,
-	vote_count: 1875,
+const InfoPage = () => {
+	const cast = creditsResponse.cast.filter((cast) => cast.known_for_department === "Acting");
+	const director = creditsResponse.crew.filter((crew) => crew.job === "Director");
+	const writer = creditsResponse.crew.filter((crew) => crew.job === "Story");
+	const rating = releaseResponse
+		.find((item) => item.iso_3166_1 === "US")
+		?.release_dates.findLast((release) => release.certification !== "");
+	const movieResponse = { rating: rating?.certification, ...movieDetails };
+
+	return (
+		<div className="w-full flex flex-col">
+			{/* Info page Banner section */}
+			<BannerSection details={movieResponse} />
+			<div className="section-container">
+				<div className="flex items-center gap-5 mb-5">
+					<h6 className="section-title text-nowrap flex items-center gap-3">Details</h6>
+					<div className=" border-b border-foreground/80 w-full" />
+				</div>
+				<div className="grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-10 text-[12px]">
+					<div className="col-span-2 flex flex-col gap-3 justify-center">
+						<Details data={cast} label="Cast" />
+						<Details data={director} label="Director" />
+						<Details data={writer} label="Writers" />
+						<Details data={movieDetails.genres} label="Genres" />
+					</div>
+					<div className="col-span-1 flex flex-col gap-3 p-5 px-7 bg-chart-5/40 rounded-2xl">
+						<OtherDetails
+							data={
+								<>
+									<Star size={16} />
+									{movieDetails.vote_average.toPrecision(2)}/10
+								</>
+							}
+							label="Audience Score"
+							className="text-yellow-400 "
+						/>
+						<OtherDetails
+							data={movieDetails.release_date.split("-")[0]}
+							label="Release Year"
+						/>
+						<OtherDetails
+							data={useFormatRuntime(movieDetails.runtime)}
+							label="Runtime"
+						/>
+						<OtherDetails data={rating?.certification} label="Rating" />
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 };
 
-const InfoPage = ({}) => {
+const Details = ({ data, label }: { data: (CastMember | CrewMember | Genre)[]; label: string }) => {
+	return (
+		<div className="flex flex-wrap pb-4 border-b">
+			<span className="w-25 md:w-37.5 font-extralight text-foreground/40 uppercase ">
+				{label}
+			</span>
+			<div className="flex-1 flex flex-wrap items-center gap-1">
+				{data.map((dataItem, index) => {
+					return (
+						<React.Fragment key={`cast-${dataItem.id}`}>
+							<span>{dataItem.name}</span>
+							{index + 1 < data.length ? <Dot size={11} /> : null}
+						</React.Fragment>
+					);
+				})}
+			</div>
+		</div>
+	);
+};
+
+const OtherDetails = ({
+	data,
+	label,
+	className,
+}: {
+	data: React.ReactNode;
+	label: string;
+	className?: string;
+}) => {
+	return (
+		<div className="flex justify-between items-center gap-3 border-b border-foreground/10 pb-3">
+			<span className="text-foreground/50 text-sm font-light">{label}</span>
+			<span
+				className={cn(
+					"text-lg font-medium flex items-center gap-1 font-[Georgia]",
+					className,
+				)}
+			>
+				{data}
+			</span>
+		</div>
+	);
+};
+
+type MovieDetailsWithRating = Omit<MovieDetails, "rating"> & {
+	rating: string | undefined;
+};
+const BannerSection = ({ details }: { details: MovieDetailsWithRating }) => {
 	return (
 		<div className="w-full h-fit md:h-[calc(100dvh-4rem)] min-h-150 relative overflow-hidden">
-			{/* Info page Banner section */}
 			<div className="w-full h-full relative">
 				<img
 					className="w-full h-full object-cover absolute z-0"
-					src={`${useFormatImagePath(details.backdrop_path)}`}
+					src={`${details?.backdrop_path ? useFormatImagePath(details.backdrop_path) : "https://placehold.co/600x400"}`}
 					alt={`${details.title} Backdrop`}
 				/>
 				<BannerOverlay />
-				<div className="container px-5 h-full z-20 mx-auto relative flex item items-end gap-5 md:gap-8 flex-wrap py-20">
+				<div className="section-container h-full z-20 relative flex item items-end gap-5 md:gap-8 flex-wrap py-20">
 					<img
 						className="aspect-2/3 h-50 sm:h-70 md:h-80 lg:h-90 object-cover border rounded-xl border-primary"
-						src={`${useFormatImagePath(details.poster_path)}`}
+						src={`${details?.poster_path ? useFormatImagePath(details.poster_path) : "https://placehold.co/600x400"}`}
 						alt={details.title}
 					/>
 					<div className="flex-1 flex-col flex gap-3">
@@ -103,10 +131,12 @@ const InfoPage = ({}) => {
 						</h1>
 						<div className="flex gap-3 text-xs text-foreground/80 items-center">
 							<span className="border bg-background/30 p-0.5 border-foreground/80 px-3 rounded-md font-semibold font-inter">
-								R
+								{details.rating}
 							</span>
 							<span>{details.release_date.split("-")[0]}</span>
-							<span>{useFormatRuntime(details.runtime)}</span>
+							{details?.runtime ? (
+								<span>{useFormatRuntime(details.runtime)}</span>
+							) : null}
 							<span className="flex gap-1 items-center font-medium text-primary dark:text-yellow-400">
 								<Star size={14} />
 								{details.vote_average.toPrecision(2)}
