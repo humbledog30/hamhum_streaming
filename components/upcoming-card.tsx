@@ -6,6 +6,7 @@ import { Bell, Plus } from "lucide-react";
 import { Suspense, useEffect, useState } from "react";
 import { Movie } from "@/types/movie";
 import { useGenresLabel } from "@/lib/hooks/useGenresLabel";
+import { useFormatImagePath } from "@/lib/hooks/useFormatImagePath";
 
 const UpcomingCard = ({ items }: { items: Movie[] }) => {
 	if (!items) {
@@ -68,10 +69,7 @@ const UpcomingCard = ({ items }: { items: Movie[] }) => {
 							</Button>
 						</div>
 					</div>
-					<img
-						src={`${process.env.NEXT_PUBLIC_TMDB_IMAGE_PATH}/original/${item.poster_path}`}
-						alt={item.title}
-					/>
+					<img src={`${useFormatImagePath(item.poster_path)}`} alt={item.title} />
 				</div>
 				<h6 className="font-fraunces text-lg font-semibold">{item.title}</h6>
 				<p className="text-xs font-thin font-jetbrains-mono">Releases {formatted}</p>
