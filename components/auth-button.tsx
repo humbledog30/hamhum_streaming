@@ -3,6 +3,7 @@ import { Button } from "./ui/button";
 import { createClient } from "@/lib/supabase/server";
 import { LogoutButton } from "./logout-button";
 import { Bell, Bookmark, Search } from "lucide-react";
+import { ThemeSwitcher } from "./theme-switcher";
 
 export async function AuthButton() {
 	const supabase = await createClient();
@@ -24,6 +25,7 @@ export async function AuthButton() {
 					<Bookmark />
 				</Link>
 			</Button>
+
 			{user ? (
 				<Button asChild size="sm" className="rounded-full p-2" variant={"outline"}>
 					<Link href="#">
@@ -34,10 +36,11 @@ export async function AuthButton() {
 			{user ? (
 				<LogoutButton />
 			) : (
-				<Button className="rounded-2xl px-5" asChild size="sm" variant={"outline"}>
+				<Button className="rounded-2xl px-10" asChild size="sm" variant={"outline"}>
 					<Link href="/auth/login">Sign in</Link>
 				</Button>
 			)}
+			<ThemeSwitcher />
 		</div>
 	);
 }
