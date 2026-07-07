@@ -1,35 +1,67 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { Autoplay, EffectFade } from "swiper/modules";
+import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import "swiper/css/effect-fade";
 
 interface bannerListProps {
 	src: string;
 	alt: string;
 }
-const AuthHeroSection = ({ items }: { items: bannerListProps[] }) => {
+
+interface AuthHeroSectionProps {
+	items: bannerListProps[];
+	paginationEl: HTMLElement | null; // <-- actual DOM node, not a selector
+}
+
+const AuthHeroSection = ({ items, paginationEl }: AuthHeroSectionProps) => {
+	// Don't mount Swiper until we actually have the pagination DOM node
+	if (!paginationEl) return null;
+
 	return (
 		<Swiper
 			className="h-full"
 			slidesPerView={1}
 			effect="fade"
 			speed={800}
-			onSlideChange={() => console.log("slide change")}
-			onSwiper={(swiper) => console.log(swiper)}
 			autoplay={{
 				delay: 4000,
 				disableOnInteraction: false,
 				pauseOnMouseEnter: true,
 			}}
-			modules={[Autoplay, EffectFade]}
+			observer
+			observeParents
+			pagination={{
+				el: paginationEl,
+				clickable: true,
+				bulletClass: "hero-bullet",
+				bulletActiveClass: "hero-bullet-active",
+				renderBullet: (index, className) => `
+						<div class="${className}">
+							<img src="${process.env.NEXT_PUBLIC_TMDB_IMAGE_PATH}/original${items[index].src}" alt="${items[index].alt}" class="hero-bullet-bg"/>
+							<span class="hero-bullet-fill"></span>
+						</div>
+					`,
+			}}
+			onSlideChangeTransitionStart={() => {
+				document
+					.querySelectorAll<HTMLElement>(".hero-bullet-fill")
+					.forEach((el) => (el.style.width = "0%"));
+			}}
+			onAutoplayTimeLeft={(_swiper, _time, progress) => {
+				const fill = document.querySelector<HTMLElement>(
+					".hero-bullet-active .hero-bullet-fill",
+				);
+				if (fill) fill.style.width = `${(1 - progress) * 100}%`;
+			}}
+			modules={[Autoplay, EffectFade, Pagination]}
 		>
-			{items?.map((items, index) => (
-				<SwiperSlide>
+			{items?.map((item, index) => (
+				<SwiperSlide key={item.src}>
 					<img
-						className="w-full h-full object-cover "
-						src={`${process.env.NEXT_PUBLIC_TMDB_IMAGE_PATH}/original${items.src}`}
-						alt={items.alt}
+						className="w-full h-full object-cover"
+						src={`${process.env.NEXT_PUBLIC_TMDB_IMAGE_PATH}/original${item.src}`}
+						alt={item.alt}
 					/>
 				</SwiperSlide>
 			))}

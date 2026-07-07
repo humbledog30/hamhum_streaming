@@ -115,7 +115,12 @@ export default function Page() {
 					</div>
 					{/* On Boarding Skip */}
 					<div className="w-fit lg:w-38.75 flex justify-end">
-						<Button className="rounded-2xl cursor-pointer" size="sm" variant="outline">
+						<Button
+							className="rounded-2xl cursor-pointer"
+							size="sm"
+							variant="outline"
+							onClick={() => router.push("/")}
+						>
 							Skip
 						</Button>
 					</div>
