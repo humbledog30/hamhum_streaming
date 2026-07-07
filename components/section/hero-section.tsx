@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -58,8 +58,11 @@ const slides: MovieAdditionalProp[] = [
 ];
 
 const HeroSection = ({}) => {
-	const fillTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+	const [paginationEl, setPaginationEl] = useState<HTMLDivElement | null>(null);
 
+	const paginationRef = useCallback((node: HTMLDivElement | null) => {
+		setPaginationEl(node);
+	}, []);
 	return (
 		<div className="w-full h-[calc(100dvh-64px)] min-h-150 relative overflow-hidden">
 			<Swiper
@@ -69,7 +72,7 @@ const HeroSection = ({}) => {
 				loop
 				autoplay={{ delay: 6000, disableOnInteraction: false }}
 				pagination={{
-					el: ".hero-pagination",
+					el: paginationEl,
 					clickable: true,
 					bulletClass: "hero-bullet",
 					bulletActiveClass: "hero-bullet-active",
@@ -99,7 +102,10 @@ const HeroSection = ({}) => {
 					</SwiperSlide>
 				))}
 			</Swiper>
-			<div className="container mx-auto hero-pagination absolute left-1/2 -translate-x-1/2 top-5 z-30 flex gap-2 px-5 justify-end" />
+			<div
+				ref={paginationRef}
+				className="container mx-auto hero-pagination absolute left-1/2 -translate-x-1/2 top-5 z-30 flex gap-2 px-5 justify-end"
+			/>
 		</div>
 	);
 };

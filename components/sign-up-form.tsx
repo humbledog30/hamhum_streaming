@@ -50,7 +50,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
 				return;
 			}
 
-			router.push("/auth/on-boarding");
+			router.push("/on-boarding");
 		} catch (error: unknown) {
 			setError(error instanceof Error ? error.message : "An error occurred");
 		} finally {

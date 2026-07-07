@@ -2,6 +2,7 @@ import { createClient } from "@/lib/supabase/client";
 import { NextPage } from "next";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useSearchParams } from "next/navigation";
 
 interface GoogleAuthButtonProps {
 	setError: React.Dispatch<React.SetStateAction<string | null>>;
@@ -9,17 +10,24 @@ interface GoogleAuthButtonProps {
 
 const GoogleAuthButton = ({ setError }: GoogleAuthButtonProps) => {
 	const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+	const searchParams = useSearchParams();
 
 	const handleGoogleLogin = async () => {
 		const supabase = createClient();
 		setIsGoogleLoading(true);
 		setError(null);
 
+		const redirectTo = searchParams.get("redirect");
+		const safeRedirect =
+			redirectTo && redirectTo.startsWith("/") && !redirectTo.startsWith("//")
+				? redirectTo
+				: "/";
+
 		try {
 			const { error } = await supabase.auth.signInWithOAuth({
 				provider: "google",
 				options: {
-					redirectTo: `${window.location.origin}/auth/callback`,
+					redirectTo: `${window.location.origin}/auth/callback?redirect=${encodeURIComponent(safeRedirect)}`,
 				},
 			});
 			if (error) throw error;
