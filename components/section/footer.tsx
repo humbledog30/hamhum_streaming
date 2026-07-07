@@ -68,7 +68,6 @@ const Footer = ({}) => {
 					<p>Not for commercial use.</p>
 				</div>
 			</div>
-			{/* <ThemeSwitcher /> */}
 		</footer>
 	);
 };
