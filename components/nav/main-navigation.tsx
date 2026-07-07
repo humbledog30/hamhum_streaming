@@ -12,7 +12,7 @@ interface Props {}
 const MainNavigation: NextPage<Props> = ({}) => {
 	return (
 		<nav className="w-full fixed z-50 bg-background flex justify-center border-b border-b-foreground/10 h-16">
-			<div className="w-full container flex justify-between items-center p-3 px-5">
+			<div className="w-full section-container flex justify-between items-center py-3">
 				<div className="flex gap-5 items-center font-semibold">
 					<BrandLogo />
 				</div>

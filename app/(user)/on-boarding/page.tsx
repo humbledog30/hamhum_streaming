@@ -82,7 +82,7 @@ export default function Page() {
 	return (
 		<main className="min-h-screen flex flex-col">
 			<nav className="w-full z-50 bg-background flex justify-center flex-col h-18">
-				<div className="w-full container mx-auto flex justify-between items-center p-3 px-5">
+				<div className="w-full section-container flex justify-between items-center py-3">
 					{/* On Boarding Brand Logo */}
 					<div className="font-semibold">
 						<BrandLogo />
@@ -127,7 +127,7 @@ export default function Page() {
 				</div>
 			</nav>
 			<div className="w-full flex-1 flex">
-				<div className="container flex-1 mx-auto px-5 flex flex-col gap-4 w-full justify-center">
+				<div className="section-container flex-1 flex flex-col gap-4 w-full justify-center">
 					{/* On Boarding Progress bar */}
 					<div className="h-0.5 w-full bg-foreground/10">
 						<div

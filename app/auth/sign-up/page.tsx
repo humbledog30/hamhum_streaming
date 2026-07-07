@@ -37,7 +37,7 @@ export default function Page() {
 					<div className="absolute inset-0 z-10 bg-[linear-gradient(180deg,hsl(var(--background)/0.05)_0%,hsl(var(--background)/0.55)_58%,hsl(var(--background)/1)_100%)]" />
 					<div className="absolute inset-0 z-10 bg-[linear-gradient(90deg,hsl(var(--background)/0.75)_0%,hsl(var(--background)/0.15)_45%,hsl(var(--background)/0.05)_70%)]" />
 
-					<div className="container p-5 md:px-10 h-full z-20 mx-auto relative flex flex-col justify-end pb-10">
+					<div className="section-container py-5 h-full z-20 relative flex flex-col justify-end pb-10">
 						<div className="flex gap-2 items-center font-semibold mb-auto">
 							<BrandLogo />
 							<p className="font-jetbrains-mono text-xs uppercase border-l border-primary pl-2">

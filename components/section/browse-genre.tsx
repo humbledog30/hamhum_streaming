@@ -67,7 +67,7 @@ interface movieProps {
 }
 const BrowseGenre = ({}) => {
 	return (
-		<section className="p-5 container mx-auto">
+		<section className="py-5 section-container">
 			<div className="flex gap-5 flex-col w-full">
 				<div className="flex items-center gap-5">
 					<h6 className="section-title text-nowrap flex items-center gap-3">

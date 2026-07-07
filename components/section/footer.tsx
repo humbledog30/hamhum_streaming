@@ -6,19 +6,26 @@ import { FiGithub } from "react-icons/fi";
 
 const Footer = ({}) => {
 	return (
-		<footer className="w-full flex flex-col border-t border-foreground/20 mx-auto text-xs p-10 mt-20">
-			<div className="container mx-auto px-5">
+		<footer className="w-full flex flex-col border-t border-foreground/20 mx-auto text-xs pt-10 mt-20">
+			<div className="section-container">
+				<div className="mb-3">
+					<div className="flex items-center font-semibold">
+						<Link className="flex text-3xl font-fraunces" href={"/"}>
+							<img
+								className="hidden dark:block h-25"
+								src="/Portrait-Dark-mode.png"
+								alt="Brand Logo Dark"
+							/>
+							<img
+								className="block dark:hidden h-25"
+								src="/Portrait-Light-mode.png"
+								alt="Brand Logo Light"
+							/>
+						</Link>
+					</div>
+				</div>
 				<div className=" w-full flex flex-wrap items-start justify-between gap-8">
 					<div>
-						<div className="flex gap-5 items-center font-semibold">
-							<Link className="flex text-3xl font-fraunces" href={"/"}>
-								Ham
-								<span className="text-primary font-extrabold text-2xl -mt-2 -ml-1 block">
-									+
-								</span>
-								Hum
-							</Link>
-						</div>
 						<p className="text-sm text-foreground/50 mt-2 max-w-65 leading-relaxed">
 							Your own screening room — built around what you actually watch.
 						</p>

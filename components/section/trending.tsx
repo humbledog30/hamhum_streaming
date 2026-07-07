@@ -120,7 +120,7 @@ const Trending = ({}) => {
 	const prevRef = useRef<HTMLButtonElement>(null);
 	const nextRef = useRef<HTMLButtonElement>(null);
 	return (
-		<section className="p-5 container flex flex-col gap-5 mx-auto">
+		<section className="py-5 section-container flex flex-col gap-5">
 			<div className="flex justify-between items-center gap-5 flex-wrap ">
 				<h6 className="section-title flex gap-3 items-center ">
 					<Flame /> Trending Now

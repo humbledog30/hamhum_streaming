@@ -15,7 +15,7 @@ const BannerSlide = ({ item }: { item: MovieAdditionalProp }) => {
 				alt={item.title}
 			/>
 			<BannerOverlay />
-			<div className="container px-5 h-full z-20 mx-auto relative flex flex-col justify-end pb-10">
+			<div className="section-container h-full z-20 relative flex flex-col justify-end pb-10">
 				<div className="py-5 border-b border-muted-foreground">
 					<div className="mb-4 font-jetbrains-mono text-xs flex gap-1 items-center text-red-500">
 						<div className="relative">
