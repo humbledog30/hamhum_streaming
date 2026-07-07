@@ -140,6 +140,13 @@
 	.genre-cards {
 		@apply rounded-xl border h-40 flex items-end p-4 overflow-hidden;
 	}
+	.profile-step {
+		/* @apply data-[step-indicator=active]:text-foreground data-[step-indicator=active]:border-primary data-[step-indicator=active]:bg-primary/20 duration-300 transition-all; */
+		@apply data-[step-indicator=active]:from-background/80 data-[step-indicator=active]:to-primary bg-linear-to-br data-[step-indicator=active]:text-foreground;
+	}
+	.profile-step:hover {
+		@apply text-foreground border-primary bg-primary/20 duration-300 transition-all;
+	}
 }
 
 @utility text-stroke {

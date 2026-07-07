@@ -36,7 +36,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
 				email,
 				password,
 				options: {
-					emailRedirectTo: `${window.location.origin}/protected`,
+					emailRedirectTo: `${window.location.origin}/on-boarding`,
 				},
 			});
 
@@ -50,7 +50,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
 				return;
 			}
 
-			router.push("/auth/sign-up-success");
+			router.push("/auth/on-boarding");
 		} catch (error: unknown) {
 			setError(error instanceof Error ? error.message : "An error occurred");
 		} finally {
