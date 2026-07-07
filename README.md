@@ -1,5 +1,5 @@
 <a href="https://hamhum-streaming.vercel.app/">
-  <img alt="Ham+Hum" src="https://hamhum-streaming.vercel.app/preview.png>
+  <img alt="Ham+Hum" src="https://hamhum-streaming.vercel.app/preview.png">
   <h1 align="center">Ham+Hum (Hamhum+)</h1>
 </a>
 

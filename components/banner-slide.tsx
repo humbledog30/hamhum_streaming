@@ -5,6 +5,7 @@ import { FaPlay, FaStar } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { useGenresLabel } from "@/lib/hooks/useGenresLabel";
 import { MovieAdditionalProp } from "@/types/movie";
+import BannerOverlay from "./banner-overlay";
 const BannerSlide = ({ item }: { item: MovieAdditionalProp }) => {
 	return (
 		<div className="w-full h-full relative">
@@ -13,10 +14,7 @@ const BannerSlide = ({ item }: { item: MovieAdditionalProp }) => {
 				src={item.backdrop_path}
 				alt={item.title}
 			/>
-			<div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_30%_20%,hsl(var(--primary)/0.18),transparent_55%)]" />
-			<div className="absolute inset-0 z-10 bg-[linear-gradient(180deg,hsl(var(--background)/0.05)_0%,hsl(var(--background)/0.55)_58%,hsl(var(--background)/1)_100%)]" />
-			<div className="absolute inset-0 z-10 bg-[linear-gradient(90deg,hsl(var(--background)/0.75)_0%,hsl(var(--background)/0.15)_45%,hsl(var(--background)/0.05)_70%)]" />
-
+			<BannerOverlay />
 			<div className="container px-5 h-full z-20 mx-auto relative flex flex-col justify-end pb-10">
 				<div className="py-5 border-b border-muted-foreground">
 					<div className="mb-4 font-jetbrains-mono text-xs flex gap-1 items-center text-red-500">
@@ -53,9 +51,7 @@ const BannerSlide = ({ item }: { item: MovieAdditionalProp }) => {
 							</div>
 						) : null}
 					</div>
-					<p className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-fraunces text-foreground transition-all duration-250 font-bold">
-						{item.title}
-					</p>
+					<p className="header-title">{item.title}</p>
 				</div>
 				<div className="flex justify-between flex-wrap items-end gap-5 py-5">
 					<p className="italic text-muted-foreground max-w-full md:max-w-[75%]">

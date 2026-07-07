@@ -1,3 +1,4 @@
+import { useFormatImagePath } from "@/lib/hooks/useFormatImagePath";
 import { useGenresLabel } from "@/lib/hooks/useGenresLabel";
 import { Movie } from "@/types/movie";
 import { Trophy } from "lucide-react";
@@ -170,7 +171,7 @@ const AllTimeGreat = ({}) => {
 								</span>
 								<img
 									className="w-25 rounded-lg"
-									src={`${process.env.NEXT_PUBLIC_TMDB_IMAGE_PATH}/w500${item.poster_path}`}
+									src={`${useFormatImagePath(item.poster_path)}`}
 									alt={item.title}
 								/>
 								<div className="px-5 flex flex-col gap-3">
