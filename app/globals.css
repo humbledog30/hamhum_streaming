@@ -140,6 +140,9 @@
 	.section-title {
 		@apply font-fraunces text-2xl;
 	}
+	.section-title-line {
+		@apply text-xl md:text-2xl font-fraunces border-l-5 border-primary pl-3 py-2;
+	}
 	.genre-cards {
 		@apply rounded-xl border h-40 flex items-end p-4 overflow-hidden;
 	}
@@ -152,6 +155,9 @@
 	}
 	.section-container {
 		@apply container mx-auto px-5 md:px-10;
+	}
+	.primary-btn {
+		@apply bg-linear-to-br from-primary to-chart-5 cursor-pointer;
 	}
 }
 
