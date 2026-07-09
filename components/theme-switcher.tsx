@@ -28,7 +28,7 @@ const ThemeSwitcher = () => {
 	const ICON_SIZE = 16;
 
 	return (
-		<DropdownMenu>
+		<DropdownMenu modal={false}>
 			<DropdownMenuTrigger asChild>
 				<Button
 					className="rounded-full size-8 border hover:bg-transparent hover:border-primary hover:text-primary text-foreground/60 cursor-pointer"
@@ -44,7 +44,7 @@ const ThemeSwitcher = () => {
 					)}
 				</Button>
 			</DropdownMenuTrigger>
-			<DropdownMenuContent className="w-content" align="start">
+			<DropdownMenuContent className="w-content" align="end">
 				<DropdownMenuRadioGroup value={theme} onValueChange={(e) => setTheme(e)}>
 					<DropdownMenuRadioItem className="flex gap-2" value="light">
 						<Sun size={ICON_SIZE} className="text-muted-foreground" />{" "}

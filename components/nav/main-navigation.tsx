@@ -5,7 +5,7 @@ import { Suspense } from "react";
 import { AuthButton } from "../auth-button";
 import BrandLogo from "../brand-logo";
 import Link from "next/link";
-import { Bookmark, Search } from "lucide-react";
+import { Bookmark, LayoutGrid, Search } from "lucide-react";
 import { Button } from "../ui/button";
 
 interface Props {}
@@ -17,15 +17,10 @@ const MainNavigation: NextPage<Props> = ({}) => {
 				<div className="flex gap-5 items-center font-semibold">
 					<BrandLogo />
 				</div>
-				<div className="flex gap-2">
+				<div className="flex gap-2 items-center">
 					<Button asChild size="sm" className="rounded-full p-2" variant={"outline"}>
 						<Link href="#">
 							<Search />
-						</Link>
-					</Button>
-					<Button asChild size="sm" className="rounded-full p-2" variant={"outline"}>
-						<Link href="#">
-							<Bookmark />
 						</Link>
 					</Button>
 					{!hasEnvVars ? (

@@ -6,6 +6,7 @@ import { Suspense, useCallback, useState } from "react";
 import Link from "next/link";
 import BrandLogo from "@/components/brand-logo";
 import BannerOverlay from "@/components/banner-overlay";
+import StreamingIndicator from "@/components/streaming-indicator";
 
 const bannerList = [
 	{
@@ -51,13 +52,7 @@ export default function Page() {
 							</p>
 						</div>
 						<div className="py-5 max-w-md">
-							<div className="mb-4 font-jetbrains-mono text-xs flex gap-1 items-center text-primary">
-								<div className="relative ">
-									<Dot className="scale-[2] animate-ping absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-									<Dot className="scale-[2]" />
-								</div>
-								<span>NOW STREAMING</span>
-							</div>
+							<StreamingIndicator />
 						</div>
 						<p className="text-3xl md:text-5xl italic font-fraunces text-foreground transition-all duration-250 font-bold max-w-lg">
 							"Stories aren't just watched—they're lived."

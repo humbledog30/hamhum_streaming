@@ -48,7 +48,7 @@ export default function RootLayout({
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body
-				className={`${inter.className} ${fraunces.variable} ${jetbrains.variable} ${outfit.variable} antialiased`}
+				className={`${inter.className} ${fraunces.variable} ${jetbrains.variable} ${outfit.variable} antialiased `}
 			>
 				<Providers>{children}</Providers>
 			</body>
