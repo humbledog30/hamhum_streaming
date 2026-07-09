@@ -1,4 +1,6 @@
-export const useFormatImagePath = (src?: string | null, size: string = "original") => {
+type srcSize = "original" | "w500" | "w400" | "w300" | "w200";
+
+export const useFormatImagePath = (src?: string | null, size: srcSize = "original") => {
 	if (!src) {
 		return "/Placeholder.jpg";
 	}

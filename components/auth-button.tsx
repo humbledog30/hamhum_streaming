@@ -14,18 +14,7 @@ export async function AuthButton() {
 	const user = data?.claims;
 
 	return (
-		<div className="flex gap-2">
-			<Button asChild size="sm" className="rounded-full p-2" variant={"outline"}>
-				<Link href="#">
-					<Search />
-				</Link>
-			</Button>
-			<Button asChild size="sm" className="rounded-full p-2" variant={"outline"}>
-				<Link href="#">
-					<Bookmark />
-				</Link>
-			</Button>
-
+		<>
 			{user ? (
 				<Button asChild size="sm" className="rounded-full p-2" variant={"outline"}>
 					<Link href="#">
@@ -41,6 +30,6 @@ export async function AuthButton() {
 				</Button>
 			)}
 			<ThemeSwitcher />
-		</div>
+		</>
 	);
 }

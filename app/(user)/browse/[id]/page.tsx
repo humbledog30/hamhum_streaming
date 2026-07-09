@@ -176,7 +176,7 @@ type MovieDetailsWithRating = Omit<MovieDetails, "rating"> & {
 };
 const BannerSection = ({ details }: { details: MovieDetailsWithRating }) => {
 	return (
-		<div className="w-full h-fit md:h-[calc(100dvh-4rem)] min-h-150 relative overflow-hidden">
+		<section className="w-full h-fit min-h-150 relative overflow-hidden">
 			<div className="w-full h-full relative">
 				<img
 					className="w-full h-full object-cover absolute z-0"
@@ -244,7 +244,7 @@ const BannerSection = ({ details }: { details: MovieDetailsWithRating }) => {
 					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 	);
 };
 

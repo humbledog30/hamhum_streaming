@@ -138,7 +138,7 @@
 		@apply text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-fraunces text-foreground transition-all duration-250 font-bold;
 	}
 	.section-title {
-		@apply font-fraunces text-2xl;
+		@apply font-fraunces text-2xl font-semibold;
 	}
 	.section-title-line {
 		@apply text-xl md:text-2xl font-fraunces border-l-5 border-primary pl-3 py-2;
