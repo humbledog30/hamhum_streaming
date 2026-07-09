@@ -26,11 +26,14 @@ export const GenreTabs = ({ scrollSpy }: GenreTabsProps) => {
 						ref={registerTab(item.id)}
 						data-highlight={activeId === item.id ? "active" : "inactive"}
 						onClick={() => handleTabClick(item.id)}
-						className="flex shrink-0 items-center gap-2 px-5 py-3 text-nowrap text-muted-foreground data-[highlight=active]:text-foreground transition-colors cursor-pointer"
+						className="transition-all duration-300 flex shrink-0 items-center gap-2 px-5 py-3 text-nowrap text-muted-foreground data-[highlight=active]:text-foreground cursor-pointer"
 					>
 						{item.name}
 
-						<span className="rounded-2xl border border-primary bg-primary/20 px-3 py-0.5 text-xs font-semibold text-primary">
+						<span
+							data-highlight={activeId === item.id ? "active" : "inactive"}
+							className="transition-all duration-300 rounded-2xl border data-[highlight=active]:bg-primary/20 data-[highlight=active]:border-primary data-[highlight=active]:text-primary border-muted-foreground/60 bg-primary/0 px-3 py-0.5 text-xs font-semibold text-muted-foreground/60"
+						>
 							100
 						</span>
 					</button>

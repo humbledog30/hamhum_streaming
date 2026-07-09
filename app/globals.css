@@ -159,6 +159,12 @@
 	.primary-btn {
 		@apply bg-linear-to-br from-primary to-chart-5 cursor-pointer;
 	}
+	.primary-btn:hover {
+		@apply brightness-105;
+	}
+	.btn {
+		@apply rounded-2xl!;
+	}
 }
 
 @utility text-stroke {

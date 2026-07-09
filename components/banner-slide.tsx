@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useGenresLabel } from "@/lib/hooks/useGenresLabel";
 import { MovieAdditionalProp } from "@/types/movie";
 import BannerOverlay from "./banner-overlay";
+import StreamingIndicator from "./streaming-indicator";
 const BannerSlide = ({ item }: { item: MovieAdditionalProp }) => {
 	return (
 		<div className="w-full h-full relative">
@@ -17,13 +18,7 @@ const BannerSlide = ({ item }: { item: MovieAdditionalProp }) => {
 			<BannerOverlay />
 			<div className="section-container h-full z-20 relative flex flex-col justify-end pb-10">
 				<div className="py-5 border-b border-muted-foreground">
-					<div className="mb-4 font-jetbrains-mono text-xs flex gap-1 items-center text-red-500">
-						<div className="relative">
-							<Dot className="scale-[2] animate-ping absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-							<Dot className="scale-[2]" />
-						</div>
-						<span>NOW STREAMING</span>
-					</div>
+					<StreamingIndicator />
 					<div className="meta-information flex-wrap flex gap-3 mb-4 items-center text-muted-foreground">
 						<div className="flex gap-3 border-r border-transparent sm:border-muted-foreground pr-3">
 							<span className="border p-1 px-2.5 rounded-md text-xs border-foreground">

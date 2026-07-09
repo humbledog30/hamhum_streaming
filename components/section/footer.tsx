@@ -6,18 +6,18 @@ import { FiGithub } from "react-icons/fi";
 
 const Footer = ({}) => {
 	return (
-		<footer className="w-full flex flex-col border-t border-foreground/20 mx-auto text-xs py-1">
+		<footer className="w-full flex flex-col border-t border-foreground/20 mx-auto text-xs py-10">
 			<div className="section-container">
 				<div className="mb-3">
 					<div className="flex items-center font-semibold">
 						<Link className="flex text-3xl font-fraunces" href={"/"}>
 							<img
-								className="hidden dark:block h-25"
+								className="hidden dark:block h-15"
 								src="/Portrait-Dark-mode.png"
 								alt="Brand Logo Dark"
 							/>
 							<img
-								className="block dark:hidden h-25"
+								className="block dark:hidden h-15"
 								src="/Portrait-Light-mode.png"
 								alt="Brand Logo Light"
 							/>
