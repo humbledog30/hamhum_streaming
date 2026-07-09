@@ -6,7 +6,7 @@ import { FiGithub } from "react-icons/fi";
 
 const Footer = ({}) => {
 	return (
-		<footer className="w-full flex flex-col border-t border-foreground/20 mx-auto text-xs py-10 mt-20">
+		<footer className="w-full flex flex-col border-t border-foreground/20 mx-auto text-xs py-1">
 			<div className="section-container">
 				<div className="mb-3">
 					<div className="flex items-center font-semibold">

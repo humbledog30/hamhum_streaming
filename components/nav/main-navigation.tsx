@@ -1,11 +1,12 @@
 import { hasEnvVars } from "@/lib/utils";
 import { NextPage } from "next";
-import Link from "next/link";
-import { FaPlus } from "react-icons/fa6";
 import { EnvVarWarning } from "../env-var-warning";
 import { Suspense } from "react";
 import { AuthButton } from "../auth-button";
 import BrandLogo from "../brand-logo";
+import Link from "next/link";
+import { Bookmark, Search } from "lucide-react";
+import { Button } from "../ui/button";
 
 interface Props {}
 
@@ -16,13 +17,25 @@ const MainNavigation: NextPage<Props> = ({}) => {
 				<div className="flex gap-5 items-center font-semibold">
 					<BrandLogo />
 				</div>
-				{!hasEnvVars ? (
-					<EnvVarWarning />
-				) : (
-					<Suspense>
-						<AuthButton />
-					</Suspense>
-				)}
+				<div className="flex gap-2">
+					<Button asChild size="sm" className="rounded-full p-2" variant={"outline"}>
+						<Link href="#">
+							<Search />
+						</Link>
+					</Button>
+					<Button asChild size="sm" className="rounded-full p-2" variant={"outline"}>
+						<Link href="#">
+							<Bookmark />
+						</Link>
+					</Button>
+					{!hasEnvVars ? (
+						<EnvVarWarning />
+					) : (
+						<Suspense>
+							<AuthButton />
+						</Suspense>
+					)}
+				</div>
 			</div>
 		</nav>
 	);

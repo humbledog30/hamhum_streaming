@@ -2,35 +2,8 @@
 import BrandLogo from "@/components/brand-logo";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { genreList, useGenresLabel } from "@/lib/hooks/useGenresLabel";
-import {
-	Check,
-	ChevronLeft,
-	ChevronRight,
-	LayoutGrid,
-	SlashIcon,
-	User,
-	Swords,
-	Compass,
-	Sparkles,
-	Laugh,
-	Fingerprint,
-	Clapperboard,
-	Drama,
-	Users,
-	Wand2,
-	Landmark,
-	Ghost,
-	Music,
-	Search,
-	Heart,
-	Rocket,
-	Tv,
-	Zap,
-	Shield,
-	Mountain,
-	Dot,
-} from "lucide-react";
+import { genreIcons, genreList, useGenresLabel } from "@/lib/hooks/useGenresLabel";
+import { Check, ChevronLeft, ChevronRight, LayoutGrid, SlashIcon, User, Dot } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -48,28 +21,6 @@ const profileAvatar = [
 	{ src: "/avatar/P5.png", alt: "Profile Avatar 5" },
 	{ src: "/avatar/P6.png", alt: "Profile Avatar 6" },
 ];
-
-const genreIcons: Record<number, React.ComponentType<{ className?: string; size?: number }>> = {
-	28: Swords,
-	12: Compass,
-	16: Sparkles,
-	35: Laugh,
-	80: Fingerprint,
-	99: Clapperboard,
-	18: Drama,
-	10751: Users,
-	14: Wand2,
-	36: Landmark,
-	27: Ghost,
-	10402: Music,
-	9648: Search,
-	10749: Heart,
-	878: Rocket,
-	10770: Tv,
-	53: Zap,
-	10752: Shield,
-	37: Mountain,
-};
 
 export default function Page() {
 	const [avatarSrc, setAvatarSrc] = useState<string>("/avatar/P1.png");
