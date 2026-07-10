@@ -95,6 +95,7 @@
 		--chart-4: 200 30% 10%; /* ink */
 		--chart-5: 180 5% 60%; /* neutral grey */
 		--radius: 0.5rem;
+		--glow: hsl(var(--primary) / 0.3);
 	}
 	.dark {
 		/* Dark mode — cool near-black, from the deepest region of the reference image */
@@ -122,6 +123,7 @@
 		--chart-3: 188 38% 20%; /* deep teal */
 		--chart-4: 0 0% 90%; /* near white */
 		--chart-5: 210 15% 30%; /* cool dark grey */
+		--glow: hsl(var(--accent) / 0.5);
 	}
 }
 
@@ -175,6 +177,29 @@
 	}
 	.hero-bullet-bg {
 		@apply absolute top-0 left-0 z-1 w-full h-full object-cover;
+	}
+}
+
+@theme {
+	--animate-accordion-down: accordion-down 0.2s ease-out;
+	--animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+@keyframes accordion-down {
+	from {
+		height: 0;
+	}
+	to {
+		height: var(--radix-accordion-content-height);
+	}
+}
+
+@keyframes accordion-up {
+	from {
+		height: var(--radix-accordion-content-height);
+	}
+	to {
+		height: 0;
 	}
 }
 
