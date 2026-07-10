@@ -55,7 +55,7 @@ const Footer = ({}) => {
 							<p className="mb-4 uppercase text-sm font-semibold">Browse</p>
 							<ul className="text-foreground flex flex-col gap-3">
 								<li>
-									<Link href={"#"}>Genres</Link>
+									<Link href={"/browse"}>Genres</Link>
 								</li>
 								<li>
 									<Link href={"#"}>New Releases</Link>
@@ -64,7 +64,7 @@ const Footer = ({}) => {
 									<Link href={"#"}>Upcoming Releases</Link>
 								</li>
 								<li>
-									<Link href={"#"}>My List</Link>
+									<Link href={"#"}>Bookmark</Link>
 								</li>
 							</ul>
 						</div>
@@ -75,7 +75,10 @@ const Footer = ({}) => {
 									<Link href={"/about-us"}>About us</Link>
 								</li>
 								<li>
-									<Link href={"#"}>Contact</Link>
+									<Link href={"/help-center"}>Help Center</Link>
+								</li>
+								<li>
+									<Link href={"/contact"}>Contact</Link>
 								</li>
 							</ul>
 						</div>

@@ -100,13 +100,21 @@ const UserProfile = ({ user }: { user: JwtPayload }) => {
 				</DropdownMenuGroup>
 				<DropdownMenuSeparator />
 				<DropdownMenuGroup>
-					<DropdownMenuItem className="flex-1">
+					<DropdownMenuItem
+						className="flex-1 cursor-pointer"
+						onSelect={() => router.push("/help-center")}
+					>
 						<HelpCircle />
 						Help Center
 					</DropdownMenuItem>
 				</DropdownMenuGroup>
 				<DropdownMenuSeparator />
-				<DropdownMenuItem className="cursor-pointer " onClick={logout} disabled={isLoading}>
+				<DropdownMenuItem
+					className="cursor-pointer "
+					onClick={logout}
+					disabled={isLoading}
+					variant={"destructive"}
+				>
 					<LogOutIcon className="" />
 					Log out
 				</DropdownMenuItem>

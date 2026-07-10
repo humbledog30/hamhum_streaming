@@ -19,7 +19,7 @@ const MainNavigation: NextPage<Props> = ({}) => {
 					<BrandLogo />
 				</div>
 				<div className="gap-4 mr-auto ml-5 hidden lg:flex [&>a]:hover:text-primary [&>a]:transition-all [&>a]:duration-200">
-					<Link href={"#"}>Browse</Link>
+					<Link href={"/browse"}>Browse</Link>
 					<Link href={"#"}>Popular Movies</Link>
 					<Link href={"#"}>Upcoming Releases</Link>
 					<Link href={"#"}>All Time Great</Link>
