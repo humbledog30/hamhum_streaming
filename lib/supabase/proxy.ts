@@ -12,6 +12,9 @@ export async function updateSession(request: NextRequest) {
 	if (!hasEnvVars) {
 		return supabaseResponse;
 	}
+	if (request.nextUrl.pathname.startsWith("/auth/callback")) {
+		return supabaseResponse;
+	}
 
 	// With Fluid compute, don't put this client in a global environment
 	// variable. Always create a new one on each request.
@@ -54,15 +57,11 @@ export async function updateSession(request: NextRequest) {
 		request.nextUrl.pathname.startsWith("/terms-of-service") ||
 		request.nextUrl.pathname.startsWith("/copyright") ||
 		request.nextUrl.pathname.startsWith("/about-us") ||
-		request.nextUrl.pathname.startsWith("/help-center");
+		request.nextUrl.pathname.startsWith("/auth/forgot-password") ||
+		request.nextUrl.pathname.startsWith("/auth/confirmation") ||
+		request.nextUrl.pathname.startsWith("/auth/callback");
 
-	if (
-		request.nextUrl.pathname !== "/" &&
-		!user &&
-		!isAuthPage &&
-		!isPublicPage &&
-		!request.nextUrl.pathname.startsWith("/auth")
-	) {
+	if (request.nextUrl.pathname !== "/" && !user && !isAuthPage && !isPublicPage) {
 		// no user, potentially respond by redirecting the user to the login page
 		const url = request.nextUrl.clone();
 		const redirectPath = request.nextUrl.pathname + request.nextUrl.search;

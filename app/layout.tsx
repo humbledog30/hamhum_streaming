@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Providers from "./providers";
+import { Toaster } from "@/components/ui/sonner";
 
 const defaultUrl = process.env.VERCEL_URL
 	? `https://${process.env.VERCEL_URL}`
@@ -51,6 +52,19 @@ export default function RootLayout({
 				className={`${inter.className} ${fraunces.variable} ${jetbrains.variable} ${outfit.variable} antialiased `}
 			>
 				<Providers>{children}</Providers>
+				<Toaster
+					style={
+						{
+							"--normal-bg": "hsl(var(--background))",
+							"--normal-text": "hsl(var(--foreground))",
+							"--normal-border": "hsl(var(--border))",
+						} as React.CSSProperties
+					}
+					position={"bottom-center"}
+					duration={7000}
+					visibleToasts={3}
+					expand={true}
+				/>
 			</body>
 		</html>
 	);
