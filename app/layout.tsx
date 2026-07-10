@@ -11,7 +11,7 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata: Metadata = {
 	metadataBase: new URL(defaultUrl),
-	title: "Hamhum+ | Homepage",
+	title: "Ham+Hum | Homepage",
 	description:
 		"Unlimited movies and series. Any device, anytime. New titles added every week — your next favorite is just a click away.",
 };

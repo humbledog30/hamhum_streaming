@@ -1,6 +1,5 @@
 @import "tailwindcss";
-
-@plugin 'tailwindcss-animate';
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -143,7 +142,7 @@
 		@apply font-fraunces text-2xl font-semibold;
 	}
 	.section-title-line {
-		@apply text-xl md:text-2xl font-fraunces border-l-5 border-primary pl-3 py-2;
+		@apply text-xl font-fraunces;
 	}
 	.genre-cards {
 		@apply rounded-xl border h-40 flex items-end p-4 overflow-hidden;
@@ -177,29 +176,6 @@
 	}
 	.hero-bullet-bg {
 		@apply absolute top-0 left-0 z-1 w-full h-full object-cover;
-	}
-}
-
-@theme {
-	--animate-accordion-down: accordion-down 0.2s ease-out;
-	--animate-accordion-up: accordion-up 0.2s ease-out;
-}
-
-@keyframes accordion-down {
-	from {
-		height: 0;
-	}
-	to {
-		height: var(--radix-accordion-content-height);
-	}
-}
-
-@keyframes accordion-up {
-	from {
-		height: var(--radix-accordion-content-height);
-	}
-	to {
-		height: 0;
 	}
 }
 

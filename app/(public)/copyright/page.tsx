@@ -1,37 +1,37 @@
+import BasicHeader from "@/components/basic-header";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 export const metadata = {
-	title: "Copyright & DMCA Notice — Hamhum+",
+	title: "Ham+Hum — Copyright & DMCA Notice",
 };
 
 const CopyrightPage = ({}) => {
 	return (
-		<div className="section-container mx-auto py-10 mt-10 text-foreground">
-			<p className="uppercase font-bold text-primary mb-6">Legal</p>
-			<h1 className="font-fraunces text-4xl md:text-5xl font-semibold mb-3">
-				Copyright &amp; DMCA Notice
-			</h1>
-			<p className=" text-foreground/50 mb-14 leading-relaxed">
-				How we handle copyright, third-party data, and takedown requests on Hamhum+.
-			</p>
+		<div className="w-full max-w-180 px-5 flex flex-col gap-10 mx-auto py-10 mt-10 text-foreground relative">
+			<BasicHeader
+				sticker="Legal"
+				title="Copyright &amp; DMCA Notice"
+				description="How we handle copyright, third-party data, and takedown requests on Ham+Hum."
+			/>
 
-			<div className="flex flex-col gap-12 leading-relaxed text-foreground/60">
+			<div className="flex flex-col gap-8">
 				<section>
-					<h3 className="text-foreground font-semibold mb-4 section-title-line">
+					<h6 className="text-foreground font-semibold section-title-line mb-3">
 						Site content
-					</h3>
-					<p>
-						The Hamhum+ name, logo, interface design, and original code are the property
-						of Hamhum+. Hamhum+ is a demonstration project and is not for commercial
+					</h6>
+					<p className="text-muted-foreground text-sm">
+						The Ham+Hum name, logo, interface design, and original code are the property
+						of Ham+Hum. Ham+Hum is a demonstration project and is not for commercial
 						use.
 					</p>
 				</section>
-
+				<span className="border-b border-muted-foreground/30" />
 				<section>
-					<h3 className="text-foreground font-semibold mb-4 section-title-line">
+					<h6 className="text-foreground font-semibold section-title-line mb-3">
 						Third-party data &amp; attribution
-					</h3>
-					<p>
+					</h6>
+					<p className="text-muted-foreground text-sm">
 						This product uses the TMDB API but is not endorsed or certified by TMDB.
 						Movie and series titles, artwork, descriptions, and related metadata are
 						sourced from{" "}
@@ -47,18 +47,18 @@ const CopyrightPage = ({}) => {
 						studios, distributors, and content owners.
 					</p>
 				</section>
-
+				<span className="border-b border-muted-foreground/30" />
 				<section>
-					<h3 className="text-foreground font-semibold mb-4 section-title-line">
+					<h6 className="text-foreground font-semibold mb-3 section-title-line">
 						DMCA takedown requests
-					</h3>
-					<p className="mb-4">
+					</h6>
+					<p className="text-muted-foreground text-sm mb-4">
 						If you are a copyright owner, or authorized to act on behalf of one, and
-						believe that material available on Hamhum+ infringes your copyright, you may
+						believe that material available on Ham+Hum infringes your copyright, you may
 						submit a notice under the Digital Millennium Copyright Act (17 U.S.C. § 512)
 						by providing the following to our designated contact below:
 					</p>
-					<ul className="flex flex-col gap-2.5">
+					<ul className="text-muted-foreground text-sm flex flex-col gap-2.5">
 						{[
 							"A physical or electronic signature of the copyright owner or authorized representative",
 							"Identification of the copyrighted work claimed to have been infringed",
@@ -76,23 +76,22 @@ const CopyrightPage = ({}) => {
 						))}
 					</ul>
 				</section>
-
-				<section>
-					<h3 className="text-foreground font-semibold mb-4 section-title-line">
-						Designated contact
-					</h3>
-					<p className="p-6 rounded-md bg-chart-5/20 border">
-						Send DMCA notices to{" "}
-						<Link
-							href="mailto:hamhum.plus2026@gmail.com"
-							className="text-primary underline underline-offset-2 decoration-primary/40 hover:decoration-primary transition"
-						>
-							hamhum.plus2026@gmail.com
-						</Link>
-						. We will review and respond to valid notices in a timely manner.
-					</p>
-				</section>
 			</div>
+
+			<section className="p-6 flex flex-col gap-2 border rounded-xl bg-border/40 text-center mt-5">
+				<p className="text-2xl font-fraunces font-semibold">Designated Contact</p>
+				<p className="text-primary text-pretty">
+					Send DMCA notices to the email below and we'll review and respond in a timely
+					manner.
+				</p>
+				<Link
+					href="mailto:hamhum.plus2026@gmail.com"
+					className=" bg-primary w-fit mx-auto hover:bg-primary/70 items-center rounded-lg mt-3 flex gap-2 p-2 px-6 hover:decoration-primary transition"
+				>
+					Contact Us
+					<ChevronRight size={18} />
+				</Link>
+			</section>
 		</div>
 	);
 };

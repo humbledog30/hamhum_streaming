@@ -1,6 +1,6 @@
 <a href="https://hamhum-streaming.vercel.app/">
   <img alt="Ham+Hum" src="https://hamhum-streaming.vercel.app/preview.png">
-  <h1 align="center">Ham+Hum (Hamhum+)</h1>
+  <h1 align="center">Ham+Hum</h1>
 </a>
 
 **Live site:** [https://hamhum-streaming.vercel.app/](https://hamhum-streaming.vercel.app/)

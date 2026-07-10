@@ -1,38 +1,44 @@
+import BasicHeader from "@/components/basic-header";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
+
+export const metadata = {
+	title: "Ham+Hum — About Us",
+};
 
 const AboutUsPage = ({}) => {
 	return (
-		<div className="section-container mx-auto py-10 mt-10 text-foreground">
-			<p className="uppercase font-bold text-primary mb-6">Information</p>
-			<h1 className="font-fraunces text-4xl md:text-5xl font-semibold mb-3">About us</h1>
-			<p className=" text-foreground/50 mb-14 leading-relaxed">
-				Ham+Hum is a personal streaming project built around one idea: a home for the movies
-				and shows you actually watch, without the noise.
-			</p>
+		<div className="w-full max-w-180 px-5 flex flex-col gap-10 mx-auto py-10 mt-10 text-foreground relative">
+			<BasicHeader
+				sticker="Information"
+				title="About us"
+				description="Ham+Hum is a personal streaming project built around one idea: a home for the movies
+				and shows you actually watch, without the noise."
+			/>
 
-			<div className="flex flex-col gap-12 leading-relaxed text-foreground/60">
+			<div className="flex flex-col gap-8">
 				<section>
-					<h3 className="text-foreground font-semibold mb-4 section-title-line">
+					<h6 className="text-foreground font-semibold section-title-line mb-3">
 						Who we are
-					</h3>
-					<p>
+					</h6>
+					<p className="text-muted-foreground text-sm">
 						Ham+Hum is a personal portfolio project — a movie and show browsing site
 						built to explore what a clean, fast streaming-style interface could look
 						like. It's not a company or a product, just one developer's take on building
 						something Netflix-shaped from scratch.
 					</p>
 				</section>
-
+				<span className="border-b border-muted-foreground/30" />
 				<section>
-					<h3 className="text-foreground font-semibold mb-4 section-title-line">
+					<h6 className="text-foreground font-semibold section-title-line mb-3">
 						What we offer
-					</h3>
-					<p>
+					</h6>
+					<p className="text-muted-foreground text-sm">
 						Ham+Hum lets you browse trending and popular titles, search by genre, and
 						keep a personal watchlist — all pulled live from TMDB's catalog. There is
 						video streaming here.
 					</p>
-					<div className="flex gap-3 mt-6 flex-wrap">
+					<div className="grid gap-3 mt-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 						<div className="flex flex-col p-6 px-8 border bg-chart-5/20 rounded-md">
 							<span className="text-primary text-2xl font-bold">TMDB</span>
 							<span>Live catalog Data</span>
@@ -47,12 +53,12 @@ const AboutUsPage = ({}) => {
 						</div>
 					</div>
 				</section>
-
+				<span className="border-b border-muted-foreground/30" />
 				<section>
-					<h3 className="text-foreground font-semibold mb-4 section-title-line">
+					<h6 className="text-foreground font-semibold mb-3 section-title-line">
 						Data & attribution
-					</h3>
-					<p className="mb-4">
+					</h6>
+					<p className="text-muted-foreground text-sm">
 						Movie and show metadata is provided by{" "}
 						<Link
 							href="https://www.themoviedb.org/"
@@ -66,25 +72,22 @@ const AboutUsPage = ({}) => {
 						any streaming service.
 					</p>
 				</section>
-
-				<section>
-					<h3 className="text-foreground font-semibold mb-4 section-title-line">
-						Contact
-					</h3>
-					<p className="p-6 rounded-md bg-chart-5/20 border">
-						This is a portfolio project — if you'd like to get in touch, check out the
-						code on{" "}
-						<Link
-							href="https://github.com/humbledog30"
-							target={"_blank"}
-							className="text-primary underline underline-offset-2 decoration-primary/40 hover:decoration-primary transition"
-						>
-							GitHub
-						</Link>
-						. or reach out there.
-					</p>
-				</section>
 			</div>
+
+			<section className="p-6 flex flex-col gap-2 border rounded-xl bg-border/40 text-center mt-5">
+				<p className="text-2xl font-fraunces font-semibold">Get in Touch</p>
+				<p className="text-primary text-pretty">
+					This is a portfolio project — if you'd like to get in touch, find me on GitHub.
+				</p>
+				<Link
+					href="https://github.com/humbledog30"
+					target="_blank"
+					className=" bg-primary w-fit mx-auto hover:bg-primary/70 items-center rounded-lg mt-3 flex gap-2 p-2 px-6 hover:decoration-primary transition"
+				>
+					View on GitHub
+					<ChevronRight size={18} />
+				</Link>
+			</section>
 		</div>
 	);
 };
