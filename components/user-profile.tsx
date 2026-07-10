@@ -14,23 +14,17 @@ import {
 	Bell,
 	Bookmark,
 	ChevronDown,
-	CreditCardIcon,
 	HelpCircle,
-	List,
 	LogOutIcon,
 	PlayCircle,
 	SettingsIcon,
-	Sun,
-	UserIcon,
 } from "lucide-react";
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import UserAvatar from "./user-avatar";
-import { ThemeSwitcher } from "./theme-switcher";
-import { Switch } from "./ui/switch";
-import { Label } from "./ui/label";
+
 import { ThemeSwitcherMenu } from "./theme-swtcher-menu";
 import Link from "next/link";
 
@@ -56,9 +50,12 @@ const UserProfile = ({ user }: { user: JwtPayload }) => {
 	return (
 		<DropdownMenu modal={false}>
 			<DropdownMenuTrigger asChild>
-				<div className="flex items-center gap-1 cursor-pointer">
+				<div className="flex items-center gap-1 cursor-pointer group">
 					<UserAvatar user={user} />
-					<ChevronDown size={12} />
+					<ChevronDown
+						size={12}
+						className="group-data-[state=open]:rotate-180 transition-all duration-300"
+					/>
 				</div>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent

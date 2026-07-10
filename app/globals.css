@@ -1,6 +1,5 @@
 @import "tailwindcss";
-
-@plugin 'tailwindcss-animate';
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -95,6 +94,7 @@
 		--chart-4: 200 30% 10%; /* ink */
 		--chart-5: 180 5% 60%; /* neutral grey */
 		--radius: 0.5rem;
+		--glow: hsl(var(--primary) / 0.3);
 	}
 	.dark {
 		/* Dark mode — cool near-black, from the deepest region of the reference image */
@@ -122,6 +122,7 @@
 		--chart-3: 188 38% 20%; /* deep teal */
 		--chart-4: 0 0% 90%; /* near white */
 		--chart-5: 210 15% 30%; /* cool dark grey */
+		--glow: hsl(var(--accent) / 0.5);
 	}
 }
 
@@ -141,13 +142,12 @@
 		@apply font-fraunces text-2xl font-semibold;
 	}
 	.section-title-line {
-		@apply text-xl md:text-2xl font-fraunces border-l-5 border-primary pl-3 py-2;
+		@apply text-xl font-fraunces;
 	}
 	.genre-cards {
 		@apply rounded-xl border h-40 flex items-end p-4 overflow-hidden;
 	}
 	.profile-step {
-		/* @apply data-[step-indicator=active]:text-foreground data-[step-indicator=active]:border-primary data-[step-indicator=active]:bg-primary/20 duration-300 transition-all; */
 		@apply data-[step-indicator=active]:from-background/80 data-[step-indicator=active]:to-primary bg-linear-to-br data-[step-indicator=active]:text-foreground;
 	}
 	.profile-step:hover {
@@ -165,6 +165,18 @@
 	.btn {
 		@apply rounded-2xl!;
 	}
+	.hero-bullet {
+		@apply w-17 md:w-25 lg:w-30 aspect-video rounded-lg inline-block border border-muted-foreground/30 relative overflow-hidden cursor-pointer bg-cover bg-center transition-colors duration-300;
+	}
+	.hero-bullet-active {
+		@apply border-primary shadow-[0_0_0_1px_hsl(var(--primary)/0.35),0_0_14px_hsl(var(--primary)/0.35)];
+	}
+	.hero-bullet-fill {
+		@apply absolute inset-0 z-2 w-0 bg-primary/60 transition-[width] duration-100 ease-linear;
+	}
+	.hero-bullet-bg {
+		@apply absolute top-0 left-0 z-1 w-full h-full object-cover;
+	}
 }
 
 @utility text-stroke {
@@ -176,42 +188,4 @@
 	-webkit-text-stroke-width: 2px;
 	-webkit-text-stroke-color: var(--foreground);
 	-webkit-text-fill-color: transparent;
-}
-.hero-bullet {
-	display: inline-block;
-	width: 120px;
-	height: 67.5px;
-	border-radius: 6px;
-	border: 1px solid hsl(var(--muted-foreground) / 0.3);
-	position: relative;
-	overflow: hidden;
-	cursor: pointer;
-	background-size: cover;
-	background-position: center;
-	transition: border-color 0.3s ease;
-}
-
-.hero-bullet-active {
-	border-color: hsl(var(--primary));
-	box-shadow:
-		0 0 0 1px hsl(var(--primary) / 0.35),
-		0 0 14px hsl(var(--primary) / 0.35);
-}
-
-.hero-bullet-fill {
-	position: absolute;
-	inset: 0;
-	z-index: 2;
-	width: 0%;
-	background: hsl(var(--primary) / 0.6);
-	transition: width 0.1s linear;
-}
-.hero-bullet-bg {
-	position: absolute;
-	z-index: 1;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	top: 0;
-	left: 0;
 }

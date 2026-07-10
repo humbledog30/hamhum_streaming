@@ -1,6 +1,6 @@
 import "swiper/css";
 import "swiper/css/effect-fade";
-import { Dot, Plus } from "lucide-react";
+import { Dot, Play, Plus } from "lucide-react";
 import { FaPlay, FaStar } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { useGenresLabel } from "@/lib/hooks/useGenresLabel";
@@ -53,12 +53,12 @@ const BannerSlide = ({ item }: { item: MovieAdditionalProp }) => {
 						{item.overview}
 					</p>
 					<div className="action-buttons flex gap-3 flex-wrap">
-						<Button size="lg" className="rounded-3xl py-6 primary-btn">
-							<FaPlay /> Watch now
+						<Button size="lg" className="rounded-3xl py-3 primary-btn">
+							<Play /> Watch now
 						</Button>
 						<Button
 							size="lg"
-							className="bg-transparent border-foreground rounded-3xl py-6 "
+							className="bg-transparent border-foreground rounded-3xl py-3 "
 							variant="outline"
 						>
 							<Plus /> Add to list

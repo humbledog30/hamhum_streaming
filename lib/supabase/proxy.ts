@@ -53,7 +53,8 @@ export async function updateSession(request: NextRequest) {
 		request.nextUrl.pathname.startsWith("/privacy-policy") ||
 		request.nextUrl.pathname.startsWith("/terms-of-service") ||
 		request.nextUrl.pathname.startsWith("/copyright") ||
-		request.nextUrl.pathname.startsWith("/about-us");
+		request.nextUrl.pathname.startsWith("/about-us") ||
+		request.nextUrl.pathname.startsWith("/help-center");
 
 	if (
 		request.nextUrl.pathname !== "/" &&

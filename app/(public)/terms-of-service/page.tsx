@@ -1,42 +1,41 @@
+import BasicHeader from "@/components/basic-header";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 export const metadata = {
-	title: "Terms of Service — Hamhum+",
+	title: "Ham+Hum — Terms of Service",
 };
 
 const TermsOfServicePage = ({}) => {
 	return (
-		<div className="section-container mx-auto py-10 mt-10 text-foreground">
-			<p className="uppercase font-bold text-primary mb-6">Legal</p>
-			<h1 className="font-fraunces text-4xl md:text-5xl font-semibold mb-3">
-				Terms of Service
-			</h1>
+		<div className="w-full max-w-180 px-5 flex flex-col gap-10 mx-auto py-10 mt-10 text-foreground relative">
+			<BasicHeader
+				sticker="Legal"
+				title="Terms of Service"
+				description="Ham+Hum is a demonstration project and is not for commercial use."
+				footer="Last updated: July 8, 2026"
+			/>
 
-			<p className=" text-foreground/50 mb-14 leading-relaxed">
-				Hamhum+ is a demonstration project and is not for commercial use.{" "}
-				<span className="text-foreground/30">Last updated: July 8, 2026</span>
-			</p>
-
-			<div className="flex flex-col gap-12 leading-relaxed text-foreground/60">
+			<div className="flex flex-col gap-8">
 				<section>
-					<h3 className="text-foreground font-semibold  mb-3 section-title-line">
+					<h6 className="text-foreground font-semibold section-title-line mb-3">
 						Acceptance of terms
-					</h3>
-					<p>
-						By accessing or using Hamhum+, you agree to these Terms of Service. This
+					</h6>
+					<p className="text-muted-foreground text-sm">
+						By accessing or using Ham+Hum, you agree to these Terms of Service. This
 						site is a personal portfolio project, provided as-is for demonstration
 						purposes. If you don't agree with these terms, please discontinue use of the
 						site.
 					</p>
 				</section>
-
+				<span className="border-b border-muted-foreground/30" />
 				<section>
-					<h3 className="text-foreground font-semibold mb-3 section-title-line">
+					<h6 className="text-foreground font-semibold section-title-line mb-3">
 						Use of the service
-					</h3>
-					<ul className="flex flex-col gap-2.5">
+					</h6>
+					<ul className="flex flex-col gap-2.5 text-muted-foreground text-sm">
 						{[
-							"Hamhum+ is provided for personal, non-commercial, demonstration purposes only, as part of a developer's portfolio",
+							"Ham+Hum is provided for personal, non-commercial, demonstration purposes only, as part of a developer's portfolio",
 							"The site displays metadata and artwork sourced from TMDB; video playback is provided via third-party embedded sources not operated by Ham+Hum",
 							"You agree not to misuse the service, including scraping, excessive automated requests, or attempting to disrupt the site",
 						].map((item, i) => (
@@ -49,24 +48,24 @@ const TermsOfServicePage = ({}) => {
 						))}
 					</ul>
 				</section>
-
+				<span className="border-b border-muted-foreground/30" />
 				<section>
-					<h3 className="text-foreground font-semibold section-title-line mb-3">
+					<h6 className="text-foreground font-semibold mb-3 section-title-line">
 						Accounts
-					</h3>
-					<p>
+					</h6>
+					<p className="text-muted-foreground text-sm">
 						Creating a watchlist requires an account. You're responsible for keeping
 						your login credentials secure and for all activity under your account.
 						Account data, including your watchlist and preferences, is stored in our
 						database (hosted via Supabase) and is deleted if you delete your account.
 					</p>
 				</section>
-
+				<span className="border-b border-muted-foreground/30" />
 				<section>
-					<h3 className="text-foreground font-semibold mb-3 section-title-line">
+					<h6 className="text-foreground font-semibold mb-3 section-title-line">
 						Intellectual property
-					</h3>
-					<p>
+					</h6>
+					<p className="text-muted-foreground text-sm">
 						All film and series metadata, artwork, and ratings are provided by{" "}
 						<Link
 							href="https://www.themoviedb.org/"
@@ -76,82 +75,81 @@ const TermsOfServicePage = ({}) => {
 						>
 							The Movie Database (TMDB)
 						</Link>{" "}
-						and remain the property of their respective owners. The Hamhum+ name,
+						and remain the property of their respective owners. The Ham+Hum name,
 						design, and original code are the work of the developer and shared for
 						portfolio and educational purposes.
 					</p>
 				</section>
-
+				<span className="border-b border-muted-foreground/30" />
 				<section>
-					<h3 className="text-foreground font-semibold mb-3 section-title-line">
+					<h6 className="text-foreground font-semibold mb-3 section-title-line">
 						Disclaimer of warranties
-					</h3>
-					<p>
-						Hamhum+ is provided "as is," without warranties of any kind, express or
+					</h6>
+					<p className="text-muted-foreground text-sm">
+						Ham+Hum is provided "as is," without warranties of any kind, express or
 						implied. As a personal portfolio project, it may contain bugs, incomplete
 						features, or occasional downtime, and there's no guarantee of uninterrupted
 						or error-free operation.
 					</p>
 				</section>
-
+				<span className="border-b border-muted-foreground/30" />
 				<section>
-					<h3 className="text-foreground font-semibold mb-3 section-title-line">
+					<h6 className="text-foreground font-semibold mb-3 section-title-line">
 						Limitation of liability
-					</h3>
-					<p>
-						To the fullest extent permitted by law, the creator of Hamhum+ is not liable
+					</h6>
+					<p className="text-muted-foreground text-sm">
+						To the fullest extent permitted by law, the creator of Ham+Hum is not liable
 						for any direct, indirect, incidental, or consequential damages arising from
 						your use of, or inability to use, the site.
 					</p>
 				</section>
-
+				<span className="border-b border-muted-foreground/30" />
 				<section>
-					<h3 className="text-foreground font-semibold section-title-line mb-3">
+					<h6 className="text-foreground font-semibold mb-3 section-title-line">
 						Termination
-					</h3>
-					<p>
+					</h6>
+					<p className="text-muted-foreground text-sm">
 						As this is a personal project rather than a commercial service, access may
 						be modified, suspended, or discontinued at any time without notice, at the
 						developer's discretion.
 					</p>
 				</section>
-
+				<span className="border-b border-muted-foreground/30" />
 				<section>
-					<h3 className="text-foreground font-semibold section-title-line mb-3 section-title-line">
+					<h6 className="text-foreground font-semibold mb-3 section-title-line">
 						Changes to these terms
-					</h3>
-					<p>
+					</h6>
+					<p className="text-muted-foreground text-sm">
 						These terms may be updated as the project evolves. Any changes will be
 						reflected on this page with a revised "last updated" date.
 					</p>
 				</section>
-
+				<span className="border-b border-muted-foreground/30" />
 				<section>
-					<h3 className="text-foreground font-semibold section-title-line mb-3 ">
+					<h6 className="text-foreground font-semibold mb-3 section-title-line">
 						Governing law
-					</h3>
-					<p>
+					</h6>
+					<p className="text-muted-foreground text-sm">
 						These terms are governed by the laws of the developer's home jurisdiction,
 						without regard to conflict-of-law principles.
 					</p>
 				</section>
-
-				<section>
-					<h3 className="text-foreground font-semibold mb-3 section-title-line">
-						Contact
-					</h3>
-					<p className="p-6 rounded-md bg-chart-5/20 border">
-						Questions about these terms can be sent to{" "}
-						<Link
-							href="mailto:hamhum.plus2026@gmail.com"
-							className="text-primary underline underline-offset-2 decoration-primary/40 hover:decoration-primary transition"
-						>
-							hamhum.plus2026@gmail.com
-						</Link>
-						.
-					</p>
-				</section>
 			</div>
+
+			<section className="p-6 flex flex-col gap-2 border rounded-xl bg-border/40 text-center mt-5">
+				<p className="text-2xl font-fraunces font-semibold">Questions?</p>
+				<p className="text-primary text-pretty">
+					Questions about these terms? Just reach out — we'll get back to you.
+				</p>
+				<Link
+					href="mailto:hamhum.plus2026@gmail.com"
+					target="_blank"
+					className=" bg-primary w-fit mx-auto hover:bg-primary/70 items-center rounded-lg mt-3 flex gap-2 p-2 px-6 hover:decoration-primary transition"
+				>
+					Contact Us
+					<ChevronRight size={18} />
+				</Link>
+			</section>
 		</div>
 	);
 };
