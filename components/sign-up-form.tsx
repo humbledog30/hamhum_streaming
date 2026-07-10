@@ -49,8 +49,8 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
 				setIsLoading(false);
 				return;
 			}
-
-			router.push("/on-boarding");
+			sessionStorage.setItem("signup-email", email);
+			router.push("/auth/confirmation");
 		} catch (error: unknown) {
 			setError(error instanceof Error ? error.message : "An error occurred");
 		} finally {

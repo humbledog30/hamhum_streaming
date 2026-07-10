@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function ContactPage() {
 	return (
-		<div className="max-w-180 mx-auto px-5 flex flex-col gap-10 py-10 mt-10 text-foreground">
+		<div className="max-w-180 w-full mx-auto px-5 flex flex-col gap-10 py-10 mt-10 text-foreground">
 			<BasicHeader
 				sticker="Get in Touch"
 				title="Let's talk"
