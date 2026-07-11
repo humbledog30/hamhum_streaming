@@ -112,7 +112,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 					{error && <p className="text-sm text-red-500">{error}</p>}
 					<Button
 						type="submit"
-						className="w-full rounded-3xl py-5 bg-linear-to-br from-primary to-primary hover:-translate-y-0.5 hover:cursor-pointer transition-all duration-300"
+						className="w-full py-5 bg-linear-to-br from-primary to-primary hover:-translate-y-0.5 hover:cursor-pointer transition-all duration-300"
 						disabled={isLoading}
 					>
 						{isLoading ? "Logging in..." : "Log in"}

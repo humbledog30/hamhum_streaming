@@ -70,7 +70,7 @@ export default function Page() {
 					</div>
 
 					<Button
-						className="text-muted-foreground rounded-xl cursor-pointer"
+						className="text-muted-foreground cursor-pointer"
 						variant={"outline"}
 						onClick={handleResend}
 						disabled={!isCanResend}

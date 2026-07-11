@@ -32,7 +32,7 @@ export function ExpandableWrapper({ children }: { children: React.ReactNode }) {
 
 			<Button
 				onClick={() => setExpanded((p) => !p)}
-				className="mt-2 mx-auto text-sm font-medium rounded-2xl cursor-pointer"
+				className="mt-2 mx-auto text-sm font-medium cursor-pointer"
 				size={"lg"}
 				variant={"outline"}
 			>

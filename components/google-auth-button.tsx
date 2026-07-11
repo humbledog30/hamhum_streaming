@@ -42,7 +42,7 @@ const GoogleAuthButton = ({ setError }: GoogleAuthButtonProps) => {
 		<Button
 			type="button"
 			variant="outline"
-			className="w-full rounded-3xl py-5 flex items-center gap-2 hover:-translate-y-0.5 hover:cursor-pointer transition-all duration-300"
+			className="w-full py-5 flex items-center gap-2 hover:-translate-y-0.5 hover:cursor-pointer transition-all duration-300"
 			onClick={handleGoogleLogin}
 			disabled={isGoogleLoading}
 		>

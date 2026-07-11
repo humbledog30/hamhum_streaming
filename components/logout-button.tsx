@@ -27,8 +27,7 @@ export function LogoutButton() {
 	return (
 		<Button
 			disabled={isLoading}
-			className="rounded-2xl px-5 cursor-pointer"
-			size="sm"
+			className="px-5 cursor-pointer"
 			variant={"outline"}
 			onClick={logout}
 		>

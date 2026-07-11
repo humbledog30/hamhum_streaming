@@ -53,7 +53,7 @@ export default function Page() {
 											return;
 										}
 									}}
-									className="cursor-pointer flex gap-2 text-sm border-foreground/40 border p-1 px-4 items-center rounded-3xl profile-step duration-300 transition-all"
+									className="cursor-pointer flex gap-2 text-sm border-foreground/40 border p-1 px-4 items-center profile-step duration-300 transition-all"
 								>
 									{item.icon}
 									<span>{item.label}</span>
@@ -67,7 +67,7 @@ export default function Page() {
 					{/* On Boarding Skip */}
 					<div className="w-fit lg:w-38.75 flex justify-end">
 						<Button
-							className="rounded-2xl cursor-pointer"
+							className=" cursor-pointer"
 							size="sm"
 							variant="outline"
 							onClick={() => router.push("/")}
@@ -183,7 +183,7 @@ export default function Page() {
 													? "active"
 													: "inactive"
 											}
-											className="cursor-pointer data-[genre=active]:from-background/80 data-[genre=active]:to-primary bg-linear-to-br data-[genre=active]:text-foreground flex gap-2 bg-muted-foreground/15 border-muted-foreground/90 border p-2 px-5 rounded-3xl text-sm items-center transition-all duration-150"
+											className="cursor-pointer data-[genre=active]:from-background/80 rounded-md data-[genre=active]:to-primary bg-linear-to-br data-[genre=active]:text-foreground flex gap-2 bg-muted-foreground/15 border-muted-foreground/90 border p-2 px-5 text-sm items-center transition-all duration-150"
 											key={`genre-badge-${genre.id}`}
 										>
 											<Icon size={14} />
@@ -235,7 +235,7 @@ export default function Page() {
 							</div>
 							<Button
 								size={"lg"}
-								className="cursor-pointer rounded-3xl gap-0 mt-5"
+								className="cursor-pointer gap-0 mt-5"
 								variant={"default"}
 								onClick={() => {
 									console.log(selectedGenres);
@@ -260,7 +260,7 @@ export default function Page() {
 						<Button
 							data-button-back={activeStep === 2 ? "visible" : "hidden"}
 							size={"lg"}
-							className="cursor-pointer rounded-3xl invisible data-[button-back=visible]:visible w-37.5"
+							className="cursor-pointer invisible data-[button-back=visible]:visible w-37.5"
 							variant={"outline"}
 							onClick={() => {
 								if (activeStep < 3) {
@@ -276,7 +276,7 @@ export default function Page() {
 						</div>
 						<Button
 							size={"lg"}
-							className="cursor-pointer rounded-3xl w-37.5"
+							className="cursor-pointer w-37.5"
 							disabled={selectedGenres.length < 3 && activeStep === 2}
 							variant={"default"}
 							onClick={() => {
