@@ -69,7 +69,7 @@ export default function ContactPage() {
 
 						<Button
 							type="submit"
-							className="primary-btn self-start mt-1 px-6 mx-auto py-2.5 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition"
+							className="primary-btn self-start mt-1 px-6 mx-auto py-2.5 bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition"
 						>
 							Send message
 						</Button>

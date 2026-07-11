@@ -61,7 +61,7 @@ const UpcomingCard = ({ items }: { items: Movie[] }) => {
 							{item.overview}
 						</p>
 						<div className="flex gap-2">
-							<Button className="rounded-2xl primary-btn">
+							<Button className=" primary-btn">
 								<Bell /> Remind Me
 							</Button>
 							<Button className="rounded-full aspect-square p-2.5" variant="outline">

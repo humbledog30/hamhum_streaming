@@ -53,12 +53,12 @@ const BannerSlide = ({ item }: { item: MovieAdditionalProp }) => {
 						{item.overview}
 					</p>
 					<div className="action-buttons flex gap-3 flex-wrap">
-						<Button size="lg" className="rounded-3xl py-3 primary-btn">
+						<Button size="lg" className="py-3 primary-btn">
 							<Play /> Watch now
 						</Button>
 						<Button
 							size="lg"
-							className="bg-transparent border-foreground rounded-3xl py-3 "
+							className="bg-transparent border-foreground py-3 "
 							variant="outline"
 						>
 							<Plus /> Add to list

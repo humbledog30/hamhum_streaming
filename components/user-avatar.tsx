@@ -4,6 +4,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
 import { JwtPayload } from "@supabase/supabase-js";
 
 const UserAvatar = ({ user, size }: { user: JwtPayload; size?: string }) => {
+	if (!user) return null;
 	const userAvatar = user?.user_metadata?.avatar_url ?? "";
 	const userPicture = user?.user_metadata?.picture ?? "";
 	const fullName = user?.user_metadata?.full_name ?? "";

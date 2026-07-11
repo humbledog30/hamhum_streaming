@@ -221,16 +221,10 @@ const BannerSection = ({ details }: { details: MovieDetailsWithRating }) => {
 						</div>
 						<p className="max-w-full md:max-w-200">{details.overview}</p>
 						<div className="flex gap-2 items-center mt-5 flex-wrap">
-							<Button
-								className=" px-6 rounded-3xl h-11 primary-btn"
-								variant={"default"}
-							>
+							<Button className=" px-6 h-11 primary-btn" variant={"default"}>
 								<Play /> Watch Now
 							</Button>
-							<Button
-								className=" px-6 bg-background/40 rounded-3xl h-11"
-								variant={"outline"}
-							>
+							<Button className=" px-6 bg-background/40 h-11" variant={"outline"}>
 								<Plus /> Add to list
 							</Button>
 							<Button

@@ -17,7 +17,7 @@ export async function AuthButton() {
 				<UserProfile user={user} />
 			) : (
 				<Button
-					className="rounded-2xl px-6 lg:px-10 primary-btn"
+					className=" px-6 lg:px-10 primary-btn"
 					asChild
 					size="sm"
 					variant={"default"}
