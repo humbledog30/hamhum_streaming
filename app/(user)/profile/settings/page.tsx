@@ -5,8 +5,9 @@ import ProfileInformationEdit from "../components/profile-information-edit";
 import { Suspense } from "react";
 import { Separator } from "@/components/ui/separator";
 import ProfilePasswordForm from "../components/profile-password-form";
-import ProfileGenreForm from "../components/profile-genre-form";
 import ProfileDeleteForm from "../components/profile-delete-form";
+import ProfileGenreEdit from "../components/profile-genre-edit";
+import ProfileGenreSkeleton from "@/components/skeleton-loader/profile-genre-skeleton";
 
 const AccountSettingsPage = () => {
 	return (
@@ -42,8 +43,8 @@ const AccountSettingsPage = () => {
 					title="Favorite genres"
 					headerFooter="Pick genres you love — this shapes your recommendations and shows on your profile."
 				>
-					<Suspense>
-						<ProfileGenreForm />
+					<Suspense fallback={<ProfileGenreSkeleton />}>
+						<ProfileGenreEdit />
 					</Suspense>
 				</ProfileSection>
 				<Separator />
