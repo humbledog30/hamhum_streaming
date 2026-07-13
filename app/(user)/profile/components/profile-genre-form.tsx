@@ -4,10 +4,13 @@ import { Button } from "@/components/ui/button";
 import { genreIcons, genreList } from "@/lib/hooks/useGenresLabel";
 import { useState } from "react";
 
-interface Props {}
+interface ProfileGenreFormProps {
+	profileGenres: number[];
+}
 
-const ProfileGenreForm = ({}) => {
-	const [selectedGenres, setSelectedGenres] = useState<number[]>([99, 10751, 10402]);
+const ProfileGenreForm = ({ profileGenres }: ProfileGenreFormProps) => {
+	const [selectedGenres, setSelectedGenres] = useState<number[]>(profileGenres);
+
 	const handleProfileGenre = (e: React.FormEvent) => {
 		e.preventDefault();
 		appToast.info("Profile Update will available Soon!");

@@ -7,6 +7,7 @@ import ProfileAccountConnected from "./components/profile-account-connected";
 import { Search } from "lucide-react";
 import { ProfileSectionSkeleton } from "./components/SkeletonLoader/profile-section-skeleton";
 import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
 
 const ViewProfilePage = () => {
 	return (
@@ -17,7 +18,12 @@ const ViewProfilePage = () => {
 					<ProfileContent />
 				</Suspense>
 				<div className="flex gap-3 justify-center mt-5">
-					<Button>Edit profile</Button>
+					<Link
+						className="px-5 primary-btn flex items-center rounded-md"
+						href={"/profile/settings"}
+					>
+						Edit profile
+					</Link>
 					<LogoutButton />
 				</div>
 			</div>
