@@ -48,6 +48,8 @@ export async function updateSession(request: NextRequest) {
 	const { data } = await supabase.auth.getClaims();
 	const user = data?.claims;
 
+	const isOnboardingPage = request.nextUrl.pathname.startsWith("/on-boarding");
+
 	const isAuthPage =
 		request.nextUrl.pathname.startsWith("/auth/login") ||
 		request.nextUrl.pathname.startsWith("/auth/sign-up");
@@ -57,6 +59,7 @@ export async function updateSession(request: NextRequest) {
 		request.nextUrl.pathname.startsWith("/terms-of-service") ||
 		request.nextUrl.pathname.startsWith("/copyright") ||
 		request.nextUrl.pathname.startsWith("/about-us") ||
+		request.nextUrl.pathname.startsWith("/help-center") ||
 		request.nextUrl.pathname.startsWith("/auth/forgot-password") ||
 		request.nextUrl.pathname.startsWith("/auth/confirmation") ||
 		request.nextUrl.pathname.startsWith("/auth/callback");
@@ -76,6 +79,30 @@ export async function updateSession(request: NextRequest) {
 		url.pathname = "/";
 		url.search = "";
 		return NextResponse.redirect(url);
+	}
+
+	if (user && !isPublicPage) {
+		const { data: profile } = await supabase
+			.from("profiles")
+			.select("onboarding_completed")
+			.eq("user_id", user.sub)
+			.single();
+
+		const needsOnboarding = !profile || !profile.onboarding_completed;
+
+		if (needsOnboarding && !isOnboardingPage) {
+			const url = request.nextUrl.clone();
+			url.pathname = "/on-boarding";
+			url.search = "";
+			return NextResponse.redirect(url);
+		}
+
+		if (!needsOnboarding && isOnboardingPage) {
+			const url = request.nextUrl.clone();
+			url.pathname = "/";
+			url.search = "";
+			return NextResponse.redirect(url);
+		}
 	}
 
 	// IMPORTANT: You *must* return the supabaseResponse object as it is.
