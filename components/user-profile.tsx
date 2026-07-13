@@ -62,23 +62,30 @@ const UserProfile = ({ user }: { user: JwtPayload }) => {
 				align="end"
 				className="w-80 max-w-full mt-3 border border-primary rounded-xl px-0"
 			>
-				<DropdownMenuItem className="flex-1 py-3" onSelect={(e) => e.preventDefault()}>
+				<DropdownMenuItem
+					className="flex-1 py-3 cursor-pointer"
+					onSelect={(e) => router.push("/profile")}
+				>
 					<div className="flex gap-4 items-center">
 						<UserAvatar size="size-15" user={user} />
 						<div>
-							<p className="text-lg font-fraunces font-semibold -mb-1">
-								{user?.user_metadata?.full_name}
+							<p className="text-lg font-fraunces font-semibold -mb-1 capitalize">
+								{user?.user_metadata?.full_name ??
+									user?.user_metadata?.email.split("@")[0]}
 							</p>
-							<Link className="text-xs text-muted-foreground" href={"/profile"}>
+							<p className="text-xs text-muted-foreground hover:text-primary">
 								View Profile
-							</Link>
+							</p>
 						</div>
 					</div>
 				</DropdownMenuItem>
 				<DropdownMenuSeparator />
-				<DropdownMenuItem className="flex-1">
+				<DropdownMenuItem
+					className="flex-1 cursor-pointer"
+					onSelect={() => router.push("/profile/settings")}
+				>
 					<SettingsIcon />
-					Account Settings
+					Profile Settings
 				</DropdownMenuItem>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem className="flex-1">

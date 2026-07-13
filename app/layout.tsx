@@ -5,6 +5,7 @@ import "./globals.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Providers from "./providers";
 import { Toaster } from "@/components/ui/sonner";
+import { DEFAULT_TOAST_DURATION } from "@/components/app-toast";
 
 const defaultUrl = process.env.VERCEL_URL
 	? `https://${process.env.VERCEL_URL}`
@@ -53,15 +54,10 @@ export default function RootLayout({
 			>
 				<Providers>{children}</Providers>
 				<Toaster
-					style={
-						{
-							"--normal-bg": "hsl(var(--background))",
-							"--normal-text": "hsl(var(--foreground))",
-							"--normal-border": "hsl(var(--border))",
-						} as React.CSSProperties
-					}
-					position={"bottom-center"}
-					duration={7000}
+					position="top-center"
+					gap={10}
+					toastOptions={{ unstyled: true }}
+					duration={DEFAULT_TOAST_DURATION}
 					visibleToasts={3}
 					expand={true}
 				/>

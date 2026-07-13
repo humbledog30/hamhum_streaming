@@ -9,6 +9,7 @@ import PopularSection from "@/components/section/popular-section";
 import AllTimeGreat from "@/components/section/all-time-great";
 import Footer from "@/components/section/footer";
 import { Suspense } from "react";
+import BannerSliderSkeleton from "@/components/skeleton-loader/banner-slider-skeleton";
 
 export default function Home() {
 	return (
@@ -16,7 +17,7 @@ export default function Home() {
 			<div className="flex-1 w-full flex flex-col items-center ">
 				<MainNavigation />
 				<div className="mt-16 w-full gap-10 flex flex-col">
-					<Suspense>
+					<Suspense fallback={<BannerSliderSkeleton />}>
 						<HeroSection />
 					</Suspense>
 					<Trending />

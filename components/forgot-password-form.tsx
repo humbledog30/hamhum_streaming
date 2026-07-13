@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Check, ShieldQuestion } from "lucide-react";
 import { toast } from "sonner";
+import { appToast } from "./app-toast";
 
 export function ForgotPasswordForm({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
 	const [email, setEmail] = useState("");
@@ -22,15 +23,14 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
 		setIsLoading(true);
 
 		try {
-			// The url which will be included in the email. This URL needs to be configured in your redirect URLs in the Supabase dashboard at https://supabase.com/dashboard/project/_/auth/url-configuration
 			const { error } = await supabase.auth.resetPasswordForEmail(email, {
 				redirectTo: `${window.location.origin}/auth/update-password`,
 			});
 			if (error) throw error;
 			setSuccess(true);
-			toast.success("Reset link sent!");
+			appToast.success("Reset link sent!");
 		} catch (error: unknown) {
-			toast.error(error instanceof Error ? error.message : "An error occurred");
+			appToast.error(error instanceof Error ? error.message : "An error occurred");
 		} finally {
 			setIsLoading(false);
 		}

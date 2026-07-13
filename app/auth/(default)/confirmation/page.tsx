@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { toast } from "sonner";
+import { appToast } from "@/components/app-toast";
 
 export default function Page() {
 	const [email, setEmail] = useState<string | null>(null);
@@ -24,7 +25,7 @@ export default function Page() {
 		const supabase = createClient();
 		startTimer();
 		if (!email) {
-			toast.error("Email is not present!");
+			appToast.error("Email is not present!");
 			return false;
 		}
 		const { error } = await supabase.auth.resend({
@@ -32,13 +33,13 @@ export default function Page() {
 			email: email,
 		});
 		if (error) {
-			toast.error(error?.message);
+			appToast.error(error?.message);
 			return false;
 		}
-		toast.success(
+		appToast.success(
 			"Confirmation email resent! Please check your inbox for the verification link.",
 		);
-		toast.info(
+		appToast.info(
 			"If you didn't receive the email, it may be because Supabase limits confirmation emails to 2 per hour.",
 		);
 		sessionStorage.removeItem("signup-email");
