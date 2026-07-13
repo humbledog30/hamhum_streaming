@@ -77,7 +77,7 @@ function ToastCard({
 			</div>
 
 			<div className="min-w-0 flex-1 pt-px">
-				<p className="text-base font-semibold leading-tight text-card-foreground">
+				<p className="text-base font-semibold leading-tight text-card-foreground capitalize">
 					{title}
 				</p>
 				{description && (
@@ -109,7 +109,7 @@ function ToastCard({
 			{showBar && (
 				<div
 					key={id}
-					className={`absolute inset-x-0 bottom-0 h-[2px] origin-left ${BAR[variant]}`}
+					className={`absolute inset-x-0 bottom-0 h-0.5 origin-left ${BAR[variant]}`}
 					style={{ animation: `toast-shrink ${duration}ms linear forwards` }}
 				/>
 			)}
