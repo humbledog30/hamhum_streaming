@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import GoogleAuthButton from "./google-auth-button";
+import GoogleAuthButton from "./auth-button-google";
 
 export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
 	const [email, setEmail] = useState("");
@@ -137,7 +137,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
 					</span>
 				</div>
 			</div>
-			<GoogleAuthButton setError={setError} />
+			<GoogleAuthButton />
 		</div>
 	);
 }

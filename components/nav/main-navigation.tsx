@@ -8,6 +8,7 @@ import Link from "next/link";
 import { Bookmark, LayoutGrid, Search } from "lucide-react";
 import { Button } from "../ui/button";
 import MobileMenu from "./mobile-menu";
+import { Skeleton } from "../ui/skeleton";
 
 interface Props {}
 
@@ -18,7 +19,7 @@ const MainNavigation: NextPage<Props> = ({}) => {
 				<div className="flex gap-5 items-center font-semibold">
 					<BrandLogo />
 				</div>
-				<div className="gap-4 mr-auto ml-5 hidden lg:flex [&>a]:hover:text-primary [&>a]:transition-all [&>a]:duration-200">
+				<div className="gap-6 mr-auto ml-5 hidden lg:flex [&>a]:hover:text-primary [&>a]:transition-all [&>a]:duration-200">
 					<Link href={"/browse"}>Browse</Link>
 					<Link href={"#"}>Popular Movies</Link>
 					<Link href={"#"}>Upcoming Releases</Link>

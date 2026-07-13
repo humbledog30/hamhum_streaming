@@ -6,6 +6,7 @@ import { LogoutButton } from "@/components/logout-button";
 import ProfileAccountConnected from "./components/profile-account-connected";
 import { Search } from "lucide-react";
 import { ProfileSectionSkeleton } from "./components/SkeletonLoader/profile-section-skeleton";
+import { Separator } from "@/components/ui/separator";
 
 const ViewProfilePage = () => {
 	return (
@@ -38,7 +39,7 @@ const ViewProfilePage = () => {
 				<Suspense fallback={<ProfileSectionSkeleton />}>
 					<ProfileAccountConnected />
 				</Suspense>
-				<span className="border-b border-muted-foreground/30"></span>
+				<Separator />
 				<div className="flex flex-col gap-1">
 					<span className="text-primary uppercase text-sm">— Taste</span>
 					<p className="font-fraunces text-xl font-semibold">Favorite genres</p>
@@ -52,7 +53,7 @@ const ViewProfilePage = () => {
 						<span className="border bg-accent/20 p-1 px-4 rounded-2xl">Comedy</span>
 					</div>
 				</div>
-				<span className="border-b border-muted-foreground/30"></span>
+				<Separator />
 				<div className="flex flex-col gap-1">
 					<span className="text-primary uppercase text-sm">— Activity</span>
 					<p className="font-fraunces text-xl font-semibold">Genres you watch</p>
@@ -90,7 +91,7 @@ const ViewProfilePage = () => {
 						</div>
 					</div>
 				</div>
-				<span className="border-b border-muted-foreground/30"></span>
+				<Separator />
 				<div className="flex flex-col gap-1">
 					<span className="text-primary uppercase text-sm">— Activity</span>
 					<p className="font-fraunces text-xl font-semibold">Recently searched</p>
@@ -116,7 +117,7 @@ const ViewProfilePage = () => {
 						</span>
 					</div>
 				</div>
-				<span className="border-b border-muted-foreground/30"></span>
+				<Separator />
 				<div className="flex flex-col gap-1">
 					<span className="text-primary uppercase text-sm">— Activity</span>
 					<p className="font-fraunces text-xl font-semibold">Recently watched</p>

@@ -9,7 +9,9 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import GoogleAuthButton from "./google-auth-button";
+import GoogleAuthButton from "./auth-button-google";
+import FigmaAuthButton from "./auth-button-figma";
+import AuthButtonDiscord from "./auth-button-discord";
 
 export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
 	const [email, setEmail] = useState("");
@@ -126,11 +128,15 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 				</div>
 				<div className="relative flex justify-center text-xs uppercase">
 					<span className="bg-background px-2 text-muted-foreground">
-						Or continue with email
+						Or continue with
 					</span>
 				</div>
 			</div>
-			<GoogleAuthButton setError={setError} />
+			<div className="flex flex-col gap-2">
+				<GoogleAuthButton />
+				<FigmaAuthButton />
+				<AuthButtonDiscord />
+			</div>
 		</div>
 	);
 }
