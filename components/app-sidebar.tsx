@@ -34,6 +34,7 @@ import {
 import BrandLogo from "./brand-logo";
 import { Suspense, useState } from "react";
 import { usePathname } from "next/navigation";
+import { NavUser } from "./nav-user";
 
 export const menuData = [
 	{
@@ -89,7 +90,11 @@ export function AppSidebar({
 	...props
 }: React.ComponentProps<typeof Sidebar> & { footer?: React.ReactNode }) {
 	const pathname = usePathname();
-
+	const userDetails = {
+		name: "Mark Test",
+		email: "mark@mailinator.com",
+		avatar: "",
+	};
 	return (
 		<Sidebar variant="inset" {...props}>
 			<SidebarHeader>
@@ -114,7 +119,10 @@ export function AppSidebar({
 				})}
 				{/* <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
 			</SidebarContent>
-			{footer}
+
+			<SidebarFooter>
+				<NavUser user={userDetails} />
+			</SidebarFooter>
 		</Sidebar>
 	);
 }

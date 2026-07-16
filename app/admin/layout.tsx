@@ -11,7 +11,7 @@ import AdminBreadcrumbsSkeleton from "./components/admin-breadcrumb-skeleton";
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<main className="min-h-screen flex flex-col items-center">
-			{/* <TooltipProvider>
+			<TooltipProvider>
 				<SidebarProvider
 					style={
 						{
@@ -19,18 +19,17 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 						} as React.CSSProperties
 					}
 				>
-					<Suspense fallback={<AppSidebarSkeleton />}>
-						<AppSidebar footer={<SidebarFooterUser />} />
-					</Suspense>
+					{/* <Suspense fallback={<AppSidebarSkeleton />}> */}
+					<AppSidebar />
+					{/* </Suspense> */}
 					<SidebarInset>
-						<Suspense fallback={<AdminBreadcrumbsSkeleton />}>
-							<AdminBreadcrumbs />
-						</Suspense>
+						{/* <Suspense fallback={<AdminBreadcrumbsSkeleton />}> */}
+						<AdminBreadcrumbs />
+						{/* </Suspense> */}
 						<section>{children}</section>
 					</SidebarInset>
 				</SidebarProvider>
-			</TooltipProvider> */}
-			<section>{children}</section>
+			</TooltipProvider>
 		</main>
 	);
 }

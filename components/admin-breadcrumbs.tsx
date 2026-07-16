@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import { NextPage } from "next";
 import { SidebarTrigger } from "./ui/sidebar";
 import { Separator } from "./ui/separator";
@@ -10,22 +10,21 @@ import {
 	BreadcrumbPage,
 	BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { usePathname } from "next/navigation";
 import { menuData } from "./app-sidebar";
 import React from "react";
 
 const AdminBreadcrumbs = ({}) => {
-	const pathname = usePathname();
+	// const pathname = usePathname();
 
-	const activeMenu = menuData
-		.map((menuItem) => {
-			const menu = menuItem.menu.find(
-				(item) => item.url.toLowerCase() === pathname.toString(),
-			);
-			return menu ? { parentRoute: menuItem.title ?? "", menu } : null;
-		})
-		.find((item) => item !== null);
-	const breadcrumbItems = pathname.split("/").slice(2);
+	// const activeMenu = menuData
+	// 	.map((menuItem) => {
+	// 		const menu = menuItem.menu.find(
+	// 			(item) => item.url.toLowerCase() === pathname.toString(),
+	// 		);
+	// 		return menu ? { parentRoute: menuItem.title ?? "", menu } : null;
+	// 	})
+	// 	.find((item) => item !== null);
+	// const breadcrumbItems = pathname.split("/").slice(2);
 
 	return (
 		<header className="flex h-16 shrink-0 items-center gap-2 px-6">
@@ -33,11 +32,14 @@ const AdminBreadcrumbs = ({}) => {
 			<Separator orientation="vertical" className="mr-2 data-[orientation=vertical]:h-4" />
 			<Breadcrumb>
 				<BreadcrumbList>
-					<BreadcrumbItem className="hidden md:block">
+					{/* <BreadcrumbItem className="hidden md:block">
 						<p>{activeMenu?.parentRoute ?? "Admin"}</p>
+					</BreadcrumbItem> */}
+					<BreadcrumbItem className="hidden md:block">
+						<p>{"Admin"}</p>
 					</BreadcrumbItem>
 
-					{breadcrumbItems.map((item) => {
+					{/* {breadcrumbItems.map((item) => {
 						return (
 							<React.Fragment key={item}>
 								<BreadcrumbSeparator className="hidden md:block" />
@@ -48,7 +50,11 @@ const AdminBreadcrumbs = ({}) => {
 								</BreadcrumbItem>
 							</React.Fragment>
 						);
-					})}
+					})} */}
+					<BreadcrumbSeparator className="hidden md:block" />
+					<BreadcrumbItem>
+						<BreadcrumbPage className="capitalize">Test</BreadcrumbPage>
+					</BreadcrumbItem>
 				</BreadcrumbList>
 			</Breadcrumb>
 		</header>
