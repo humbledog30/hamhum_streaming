@@ -1,6 +1,9 @@
-import { redirect } from "next/navigation";
+import { NextPage } from "next";
 
-export default function AdminPage() {
-	return <p>Admin</p>;
-	// redirect("/admin/dashboard");
-}
+interface Props {}
+
+const Page = ({}) => {
+	return <div>Admin</div>;
+};
+
+export default Page;
