@@ -7,7 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import ProfilePasswordForm from "../components/profile-password-form";
 import ProfileDeleteForm from "../components/profile-delete-form";
 import ProfileGenreEdit from "../components/profile-genre-edit";
-import ProfileGenreSkeleton from "@/components/skeleton-loader/profile-genre-skeleton";
+import ProfileGenreSkeleton from "../components/SkeletonLoader/profile-genre-skeleton";
 
 const AccountSettingsPage = () => {
 	return (

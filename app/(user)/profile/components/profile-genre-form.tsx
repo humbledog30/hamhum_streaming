@@ -3,6 +3,7 @@ import { appToast } from "@/components/app-toast";
 import { Button } from "@/components/ui/button";
 import { genreIcons, genreList } from "@/lib/hooks/useGenresLabel";
 import { useState } from "react";
+import savePreferences from "../settings/action";
 
 interface ProfileGenreFormProps {
 	profileGenres: number[];
@@ -10,10 +11,18 @@ interface ProfileGenreFormProps {
 
 const ProfileGenreForm = ({ profileGenres }: ProfileGenreFormProps) => {
 	const [selectedGenres, setSelectedGenres] = useState<number[]>(profileGenres);
-
-	const handleProfileGenre = (e: React.FormEvent) => {
+	const [isSavingPreferences, setIsSavingPreferences] = useState(false);
+	const handleProfileGenre = async (e: React.FormEvent) => {
 		e.preventDefault();
-		appToast.info("Profile Update will available Soon!");
+		// appToast.info("Profile Update will available Soon!");
+		setIsSavingPreferences(true);
+		const { error } = await savePreferences({ genres: selectedGenres });
+		setIsSavingPreferences(false);
+		if (error) {
+			appToast.error(error);
+			return;
+		}
+		appToast.success("Genre Preferences Updated!");
 	};
 	return (
 		<form onSubmit={handleProfileGenre}>
@@ -22,7 +31,7 @@ const ProfileGenreForm = ({ profileGenres }: ProfileGenreFormProps) => {
 					{genreList.map((genre, index) => {
 						const Icon = genreIcons[genre.id];
 						return (
-							<button
+							<span
 								onClick={() => {
 									setSelectedGenres((prev) => {
 										if (prev.includes(genre.id)) {
@@ -39,11 +48,16 @@ const ProfileGenreForm = ({ profileGenres }: ProfileGenreFormProps) => {
 							>
 								<Icon size={14} />
 								{genre.name}
-							</button>
+							</span>
 						);
 					})}
 				</div>
-				<Button className="cursor-pointer self-start">Save preferences</Button>
+				<Button
+					disabled={isSavingPreferences}
+					className="cursor-pointer self-start primary-btn"
+				>
+					{isSavingPreferences ? "Saving preferences..." : "Save preferences"}
+				</Button>
 			</div>
 		</form>
 	);

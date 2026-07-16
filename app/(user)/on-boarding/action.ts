@@ -40,11 +40,11 @@ export async function saveOnboardingProfile({ name, avatarUrl, genres }: SaveOnb
 			.from("user_genre_preferences")
 			.upsert(genresPreferences, { onConflict: "user_id, genre_id" });
 		if (error) {
-			return { error: `User Genres: ${error.message}` };
+			return { error: error.message };
 		}
 	}
 	if (error) {
-		return { error: `User Profile: ${error.message}` };
+		return { error: error.message };
 	}
 
 	return { error: null };

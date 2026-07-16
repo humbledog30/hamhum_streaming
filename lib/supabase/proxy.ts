@@ -48,11 +48,24 @@ export async function updateSession(request: NextRequest) {
 	const { data } = await supabase.auth.getClaims();
 	const user = data?.claims;
 
+	let role: string | undefined;
+	if (user) {
+		const { data: userRoleData } = await supabase
+			.from("user_roles")
+			.select("role")
+			.eq("user_id", user.sub)
+			.maybeSingle();
+
+		role = userRoleData?.role;
+	}
+
 	const isOnboardingPage = request.nextUrl.pathname.startsWith("/on-boarding");
 
 	const isAuthPage =
 		request.nextUrl.pathname.startsWith("/auth/login") ||
 		request.nextUrl.pathname.startsWith("/auth/sign-up");
+
+	const isAdminPage = request.nextUrl.pathname.startsWith("/admin");
 
 	const isPublicPage =
 		request.nextUrl.pathname.startsWith("/privacy-policy") ||
@@ -65,7 +78,6 @@ export async function updateSession(request: NextRequest) {
 		request.nextUrl.pathname.startsWith("/auth/callback");
 
 	if (request.nextUrl.pathname !== "/" && !user && !isAuthPage && !isPublicPage) {
-		// no user, potentially respond by redirecting the user to the login page
 		const url = request.nextUrl.clone();
 		const redirectPath = request.nextUrl.pathname + request.nextUrl.search;
 		url.pathname = "/auth/login";
@@ -73,7 +85,19 @@ export async function updateSession(request: NextRequest) {
 		return NextResponse.redirect(url);
 	}
 
-	// logged-in user trying to visit login/sign-up — send them away instead
+	if (isAdminPage && role !== "admin") {
+		const url = request.nextUrl.clone();
+		url.pathname = "/";
+		url.search = "";
+		return NextResponse.redirect(url);
+	}
+	if (user && role === "admin" && !isAdminPage) {
+		const url = request.nextUrl.clone();
+		url.pathname = "/admin";
+		url.search = "";
+		return NextResponse.redirect(url);
+	}
+
 	if (user && isAuthPage) {
 		const url = request.nextUrl.clone();
 		url.pathname = "/";
@@ -81,7 +105,7 @@ export async function updateSession(request: NextRequest) {
 		return NextResponse.redirect(url);
 	}
 
-	if (user && !isPublicPage) {
+	if (user && !isPublicPage && role !== "admin") {
 		const { data: profile } = await supabase
 			.from("profiles")
 			.select("onboarding_completed")
