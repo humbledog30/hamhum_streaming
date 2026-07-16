@@ -5,6 +5,7 @@ export default function Page() {
 				<div className="aspect-video rounded-xl bg-muted/50" />
 				<div className="aspect-video rounded-xl bg-muted/50" />
 				<div className="aspect-video rounded-xl bg-muted/50" />
+				<p>titles</p>
 			</div>
 		</div>
 	);
