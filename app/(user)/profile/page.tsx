@@ -8,6 +8,8 @@ import { Search } from "lucide-react";
 import { ProfileSectionSkeleton } from "./components/SkeletonLoader/profile-section-skeleton";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
+import ProfileFavoriteGenre from "./components/profile-favorite-genre";
+import ProfileFavoriteGenreSkeleton from "./components/SkeletonLoader/profile-favorite-genre-skeleton";
 
 const ViewProfilePage = () => {
 	return (
@@ -49,15 +51,9 @@ const ViewProfilePage = () => {
 				<div className="flex flex-col gap-1">
 					<span className="text-primary uppercase text-sm">— Taste</span>
 					<p className="font-fraunces text-xl font-semibold">Favorite genres</p>
-					<div className="flex flex-wrap gap-3 text-sm mt-4">
-						<span className="border bg-accent/20 p-1 px-4 rounded-2xl">Sci-Fi</span>
-						<span className="border bg-accent/20 p-1 px-4 rounded-2xl">Thriller</span>
-						<span className="border bg-accent/20 p-1 px-4 rounded-2xl">Animation</span>
-						<span className="border bg-accent/20 p-1 px-4 rounded-2xl">
-							Documentary
-						</span>
-						<span className="border bg-accent/20 p-1 px-4 rounded-2xl">Comedy</span>
-					</div>
+					<Suspense fallback={<ProfileFavoriteGenreSkeleton />}>
+						<ProfileFavoriteGenre />
+					</Suspense>
 				</div>
 				<Separator />
 				<div className="flex flex-col gap-1">
