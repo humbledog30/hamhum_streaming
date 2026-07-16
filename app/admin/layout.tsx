@@ -1,10 +1,9 @@
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AppSidebar } from "@/components/app-sidebar";
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import SidebarFooterUser from "@/components/sidebar-footer-user";
 
 import AdminBreadcrumbs from "@/components/admin-breadcrumbs";
-import { Suspense } from "react";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
 	return (
