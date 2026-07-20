@@ -19,11 +19,11 @@ const CardSection = ({
 	return (
 		<Card
 			className={cn(
-				`${type === "dangerous" ? "text-destructive border-destructive" : ""} grid grid-cols-1 lg:grid-cols-[30%_auto_1fr]`,
+				`${type === "dangerous" ? "text-destructive border-destructive" : ""} grid grid-cols-1 lg:grid-cols-[30%_auto_1fr] overflow-hidden`,
 				className,
 			)}
 		>
-			<CardHeader className="p-6 ">
+			<CardHeader className="p-6 bg-accent/20">
 				<p className="text-xl font-fraunces font-semibold -mb-0.5 flex gap-2 items-center">
 					{type === "dangerous" ? <TriangleAlert /> : null}
 					{title}
