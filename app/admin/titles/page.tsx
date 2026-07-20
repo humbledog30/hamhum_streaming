@@ -1,12 +1,48 @@
+"use client"
+
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
+import { DataTable } from "./components/data-table";
+import { columns } from "./components/column-def";
+import { Suspense, useEffect, useState } from "react";
+import { Movie } from "@/types/movie";
+import { movies } from "./data/sample";
+
+interface MovieProps extends Partial<Movie>{
+    date_added: string
+    status: string
+}
+
 export default function Page() {
+	const [movieList , setMovieList] = useState<MovieProps[]>([])
+	
+	useEffect(() => {
+		async function getMovie() {
+			const list = await movies // sample get for server component
+			setMovieList(list)
+		}
+
+		getMovie()
+	}, []);
+
 	return (
 		<div className="flex flex-1 flex-col gap-4 p-5 pt-0">
-			<div className="grid auto-rows-min gap-4 md:grid-cols-3">
-				<div className="aspect-video rounded-xl bg-muted/50" />
-				<div className="aspect-video rounded-xl bg-muted/50" />
-				<div className="aspect-video rounded-xl bg-muted/50" />
-				<p>titles</p>
-			</div>
+			<section className="flex flex-1 flex-row size-full justify-between">
+				<span>
+					<h1 className="font-fraunces font-semibold text-2xl md:text-3xl">Titles</h1>
+					<p className="text-sm text-muted-foreground">4,812 titles in your catalog — search, filter, and manage what&apos;s live.</p>
+				</span>
+				<Button className="primary-btn">
+					<Plus />
+					Add Title
+				</Button>
+			</section>
+
+			<section>
+				<Suspense>
+					<DataTable columns={columns} data={movieList} />
+				</Suspense>
+			</section>
 		</div>
 	);
 }
