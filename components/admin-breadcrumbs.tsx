@@ -27,7 +27,7 @@ const AdminBreadcrumbs = ({}) => {
 		.find((item) => item !== null);
 	const breadcrumbItems = pathname.split("/").slice(2);
 	return (
-		<header className="flex h-16 shrink-0 items-center gap-2 px-6">
+		<header className="flex h-16 shrink-0 items-center gap-2 px-6 fixed top-0 z-40 bg-background w-full">
 			<SidebarTrigger className="-ml-1" />
 			<Separator orientation="vertical" className="mr-2 data-[orientation=vertical]:h-4" />
 			<Breadcrumb>

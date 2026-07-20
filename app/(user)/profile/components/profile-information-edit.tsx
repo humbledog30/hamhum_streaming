@@ -1,17 +1,18 @@
 import { Button } from "@/components/ui/button";
 
 import UserAvatar from "@/components/user-avatar";
-import { requireUserClaims } from "@/lib/supabase/data-access";
+import { getCurrentUser, requireUserClaims } from "@/lib/supabase/data-access";
 import ProfileInformationForm from "./profile-information-form";
 
 const ProfileInformationEdit = async ({}) => {
 	const claims = await requireUserClaims();
+	const { profile } = await getCurrentUser();
 	const fullName = claims?.user_metadata?.full_name;
 	const email = claims?.email;
 	return (
 		<div className="flex flex-col gap-5 mt-5">
 			<div className="flex gap-4 items-end">
-				<UserAvatar user={claims} size="size-20" />
+				<UserAvatar user={profile} size="size-20" />
 				<div className="flex flex-col gap-2 items-start">
 					<Button className="cursor-pointer" variant={"outline"}>
 						Upload photo

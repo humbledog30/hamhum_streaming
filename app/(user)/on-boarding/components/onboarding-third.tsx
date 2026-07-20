@@ -72,7 +72,7 @@ const OnboardingThird = ({
 					}
 					appToast.success("You're ready to start streaming!");
 
-					router.push("/");
+					router.refresh();
 				}}
 			>
 				{!isSaving ? (
