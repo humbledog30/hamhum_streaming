@@ -21,8 +21,18 @@ export function getDeviceLabel(): string {
 	const os = result.os.name || "Unknown OS";
 	const deviceType = result.device.type;
 	const browser = result.browser.name || "";
+	const vendor = result.device.vendor || "";
+	const model = result.device.model || "";
 
-	if (deviceType === "mobile") return `${os} phone`;
-	if (deviceType === "tablet") return `${os} tablet`;
+	const deviceName = [vendor, model].filter(Boolean).join(" ");
+
+	if (deviceType === "mobile") {
+		return deviceName ? `${deviceName} — ${browser}` : `${os} phone — ${browser}`;
+	}
+
+	if (deviceType === "tablet") {
+		return deviceName ? `${deviceName} — ${browser}` : `${os} tablet — ${browser}`;
+	}
+
 	return `${os} — ${browser}`;
 }
