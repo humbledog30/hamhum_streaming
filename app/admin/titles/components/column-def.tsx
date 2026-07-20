@@ -20,7 +20,7 @@ export const columns: ColumnDef<MovieProps>[] = [
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const backdrop = useFormatImagePath(data.poster_path)
         return(
-            <div className="flex flex-row gap-2">
+            <div className="flex flex-row gap-3">
                 <Image src={backdrop} alt="" width={60} height={90} className="object-contain" />
                 <div className="flex flex-col justify-center">
                     <p>{data.title}</p>
