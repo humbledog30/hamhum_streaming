@@ -62,7 +62,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 					Welcome back
 				</span>
 				<div className="flex w-full text-3xl font-fraunces font-semibold group">
-					<h1 className="w-full flex gap-1">
+					<h1 className="w-full flex gap-1 flex-wrap">
 						Log in to
 						<span className="flex text-foreground transition-all duration-300">
 							Ham

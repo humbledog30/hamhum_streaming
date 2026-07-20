@@ -12,7 +12,7 @@ export default function AuthDeviceTracker() {
 			if (event === "SIGNED_IN" && session) {
 				const { error } = await supabase.rpc("upsert_current_device", {
 					p_device_id: getDeviceId(),
-					p_device_label: getDeviceLabel(),
+					p_device_label: await getDeviceLabel(),
 					p_user_agent: navigator.userAgent,
 				});
 
