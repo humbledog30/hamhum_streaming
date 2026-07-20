@@ -1,7 +1,17 @@
 import { v4 as uuidv4 } from "uuid";
 import { UAParser } from "ua-parser-js";
+import deviceModels from "@/data/device-models.json";
 
 const DEVICE_ID_KEY = "device_id";
+
+type DeviceModelEntry = { brand: string; name: string };
+type DeviceModelMap = Record<string, DeviceModelEntry>;
+
+const deviceModelMap = deviceModels as DeviceModelMap;
+
+const normalizedIndex: Record<string, DeviceModelEntry> = Object.fromEntries(
+	Object.entries(deviceModelMap).map(([code, entry]) => [code.toUpperCase(), entry]),
+);
 
 export function getDeviceId(): string {
 	if (typeof window === "undefined") return "";
@@ -14,7 +24,11 @@ export function getDeviceId(): string {
 	return id;
 }
 
-async function getAndroidModel(): Promise<string | null> {
+function lookupDeviceModel(code: string): string | null {
+	return normalizedIndex[code.toUpperCase()]?.name ?? null;
+}
+
+async function getAndroidModelCode(): Promise<string | null> {
 	// @ts-expect-error - not in standard TS lib types yet
 	if (!navigator.userAgentData) return null;
 	try {
@@ -24,6 +38,12 @@ async function getAndroidModel(): Promise<string | null> {
 	} catch {
 		return null;
 	}
+}
+
+async function resolveAndroidMarketingName(): Promise<string | null> {
+	const code = await getAndroidModelCode();
+	if (!code) return null;
+	return lookupDeviceModel(code) || code; // fall back to raw code if not found
 }
 
 async function isBrave(): Promise<boolean> {
@@ -43,10 +63,10 @@ export async function getDeviceLabel(): Promise<string> {
 		browser = "Brave";
 	}
 
-	const highEntropyModel = await getAndroidModel();
+	const marketingModel = await resolveAndroidMarketingName();
 	const vendor = result.device.vendor || "";
 	const fallbackModel = result.device.model || "";
-	const deviceName = highEntropyModel || [vendor, fallbackModel].filter(Boolean).join(" ");
+	const deviceName = marketingModel || [vendor, fallbackModel].filter(Boolean).join(" ");
 
 	if (deviceType === "mobile") {
 		return deviceName ? `${deviceName} — ${browser}` : `${os} phone — ${browser}`;
