@@ -25,7 +25,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 					<AppSidebar footer={<SidebarFooterUser />} />
 					<SidebarInset className="m-0!">
 						<AdminBreadcrumbs />
-						<section className="flex-1">{children}</section>
+						<section className="flex-1 mt-16">{children}</section>
 					</SidebarInset>
 				</SidebarProvider>
 			</TooltipProvider>

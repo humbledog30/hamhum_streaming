@@ -3,6 +3,7 @@ import { cache } from "react";
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import { JwtPayload, User } from "@supabase/supabase-js";
+import { ProfilePayload } from "@/types/Profile";
 
 export const getUserClaims = cache(async () => {
 	const supabase = await createClient();
@@ -43,4 +44,36 @@ export const requireUser = cache(async (): Promise<User> => {
 		redirect("/auth/login");
 	}
 	return user;
+});
+
+interface CurrentUserData {
+	user: User;
+	profile: ProfilePayload;
+	claims: JwtPayload;
+}
+
+export const getCurrentUser = cache(async (): Promise<CurrentUserData> => {
+	const supabase = await createClient();
+	const { data } = await supabase.auth.getClaims();
+
+	const claims = data?.claims ?? null;
+	const {
+		data: { user },
+	} = await supabase.auth.getUser();
+
+	if (!user || !claims) {
+		throw new Error("Unauthorized");
+	}
+
+	const { data: profile } = await supabase
+		.from("profiles")
+		.select("*")
+		.eq("user_id", user.id)
+		.single();
+
+	return {
+		user,
+		profile,
+		claims,
+	};
 });

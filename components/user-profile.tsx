@@ -28,8 +28,9 @@ import UserAvatar from "./user-avatar";
 import { ThemeSwitcherMenu } from "./theme-swtcher-menu";
 import Link from "next/link";
 import { logout } from "@/lib/hooks/useAuthLogout";
+import { ProfilePayload } from "@/types/Profile";
 
-const UserProfile = ({ user }: { user: JwtPayload }) => {
+const UserProfile = ({ user }: { user: ProfilePayload }) => {
 	const router = useRouter();
 	const [isLoading, setIsLoading] = useState(false);
 	const handleLogout = async () => {
@@ -67,12 +68,9 @@ const UserProfile = ({ user }: { user: JwtPayload }) => {
 						<UserAvatar size="size-15" user={user} />
 						<div>
 							<p className="text-lg font-fraunces font-semibold -mb-1 capitalize">
-								{user?.user_metadata?.full_name ??
-									user?.user_metadata?.email.split("@")[0]}
+								{user?.display_name}
 							</p>
-							<p className="text-xs text-muted-foreground hover:text-primary">
-								View Profile
-							</p>
+							<p className="text-xs text-muted-foreground">View Profile</p>
 						</div>
 					</div>
 				</DropdownMenuItem>

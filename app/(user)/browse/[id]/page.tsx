@@ -20,7 +20,7 @@ const InfoPage = () => {
 		?.release_dates.findLast((release) => release.certification !== "");
 	const movieResponse = { rating: rating?.certification, ...movieDetails };
 	const directorAndWriter = [...director, ...writer];
-	console.log(directorAndWriter);
+
 	return (
 		<div className="w-full flex flex-col">
 			{/* Info page Banner section */}

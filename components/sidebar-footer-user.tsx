@@ -1,15 +1,13 @@
 import { SidebarFooter } from "./ui/sidebar";
 import { NavUser } from "./nav-user";
-import { requireUser } from "@/lib/supabase/data-access";
-
-interface Props {}
+import { getCurrentUser } from "@/lib/supabase/data-access";
 
 const SidebarFooterUser = async ({}) => {
-	const user = await requireUser();
+	const { user, profile } = await getCurrentUser();
 	const userDetails = {
 		name: user?.user_metadata?.full_name ?? "",
 		email: user.email ?? "",
-		avatar: user?.user_metadata?.avatar_url ?? "",
+		avatar: profile?.avatar_url ?? user?.user_metadata?.avatar_url,
 	};
 	return (
 		<SidebarFooter>
