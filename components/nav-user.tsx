@@ -98,7 +98,10 @@ export function NavUser({
 						</DropdownMenuLabel>
 						<DropdownMenuSeparator />
 						<DropdownMenuGroup>
-							<DropdownMenuItem>
+							<DropdownMenuItem
+								className="cursor-pointer"
+								onSelect={() => router.push("/admin/account-settings")}
+							>
 								<BadgeCheck />
 								Account
 							</DropdownMenuItem>
