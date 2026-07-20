@@ -1,62 +1,27 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import GoogleAuthButton from "./auth-button-google";
+import { useSignup } from "@/lib/hooks/auth/use-signup";
 
 export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [repeatPassword, setRepeatPassword] = useState("");
-	const [error, setError] = useState<string | null>(null);
-	const [isLoading, setIsLoading] = useState(false);
-	const router = useRouter();
+	const [confirmPassword, setConfirmPassword] = useState("");
+	const { mutate, isPending, data } = useSignup();
 
-	const handleSignUp = async (e: React.FormEvent) => {
+	const handleSignUp = (e: React.FormEvent) => {
 		e.preventDefault();
-		const supabase = createClient();
-		setIsLoading(true);
-		setError(null);
-
-		if (password !== repeatPassword) {
-			setError("Passwords do not match");
-			setIsLoading(false);
-			return;
-		}
-
-		try {
-			const { data, error } = await supabase.auth.signUp({
-				email,
-				password,
-				options: {
-					emailRedirectTo: `${window.location.origin}/on-boarding`,
-				},
-			});
-
-			if (error) throw error;
-
-			// Supabase returns a "fake" success when the email already exists
-			// data.user.identities will be an empty array in that case
-			if (data.user && data.user.identities && data.user.identities.length === 0) {
-				setError("An account with this email already exists. Please sign in instead.");
-				setIsLoading(false);
-				return;
-			}
-			sessionStorage.setItem("signup-email", email);
-			router.push("/auth/confirmation");
-		} catch (error: unknown) {
-			setError(error instanceof Error ? error.message : "An error occurred");
-		} finally {
-			setIsLoading(false);
-		}
+		mutate({ email, password, confirmPassword });
 	};
+
+	const fieldErrors = data?.success === false ? data.fieldErrors : undefined;
+	const formError = data?.success === false ? data.formError : undefined;
 
 	return (
 		<div
@@ -88,42 +53,44 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
 							id="email"
 							type="email"
 							placeholder="m@example.com"
-							required
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
 						/>
+						{fieldErrors?.email && (
+							<p className="text-sm text-red-500">{fieldErrors.email[0]}</p>
+						)}
 					</div>
 					<div className="grid gap-2">
-						<div className="flex items-center">
-							<Label htmlFor="password">Password</Label>
-						</div>
+						<Label htmlFor="password">Password</Label>
 						<Input
 							id="password"
 							type="password"
-							required
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 						/>
+						{fieldErrors?.password && (
+							<p className="text-sm text-red-500">{fieldErrors.password[0]}</p>
+						)}
 					</div>
 					<div className="grid gap-2">
-						<div className="flex items-center">
-							<Label htmlFor="repeat-password">Repeat Password</Label>
-						</div>
+						<Label htmlFor="repeat-password">Repeat Password</Label>
 						<Input
 							id="repeat-password"
 							type="password"
-							required
-							value={repeatPassword}
-							onChange={(e) => setRepeatPassword(e.target.value)}
+							value={confirmPassword}
+							onChange={(e) => setConfirmPassword(e.target.value)}
 						/>
+						{fieldErrors?.confirmPassword && (
+							<p className="text-sm text-red-500">{fieldErrors.confirmPassword[0]}</p>
+						)}
 					</div>
-					{error && <p className="text-sm text-red-500">{error}</p>}
+					{formError && <p className="text-sm text-red-500">{formError}</p>}
 					<Button
 						type="submit"
 						className="w-full py-5 bg-linear-to-br from-primary to-primary hover:-translate-y-0.5 hover:cursor-pointer transition-all duration-300"
-						disabled={isLoading}
+						disabled={isPending}
 					>
-						{isLoading ? "Creating an account..." : "Sign up"}
+						{isPending ? "Creating an account..." : "Sign up"}
 					</Button>
 				</div>
 			</form>
