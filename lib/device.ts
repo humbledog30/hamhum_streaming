@@ -14,17 +14,39 @@ export function getDeviceId(): string {
 	return id;
 }
 
-export function getDeviceLabel(): string {
+async function getAndroidModel(): Promise<string | null> {
+	// @ts-expect-error - not in standard TS lib types yet
+	if (!navigator.userAgentData) return null;
+	try {
+		// @ts-expect-error
+		const values = await navigator.userAgentData.getHighEntropyValues(["model"]);
+		return values.model || null;
+	} catch {
+		return null;
+	}
+}
+
+async function isBrave(): Promise<boolean> {
+	// @ts-expect-error - navigator.brave isn't in standard TS lib types
+	return !!(navigator.brave && (await navigator.brave.isBrave?.()));
+}
+
+export async function getDeviceLabel(): Promise<string> {
 	const parser = new UAParser();
 	const result = parser.getResult();
 
 	const os = result.os.name || "Unknown OS";
 	const deviceType = result.device.type;
-	const browser = result.browser.name || "";
-	const vendor = result.device.vendor || "";
-	const model = result.device.model || "";
 
-	const deviceName = [vendor, model].filter(Boolean).join(" ");
+	let browser = result.browser.name || "";
+	if (await isBrave()) {
+		browser = "Brave";
+	}
+
+	const highEntropyModel = await getAndroidModel();
+	const vendor = result.device.vendor || "";
+	const fallbackModel = result.device.model || "";
+	const deviceName = highEntropyModel || [vendor, fallbackModel].filter(Boolean).join(" ");
 
 	if (deviceType === "mobile") {
 		return deviceName ? `${deviceName} — ${browser}` : `${os} phone — ${browser}`;
