@@ -30,6 +30,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { ThemeSwitcherMenu } from "./theme-swtcher-menu";
+import { logout } from "@/lib/hooks/useAuthLogout";
 
 export function NavUser({
 	user,
@@ -43,14 +44,10 @@ export function NavUser({
 	const { isMobile } = useSidebar();
 	const router = useRouter();
 	const [isLoading, setIsLoading] = useState(false);
-	const logout = async () => {
+	const handleLogout = async () => {
 		setIsLoading(true);
 		try {
-			const supabase = createClient();
-			const { error } = await supabase.auth.signOut();
-
-			if (error) throw error;
-
+			await logout();
 			router.push("/auth/login");
 		} catch (err) {
 			console.error(err);
@@ -98,7 +95,10 @@ export function NavUser({
 						</DropdownMenuLabel>
 						<DropdownMenuSeparator />
 						<DropdownMenuGroup>
-							<DropdownMenuItem>
+							<DropdownMenuItem
+								className="cursor-pointer"
+								onSelect={() => router.push("/admin/account-settings")}
+							>
 								<BadgeCheck />
 								Account
 							</DropdownMenuItem>
@@ -114,7 +114,7 @@ export function NavUser({
 						<DropdownMenuSeparator />
 						<DropdownMenuItem
 							className="cursor-pointer "
-							onClick={logout}
+							onClick={handleLogout}
 							disabled={isLoading}
 							variant={"destructive"}
 						>

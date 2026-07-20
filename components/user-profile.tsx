@@ -27,18 +27,15 @@ import UserAvatar from "./user-avatar";
 
 import { ThemeSwitcherMenu } from "./theme-swtcher-menu";
 import Link from "next/link";
+import { logout } from "@/lib/hooks/useAuthLogout";
 
 const UserProfile = ({ user }: { user: JwtPayload }) => {
 	const router = useRouter();
 	const [isLoading, setIsLoading] = useState(false);
-	const logout = async () => {
+	const handleLogout = async () => {
 		setIsLoading(true);
 		try {
-			const supabase = createClient();
-			const { error } = await supabase.auth.signOut();
-
-			if (error) throw error;
-
+			await logout();
 			router.push("/auth/login");
 		} catch (err) {
 			console.error(err);
@@ -118,7 +115,7 @@ const UserProfile = ({ user }: { user: JwtPayload }) => {
 				<DropdownMenuSeparator />
 				<DropdownMenuItem
 					className="cursor-pointer "
-					onClick={logout}
+					onClick={handleLogout}
 					disabled={isLoading}
 					variant={"destructive"}
 				>

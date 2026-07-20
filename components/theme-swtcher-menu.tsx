@@ -7,7 +7,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { DropdownMenuItem } from "./ui/dropdown-menu";
 
-const ThemeSwitcherMenu = () => {
+const ThemeSwitcherMenu = ({ type = "dropdown-menu" }: { type?: "dropdown-menu" | "normal" }) => {
 	const [mounted, setMounted] = useState(false);
 	const { theme, setTheme } = useTheme();
 
@@ -21,6 +21,22 @@ const ThemeSwitcherMenu = () => {
 
 	const isDark = theme === "dark";
 
+	if (type === "normal") {
+		return (
+			<div className="flex gap-3">
+				{isDark ? <Moon /> : <Sun />}
+				<Label htmlFor="appearance" className="cursor-pointer flex-1">
+					Appearance
+				</Label>
+				<Switch
+					checked={isDark}
+					id="appearance"
+					className="cursor-pointer ml-auto"
+					onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
+				/>
+			</div>
+		);
+	}
 	return (
 		<DropdownMenuItem
 			onSelect={(e) => {
