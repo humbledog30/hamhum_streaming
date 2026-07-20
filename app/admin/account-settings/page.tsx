@@ -10,6 +10,8 @@ import AccountPasswordForm from "./components/account-password-form";
 import { FaDesktop, FaMobileScreen } from "react-icons/fa6";
 import { ThemeSwitcherMenu } from "@/components/theme-swtcher-menu";
 import AccountDeactiveForm from "./components/account-deactivate-form";
+import AccountSession from "./components/account-session";
+import AccountSessionSkeleton from "./components/skeleton-loader/account-session-skeleton";
 
 export const metadata: Metadata = {
 	metadataBase: new URL("http://localhost:3000/admin/account-settings"),
@@ -59,31 +61,10 @@ const Page = ({}) => {
 						<Separator />
 						<div className="flex flex-col gap-4">
 							<p className="font-semibold">Active sessions</p>
-							<div className="flex flex-col gap-3">
-								<div className="flex gap-3 items-center">
-									<div className="bg-accent p-2 rounded-md">
-										<FaMobileScreen />
-									</div>
-									<div>
-										<p className="font-semibold -mb-0.5">Chrome on Android</p>
-										<p className="text-muted-foreground text-xs">
-											Quezon City, PH • Active now
-										</p>
-									</div>
-								</div>
-								<Separator />
-								<div className="flex gap-3 items-center">
-									<div className="bg-accent p-2 rounded-md">
-										<FaDesktop />
-									</div>
-									<div>
-										<p className="font-semibold -mb-0.5">Chrome on Windows</p>
-										<p className="text-muted-foreground text-xs">
-											Quezon City, PH • Last active 2 hours ago
-										</p>
-									</div>
-								</div>
-							</div>
+
+							<Suspense fallback={<AccountSessionSkeleton />}>
+								<AccountSession />
+							</Suspense>
 						</div>
 					</div>
 				</CardSection>
