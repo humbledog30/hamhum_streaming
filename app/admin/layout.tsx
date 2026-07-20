@@ -4,6 +4,12 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import SidebarFooterUser from "@/components/sidebar-footer-user";
 
 import AdminBreadcrumbs from "@/components/admin-breadcrumbs";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	metadataBase: new URL("http://localhost:3000/admin/dashboard"),
+	title: "Ham+Hum | Admin",
+};
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
 	return (
@@ -17,9 +23,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 					}
 				>
 					<AppSidebar footer={<SidebarFooterUser />} />
-					<SidebarInset>
+					<SidebarInset className="m-0!">
 						<AdminBreadcrumbs />
-						<section>{children}</section>
+						<section className="flex-1">{children}</section>
 					</SidebarInset>
 				</SidebarProvider>
 			</TooltipProvider>
