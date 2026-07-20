@@ -1,52 +1,29 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import GoogleAuthButton from "./auth-button-google";
 import FigmaAuthButton from "./auth-button-figma";
 import AuthButtonDiscord from "./auth-button-discord";
 
+import { useLogin } from "@/lib/hooks/auth/use-login";
+
 export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [error, setError] = useState<string | null>(null);
-	const [isLoading, setIsLoading] = useState(false);
-	const router = useRouter();
-	const searchParams = useSearchParams();
 
-	const handleLogin = async (e: React.FormEvent) => {
+	const { mutate, data, isPending } = useLogin();
+
+	const fieldErrors = data?.success === false ? data.fieldErrors : undefined;
+	const formError = data?.success === false ? data.formError : undefined;
+
+	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		const supabase = createClient();
-		setIsLoading(true);
-		setError(null);
-
-		try {
-			const { error } = await supabase.auth.signInWithPassword({
-				email,
-				password,
-			});
-			if (error) throw error;
-
-			const redirectTo = searchParams.get("redirect");
-			const safeRedirect =
-				redirectTo && redirectTo.startsWith("/") && !redirectTo.startsWith("//")
-					? redirectTo
-					: "/";
-
-			router.push(safeRedirect);
-			router.refresh();
-		} catch (error: unknown) {
-			setError(error instanceof Error ? error.message : "An error occurred");
-		} finally {
-			setIsLoading(false);
-		}
+		mutate({ email, password });
 	};
 
 	return (
@@ -80,7 +57,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 					</Link>
 				</div>
 			</div>
-			<form onSubmit={handleLogin}>
+			<form onSubmit={handleSubmit}>
 				<div className="flex flex-col gap-6">
 					<div className="grid gap-2">
 						<Label htmlFor="email">Email</Label>
@@ -88,10 +65,12 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 							id="email"
 							type="email"
 							placeholder="m@example.com"
-							required
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
 						/>
+						{fieldErrors?.email && (
+							<p className="text-sm text-red-500">{fieldErrors.email[0]}</p>
+						)}
 					</div>
 					<div className="grid gap-2">
 						<div className="flex items-center">
@@ -106,18 +85,20 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 						<Input
 							id="password"
 							type="password"
-							required
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 						/>
+						{fieldErrors?.password && (
+							<p className="text-sm text-red-500">{fieldErrors.password[0]}</p>
+						)}
 					</div>
-					{error && <p className="text-sm text-red-500">{error}</p>}
+					{formError && <p className="text-sm text-red-500">{formError}</p>}
 					<Button
 						type="submit"
 						className="w-full py-5 bg-linear-to-br from-primary to-primary hover:-translate-y-0.5 hover:cursor-pointer transition-all duration-300"
-						disabled={isLoading}
+						disabled={isPending}
 					>
-						{isLoading ? "Logging in..." : "Log in"}
+						{isPending ? "Logging in..." : "Log in"}
 					</Button>
 				</div>
 			</form>
