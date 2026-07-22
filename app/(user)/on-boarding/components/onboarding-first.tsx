@@ -52,7 +52,7 @@ const OnboardingFirst = ({
 						<div
 							key={`profile-avatar-${index}`}
 							data-state={index === activeIndex ? "active" : "inactive"}
-							className="profile-select size-12 border border-primary rounded-full dark:bg-foreground/30  transition-all duration-300 bg-muted-foreground/20 data-[state=active]:scale-105 hover:dark:bg-primary hover:bg-primary data-[state=active]:dark:bg-primary data-[state=active]:bg-primary"
+							className="profile-select size-12 border border-primary rounded-full dark:bg-foreground/30  transition-all duration-200 bg-muted-foreground/20 data-[state=active]:scale-105 hover:dark:bg-primary hover:bg-primary data-[state=active]:dark:bg-primary data-[state=active]:bg-primary"
 						>
 							<img
 								onClick={() => {

@@ -1,5 +1,5 @@
 "use client";
-import { LoginForm } from "@/components/login-form";
+import { SignForm } from "@/components/sign-in-form";
 import AuthHeroSection from "@/components/section/auth-hero-section";
 import { Dot } from "lucide-react";
 import { Suspense, useCallback, useState } from "react";
@@ -72,7 +72,7 @@ export default function Page() {
 
 				<div className="w-full h-full lg:w-md">
 					<Suspense>
-						<LoginForm />
+						<SignForm />
 					</Suspense>
 				</div>
 			</div>

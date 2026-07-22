@@ -62,7 +62,7 @@ export async function updateSession(request: NextRequest) {
 	const isOnboardingPage = request.nextUrl.pathname.startsWith("/on-boarding");
 
 	const isAuthPage =
-		request.nextUrl.pathname.startsWith("/auth/login") ||
+		request.nextUrl.pathname.startsWith("/auth/sign-in") ||
 		request.nextUrl.pathname.startsWith("/auth/sign-up");
 
 	const isAdminPage = request.nextUrl.pathname.startsWith("/admin");
@@ -80,7 +80,7 @@ export async function updateSession(request: NextRequest) {
 	if (request.nextUrl.pathname !== "/" && !user && !isAuthPage && !isPublicPage) {
 		const url = request.nextUrl.clone();
 		const redirectPath = request.nextUrl.pathname + request.nextUrl.search;
-		url.pathname = "/auth/login";
+		url.pathname = "/auth/sign-in";
 		url.search = `?redirect=${encodeURIComponent(redirectPath)}`;
 		return NextResponse.redirect(url);
 	}

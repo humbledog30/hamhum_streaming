@@ -48,7 +48,7 @@ export function NavUser({
 		setIsLoading(true);
 		try {
 			await logout();
-			router.push("/auth/login");
+			router.push("/auth/sign-in");
 		} catch (err) {
 			console.error(err);
 		} finally {

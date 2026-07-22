@@ -19,7 +19,7 @@ export const getUserClaims = cache(async () => {
 export const requireUserClaims = cache(async (): Promise<JwtPayload> => {
 	const claims = await getUserClaims();
 	if (!claims) {
-		redirect("/auth/login");
+		redirect("/auth/sign-in");
 	}
 	return claims;
 });
@@ -41,7 +41,7 @@ export const getUser = cache(async () => {
 export const requireUser = cache(async (): Promise<User> => {
 	const user = await getUser();
 	if (!user) {
-		redirect("/auth/login");
+		redirect("/auth/sign-in");
 	}
 	return user;
 });

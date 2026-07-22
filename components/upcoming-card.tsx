@@ -23,14 +23,14 @@ const UpcomingCard = ({ items }: { items: Movie[] }) => {
 		return (
 			<div
 				key={`upcoming-card-${item.id}`}
-				className="group hover:-translate-y-2 transition duration-300 hover:cursor-pointer"
+				className="group hover:-translate-y-2 transition duration-200 hover:cursor-pointer"
 			>
 				<div className="relative border rounded-xl overflow-hidden mb-3">
-					<div className="absolute top-0 left-0 rounded-br-xl opacity-100 group-hover:opacity-0 group-hover:-translate-y-1 transition duration-300 flex flex-col items-center p-2 px-4 bg-background/90">
+					<div className="absolute top-0 left-0 rounded-br-xl opacity-100 group-hover:opacity-0 group-hover:-translate-y-1 transition duration-200 flex flex-col items-center p-2 px-4 bg-background/90">
 						<span className="text-2xl font-fraunces">14</span>
 						<span className="text-[10px] text-primary font-jetbrains-mono">Jul</span>
 					</div>
-					<div className="flex flex-col justify-end p-4 items-start gap-3 absolute h-full w-full left-0 top-0 z-10 translate-y-2 group-hover:translate-y-0 bg-linear-to-t from-background from-30% to-primary/20 opacity-0 group-hover:opacity-100 transition duration-300">
+					<div className="flex flex-col justify-end p-4 items-start gap-3 absolute h-full w-full left-0 top-0 z-10 translate-y-2 group-hover:translate-y-0 bg-linear-to-t from-background from-30% to-primary/20 opacity-0 group-hover:opacity-100 transition duration-200">
 						<div className="flex flex-wrap text-[10px] gap-1 items-center uppercase text-muted-foreground">
 							{item.genre_ids.map((genre, genreIndex) => {
 								const { label } = useGenresLabel(genre);

@@ -8,6 +8,8 @@ import Link from "next/link";
 import { useState } from "react";
 import GoogleAuthButton from "./auth-button-google";
 import { useSignup } from "@/lib/hooks/auth/use-signup";
+import InputField from "./input-field";
+import AuthButtonDiscord from "./auth-button-discord";
 
 export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
 	const [email, setEmail] = useState("");
@@ -40,8 +42,8 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
 				</div>
 				<div className="mt-2 text-sm flex gap-1">
 					Already have one?
-					<Link href="/auth/login" className="text-primary font-bold">
-						Log in
+					<Link href="/auth/sign-in" className="text-primary font-bold">
+						Sign in
 					</Link>
 				</div>
 			</div>
@@ -49,7 +51,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
 				<div className="flex flex-col gap-6">
 					<div className="grid gap-2">
 						<Label htmlFor="email">Email</Label>
-						<Input
+						<InputField
 							id="email"
 							type="email"
 							placeholder="m@example.com"
@@ -62,7 +64,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
 					</div>
 					<div className="grid gap-2">
 						<Label htmlFor="password">Password</Label>
-						<Input
+						<InputField
 							id="password"
 							type="password"
 							value={password}
@@ -74,7 +76,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
 					</div>
 					<div className="grid gap-2">
 						<Label htmlFor="repeat-password">Repeat Password</Label>
-						<Input
+						<InputField
 							id="repeat-password"
 							type="password"
 							value={confirmPassword}
@@ -87,7 +89,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
 					{formError && <p className="text-sm text-red-500">{formError}</p>}
 					<Button
 						type="submit"
-						className="w-full py-5 bg-linear-to-br from-primary to-primary hover:-translate-y-0.5 hover:cursor-pointer transition-all duration-300"
+						className="w-full py-5 bg-linear-to-br from-primary to-primary hover:-translate-y-0.5 hover:cursor-pointer transition-all duration-200"
 						disabled={isPending}
 					>
 						{isPending ? "Creating an account..." : "Sign up"}
@@ -104,7 +106,10 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
 					</span>
 				</div>
 			</div>
-			<GoogleAuthButton />
+			<div className="flex flex-col gap-2">
+				<GoogleAuthButton />
+				<AuthButtonDiscord />
+			</div>
 		</div>
 	);
 }

@@ -45,7 +45,7 @@ export default function Page() {
 											return;
 										}
 									}}
-									className="cursor-pointer flex gap-2 text-sm border-foreground/40 border p-1 px-4 items-center profile-step duration-300 transition-all"
+									className="cursor-pointer flex gap-2 text-sm border-foreground/40 border p-1 px-4 items-center profile-step duration-200 transition-all"
 								>
 									{item.icon}
 									<span>{item.label}</span>
@@ -75,7 +75,7 @@ export default function Page() {
 					<div className="h-0.5 w-full bg-foreground/10">
 						<div
 							data-progress={activeStep}
-							className="h-0.5 data-[progress=1]:w-[33%] data-[progress=2]:w-[66%] data-[progress=3]:w-full bg-primary duration-300 transition-all"
+							className="h-0.5 data-[progress=1]:w-[33%] data-[progress=2]:w-[66%] data-[progress=3]:w-full bg-primary duration-200 transition-all"
 						/>
 					</div>
 
