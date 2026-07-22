@@ -14,7 +14,7 @@ export function LogoutButton() {
 
 		try {
 			await logout();
-			router.push("/auth/login");
+			router.push("/auth/sign-in");
 		} catch (err) {
 			console.error(err);
 		} finally {

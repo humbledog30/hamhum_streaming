@@ -1,25 +1,25 @@
 "use server";
 
 import {
-	loginSchema,
+	signinSchema,
 	SignUpForm,
 	SignUpResult,
 	signupSchema,
-	type LoginForm,
-	type LoginResult,
+	type SigninForm,
+	type signinResult,
 } from "@/lib/validation/auth.schema";
 import { createClient } from "../supabase/server";
 import z from "zod";
 
-export async function login(input: LoginForm): Promise<LoginResult> {
-	const result = loginSchema.safeParse(input);
+export async function login(input: SigninForm): Promise<signinResult> {
+	const result = signinSchema.safeParse(input);
 	if (!result.success) {
 		const { fieldErrors, formErrors } = z.flattenError(result.error);
 		return {
 			success: false,
 			fieldErrors,
 			formError: formErrors[0],
-		} satisfies LoginResult;
+		} satisfies signinResult;
 	}
 
 	const supabase = await createClient();

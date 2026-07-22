@@ -2,7 +2,6 @@
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useState } from "react";
@@ -11,8 +10,9 @@ import FigmaAuthButton from "./auth-button-figma";
 import AuthButtonDiscord from "./auth-button-discord";
 
 import { useLogin } from "@/lib/hooks/auth/use-login";
+import InputField from "./input-field";
 
-export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
+export function SignForm({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -40,10 +40,10 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 				</span>
 				<div className="flex w-full text-3xl font-fraunces font-semibold group">
 					<h1 className="w-full flex gap-1 flex-wrap">
-						Log in to
-						<span className="flex text-foreground transition-all duration-300">
+						Sign in to
+						<span className="flex text-foreground transition-all duration-200">
 							Ham
-							<span className="text-primary font-extrabold text-2xl -mt-2 -ml-1 block w-fit transition-all duration-300">
+							<span className="text-primary font-extrabold text-2xl -mt-2 -ml-1 block w-fit transition-all duration-200">
 								+
 							</span>
 							Hum
@@ -61,7 +61,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 				<div className="flex flex-col gap-6">
 					<div className="grid gap-2">
 						<Label htmlFor="email">Email</Label>
-						<Input
+						<InputField
 							id="email"
 							type="email"
 							placeholder="m@example.com"
@@ -82,12 +82,14 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 								Forgot your password?
 							</Link>
 						</div>
-						<Input
+
+						<InputField
 							id="password"
 							type="password"
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 						/>
+
 						{fieldErrors?.password && (
 							<p className="text-sm text-red-500">{fieldErrors.password[0]}</p>
 						)}
@@ -95,10 +97,10 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 					{formError && <p className="text-sm text-red-500">{formError}</p>}
 					<Button
 						type="submit"
-						className="w-full py-5 bg-linear-to-br from-primary to-primary hover:-translate-y-0.5 hover:cursor-pointer transition-all duration-300"
+						className="w-full py-5 bg-linear-to-br from-primary to-primary hover:-translate-y-0.5 hover:cursor-pointer transition-all duration-200"
 						disabled={isPending}
 					>
-						{isPending ? "Logging in..." : "Log in"}
+						{isPending ? "Signing in..." : "Sign in"}
 					</Button>
 				</div>
 			</form>
@@ -115,7 +117,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 			</div>
 			<div className="flex flex-col gap-2">
 				<GoogleAuthButton />
-				<FigmaAuthButton />
+				{/* <FigmaAuthButton /> */}
 				<AuthButtonDiscord />
 			</div>
 		</div>

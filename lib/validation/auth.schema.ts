@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const loginSchema = z.object({
+export const signinSchema = z.object({
 	email: z.email("Email is required"),
 	password: z
 		.string("Password is required")
@@ -9,13 +9,13 @@ export const loginSchema = z.object({
 		.regex(/[0-9]/, "Password must contain at least one number"),
 });
 
-export type LoginForm = z.infer<typeof loginSchema>;
+export type SigninForm = z.infer<typeof signinSchema>;
 
-export type LoginResult =
+export type signinResult =
 	| { success: true }
 	| {
 			success: false;
-			fieldErrors?: Partial<Record<keyof LoginForm, string[]>>;
+			fieldErrors?: Partial<Record<keyof SigninForm, string[]>>;
 			formError?: string;
 	  };
 

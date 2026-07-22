@@ -37,7 +37,7 @@ const UserProfile = ({ user }: { user: ProfilePayload }) => {
 		setIsLoading(true);
 		try {
 			await logout();
-			router.push("/auth/login");
+			router.push("/auth/sign-in");
 		} catch (err) {
 			console.error(err);
 		} finally {
@@ -52,7 +52,7 @@ const UserProfile = ({ user }: { user: ProfilePayload }) => {
 					<UserAvatar user={user} />
 					<ChevronDown
 						size={12}
-						className="group-data-[state=open]:rotate-180 transition-all duration-300"
+						className="group-data-[state=open]:rotate-180 transition-all duration-200"
 					/>
 				</div>
 			</DropdownMenuTrigger>
