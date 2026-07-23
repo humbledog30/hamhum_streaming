@@ -13,6 +13,9 @@ const nextConfig: NextConfig = {
 			},
 		],
 	},
+	experimental: {
+		cacheComponents: false,
+	},
 };
 
 export default nextConfig;

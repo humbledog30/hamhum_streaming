@@ -187,7 +187,7 @@
 		@apply brightness-105;
 	}
 	.btn {
-		@apply rounded-2xl!;
+		@apply rounded-md!;
 	}
 	.hero-bullet {
 		@apply w-17 md:w-25 lg:w-30 aspect-video rounded-lg inline-block border border-muted-foreground/30 relative overflow-hidden cursor-pointer bg-cover bg-center transition-colors duration-200;

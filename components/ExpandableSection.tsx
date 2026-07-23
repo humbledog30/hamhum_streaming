@@ -5,10 +5,14 @@ export function ExpandableWrapper({ children }: { children: React.ReactNode }) {
 	const [expanded, setExpanded] = useState(false);
 	const contentRef = useRef<HTMLDivElement>(null);
 	const [height, setHeight] = useState(0);
-
+	const [showBtn, setShowBtn] = useState(false);
 	useEffect(() => {
 		if (contentRef.current) {
 			setHeight(contentRef.current.scrollHeight);
+			setShowBtn(contentRef.current.scrollHeight > 300);
+			if (contentRef.current.scrollHeight < 300) {
+				setExpanded(true);
+			}
 		}
 	}, [children, expanded]);
 
@@ -29,15 +33,16 @@ export function ExpandableWrapper({ children }: { children: React.ReactNode }) {
 					/>
 				)}
 			</div>
-
-			<Button
-				onClick={() => setExpanded((p) => !p)}
-				className="mt-2 mx-auto text-sm font-medium cursor-pointer"
-				size={"lg"}
-				variant={"outline"}
-			>
-				{expanded ? "View less" : "View more"}
-			</Button>
+			{showBtn ? (
+				<Button
+					onClick={() => setExpanded((p) => !p)}
+					className="mt-2 mx-auto text-sm font-medium cursor-pointer"
+					size={"lg"}
+					variant={"outline"}
+				>
+					{expanded ? "View less" : "View more"}
+				</Button>
+			) : null}
 		</div>
 	);
 }
