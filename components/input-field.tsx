@@ -10,7 +10,7 @@ interface Props {}
 const InputField = ({ className, type, ...props }: React.ComponentPropsWithoutRef<"input">) => {
 	const [eyeShow, setEyeShow] = useState<boolean>(false);
 	return (
-		<div className="relative">
+		<div className="relative w-full">
 			<Input className={cn(className)} type={eyeShow ? "text" : type} {...props} />
 			{type === "password" ? (
 				<span

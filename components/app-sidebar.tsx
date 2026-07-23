@@ -104,9 +104,11 @@ export function AppSidebar({
 			<SidebarContent>
 				{menuData?.map((menuItem: (typeof menuData)[0]) => {
 					const menu = menuItem.menu.map((item) => {
+						const url = item.url.toLowerCase();
+						const path = pathname.toLowerCase();
 						return {
 							...item,
-							isActive: item.url.toLowerCase() === pathname.toString(),
+							isActive: path === url || path.startsWith(url + "/"),
 						};
 					});
 

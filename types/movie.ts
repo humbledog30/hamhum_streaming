@@ -1,3 +1,5 @@
+import { CreditsResponse } from "./cast";
+
 export interface Movie {
 	adult: boolean;
 	backdrop_path: string;
@@ -20,7 +22,49 @@ export interface MovieAdditionalProp extends Partial<Movie> {
 	rating: string;
 	runtime: string;
 }
+export interface MovieDetailsRow {
+	id: number;
+	tmdb_id: number;
+	title: string;
+	tagline: string | null;
+	overview: string | null;
+	release_date: string | null;
+	poster_path: string | null;
+	backdrop_path: string | null;
+	runtime: number | null;
+	certification: string | null;
+	created_at: string;
+	updated_at: string;
+	original_language: string | null;
+	original_title: string | null;
+	popularity: number | null;
+	status: string | null;
+	tmdb_status: string | null;
+	vote_average: number | null;
+	vote_count: number | null;
+	credits: CreditsResponse;
+	release_dates: ReleaseDateResponse;
+	genres: {
+		genre: {
+			id: number;
+			tmdb_genre_name: string;
+		} | null;
+	}[];
+	movie_credits: {
+		role: string | null;
+		job: string | null;
+		person: {
+			tmdb_person_id: number;
+			name: string;
+			profile_path: string | null;
+		} | null;
+	}[];
+}
 
+export interface MovieDetailsWithAppend extends MovieDetails {
+	credits: CreditsResponse;
+	release_dates: ReleaseDateResponse;
+}
 export interface MovieDetails {
 	adult: boolean;
 	backdrop_path: string | null;
