@@ -31,3 +31,12 @@ export interface CreditsResponse {
 	cast: CastMember[];
 	crew: CrewMember[];
 }
+
+type CreditResponse = CreditsResponse[];
+
+export interface CreditRow {
+	movie_id: string;
+	tmdb_person_id: number;
+	role: "cast" | "director" | "writer";
+	job: string;
+}

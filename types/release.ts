@@ -21,3 +21,5 @@ interface CountryReleaseDates {
 }
 
 type ReleaseDatesResponse = CountryReleaseDates[];
+
+type ReleaseDateResponse = { results: ReleaseDatesResponse };

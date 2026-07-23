@@ -1,3 +1,5 @@
+import { CreditsResponse } from "./cast";
+
 export interface Movie {
 	adult: boolean;
 	backdrop_path: string;
@@ -20,7 +22,10 @@ export interface MovieAdditionalProp extends Partial<Movie> {
 	rating: string;
 	runtime: string;
 }
-
+export interface MovieDetailsWithAppend extends MovieDetails {
+	credits: CreditsResponse;
+	release_dates: ReleaseDateResponse;
+}
 export interface MovieDetails {
 	adult: boolean;
 	backdrop_path: string | null;

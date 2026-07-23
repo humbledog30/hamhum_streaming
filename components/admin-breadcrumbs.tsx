@@ -1,5 +1,4 @@
 "use client";
-import { NextPage } from "next";
 import { SidebarTrigger } from "./ui/sidebar";
 import { Separator } from "./ui/separator";
 import {
@@ -19,13 +18,19 @@ const AdminBreadcrumbs = ({}) => {
 
 	const activeMenu = menuData
 		.map((menuItem) => {
-			const menu = menuItem.menu.find(
-				(item) => item.url.toLowerCase() === pathname.toString(),
-			);
+			const menu = menuItem.menu.find((item) => {
+				const itemUrl = item.url.toLowerCase();
+				const currentPath = pathname.toString().toLowerCase();
+				return currentPath === itemUrl || currentPath.startsWith(itemUrl + "/");
+			});
 			return menu ? { parentRoute: menuItem.title ?? "", menu } : null;
 		})
 		.find((item) => item !== null);
-	const breadcrumbItems = pathname.split("/").slice(2);
+
+	const pathSegments = pathname.split("/");
+	const basePath = pathSegments.slice(0, 2).join("/");
+	const breadcrumbItems = pathSegments.slice(2);
+
 	return (
 		<header className="flex h-16 shrink-0 items-center gap-2 px-6 fixed top-0 z-40 bg-background w-full">
 			<SidebarTrigger className="-ml-1" />
@@ -36,14 +41,23 @@ const AdminBreadcrumbs = ({}) => {
 						<p>{activeMenu?.parentRoute ?? "Admin"}</p>
 					</BreadcrumbItem>
 
-					{breadcrumbItems.map((item) => {
+					{breadcrumbItems.map((item, index) => {
+						const isLast = index === breadcrumbItems.length - 1;
+						const href = basePath + "/" + breadcrumbItems.slice(0, index + 1).join("/");
+
 						return (
 							<React.Fragment key={item}>
 								<BreadcrumbSeparator className="hidden md:block" />
 								<BreadcrumbItem>
-									<BreadcrumbPage className="capitalize">
-										{item.split("-").join(" ")}
-									</BreadcrumbPage>
+									{isLast ? (
+										<BreadcrumbPage className="capitalize">
+											{item.split("-").join(" ")}
+										</BreadcrumbPage>
+									) : (
+										<BreadcrumbLink href={href} className="capitalize">
+											{item.split("-").join(" ")}
+										</BreadcrumbLink>
+									)}
 								</BreadcrumbItem>
 							</React.Fragment>
 						);
