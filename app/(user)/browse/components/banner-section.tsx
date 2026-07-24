@@ -3,19 +3,45 @@ import { Button } from "@/components/ui/button";
 import { useFormatImagePath } from "@/lib/hooks/useFormatImagePath";
 import { useFormatRuntime } from "@/lib/hooks/useFormatRuntime";
 import { MovieDetails, MovieDetailsRow, MovieDetailsWithAppend } from "@/types/movie";
-import { Play, Plus, Share2, Star } from "lucide-react";
+import { BadgeHelp, Play, Plus, Share2, Star } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { CalendarPlus, CircleX, Clapperboard, MessageCircleQuestion, Scissors } from "lucide-react";
+import { appToast } from "@/components/app-toast";
 
-const BannerSection = ({ details }: { details: MovieDetailsRow }) => {
+export const buttonIcons: Record<
+	string,
+	React.ComponentType<{ className?: string; size?: number }>
+> = {
+	Rumored: MessageCircleQuestion,
+	Planned: CalendarPlus,
+	"In Production": Clapperboard,
+	"Post Production": Scissors,
+	Canceled: CircleX,
+	Released: Play,
+};
+export const DEFAULT_STATUS_ICON = BadgeHelp;
+
+const BannerSection = ({ details, onWatch }: { details: MovieDetailsRow; onWatch: () => void }) => {
+	const Icon =
+		details?.tmdb_status && details?.tmdb_status in buttonIcons
+			? buttonIcons[details?.tmdb_status as keyof typeof buttonIcons]
+			: DEFAULT_STATUS_ICON;
 	return (
-		<section className="w-full flex flex-col min-h-[80vh] relative overflow-hidden">
+		<motion.section
+			initial={{ y: 0, opacity: 1 }}
+			exit={{ y: "-100%", opacity: 0 }}
+			transition={{ duration: 0.5, ease: "easeInOut" }}
+			className="w-full flex flex-col min-h-[80vh] relative overflow-hidden will-change-transform"
+			style={{ backfaceVisibility: "hidden" }}
+		>
 			<div className="w-full flex-1 flex flex-col relative">
 				<img
-					className="w-full h-full object-cover absolute z-0 object-top"
+					className="w-full h-full object-cover absolute z-0"
 					src={`${useFormatImagePath(details?.backdrop_path)}`}
 					alt={`${details.title} Backdrop`}
 				/>
 				<BannerOverlay />
-				<div className="section-container flex-1 z-20 relative flex item items-end gap-5 md:gap-8 flex-wrap pt-20 pb-10">
+				<div className="section-container flex-1 z-20 relative flex item items-end gap-5 md:gap-8 flex-wrap pt-20 pb-10 bottom-15">
 					<img
 						className="aspect-2/3 h-50 sm:h-70 md:h-80 lg:h-90 object-cover border rounded-xl border-primary"
 						src={`${useFormatImagePath(details?.poster_path)}`}
@@ -58,9 +84,25 @@ const BannerSection = ({ details }: { details: MovieDetailsRow }) => {
 						</div>
 						<p className="max-w-full md:max-w-200">{details.overview}</p>
 						<div className="flex gap-2 items-center mt-5 flex-wrap">
-							<Button className=" px-6 h-11 primary-btn" variant={"default"}>
-								<Play /> Watch Now
+							<Button
+								className=" px-6 h-11 bg-accent primary-btn"
+								variant={"default"}
+								onClick={
+									details?.tmdb_status === "Released"
+										? onWatch
+										: () => {
+												appToast.info(
+													`This movie is not yet available because it is currently ${details?.tmdb_status}`,
+												);
+											}
+								}
+							>
+								<Icon />{" "}
+								{details?.tmdb_status === "Released"
+									? "Watch now"
+									: details?.tmdb_status}
 							</Button>
+
 							<Button className=" px-6 bg-background/40 h-11" variant={"outline"}>
 								<Plus /> Add to list
 							</Button>
@@ -75,7 +117,7 @@ const BannerSection = ({ details }: { details: MovieDetailsRow }) => {
 					</div>
 				</div>
 			</div>
-		</section>
+		</motion.section>
 	);
 };
 

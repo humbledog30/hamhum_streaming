@@ -43,7 +43,6 @@ const BrowsePage = () => {
 			if (error) throw error;
 			const grouped = Object.values(
 				data.reduce<Record<number, BrowseGenre>>((acc, row) => {
-					console.log(row);
 					if (!acc[row.genre_id]) {
 						acc[row.genre_id] = {
 							id: row.genre_id,
@@ -52,7 +51,6 @@ const BrowsePage = () => {
 							movies: [],
 						};
 					}
-					console.log(row);
 					acc[row.genre_id].movies.push({
 						id: row.movie_id,
 						tmdb_id: row.tmdb_id,

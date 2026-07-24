@@ -2,11 +2,11 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 const BannerSectionSkeleton = () => {
 	return (
-		<section className="w-full h-fit min-h-150 relative overflow-hidden">
-			<div className="w-full h-full relative">
+		<section className="w-full h-fit min-h-[80vh] flex flex-col relative overflow-hidden">
+			<div className="w-full flex-1 flex flex-col relative">
 				{/* <Skeleton className="w-full h-130 absolute z-0 rounded-none opacity-5" /> */}
 
-				<div className="section-container h-full z-20 relative flex item items-end gap-5 md:gap-8 flex-wrap pt-20 pb-10">
+				<div className="section-container flex-1 z-20 relative flex item items-end gap-5 md:gap-8 flex-wrap pt-20 pb-10 bottom-15">
 					<Skeleton className="aspect-2/3 h-50 sm:h-70 md:h-80 lg:h-90 rounded-xl" />
 
 					<div className="flex-1 flex-col flex gap-3">

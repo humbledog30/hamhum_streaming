@@ -4,7 +4,7 @@ import { useFormatRuntime } from "@/lib/hooks/useFormatRuntime";
 import { MovieDetailsRow } from "@/types/movie";
 import { Star } from "lucide-react";
 import { ExpandableWrapper } from "@/components/ExpandableSection";
-import { notFound, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { createClient } from "@/lib/supabase/client";
 import BannerSection from "../components/banner-section";
@@ -12,9 +12,18 @@ import OtherDetails from "../components/other-details";
 import Details from "../components/details";
 import MovieInfoPageSkeleton from "../components/skeleton-loader/movie-info-page-skeleton";
 import TitleNotFound from "../components/title-not-found";
+import { useState } from "react";
+import PlayerProvider, { videoSource, VideoSourceProps } from "@/components/player-provider";
+import { AnimatePresence, motion } from "framer-motion";
+import { Separator } from "@/components/ui/separator";
+import ServerChoices from "../components/server-choices";
+import NowShowing from "../components/now-showing";
 
 const InfoPage = () => {
 	const params = useParams();
+	const [isWatching, setIsWatching] = useState(false);
+	const [activeServer, setActiveServer] = useState<VideoSourceProps>(videoSource[0]);
+
 	const movieId = params.id;
 	const {
 		data: movieFullDetails,
@@ -80,8 +89,63 @@ const InfoPage = () => {
 			.filter((item): item is NonNullable<typeof item> => item !== null) ?? [];
 	return (
 		<div className="w-full flex flex-col">
-			{/* Info page Banner section */}
-			{movieFullDetails ? <BannerSection details={movieFullDetails} /> : null}
+			{movieFullDetails ? (
+				<motion.div layout className="relative w-full">
+					<AnimatePresence initial={false} mode={"popLayout"}>
+						{!isWatching ? (
+							<motion.div
+								key="banner"
+								initial={{ opacity: 1, y: 0 }}
+								exit={{ opacity: 0, y: "-100%" }}
+								transition={{ duration: 0.5, ease: "backInOut" }}
+							>
+								<BannerSection
+									details={movieFullDetails}
+									onWatch={() => setIsWatching(true)}
+								/>
+							</motion.div>
+						) : (
+							<motion.div
+								key="player"
+								initial={{ opacity: 0, y: "-100%" }}
+								animate={{ opacity: 1, y: 0 }}
+								exit={{ opacity: 0, y: "-100%" }}
+								transition={{ duration: 0.5, ease: "linear" }}
+							>
+								<PlayerProvider
+									details={movieFullDetails}
+									activeServer={activeServer}
+								/>
+							</motion.div>
+						)}
+					</AnimatePresence>
+				</motion.div>
+			) : null}
+
+			<AnimatePresence>
+				{isWatching ? (
+					<motion.div
+						key="watching-info"
+						initial={{ opacity: 0, y: 50 }}
+						animate={{ opacity: 1, y: 0 }}
+						exit={{ opacity: 0, y: 50 }}
+						transition={{ duration: 0.5, ease: "easeInOut" }}
+					>
+						<div className="section-container">
+							<NowShowing
+								movieDetails={movieFullDetails}
+								onWatch={() => setIsWatching(false)}
+							/>
+							<ServerChoices
+								activeServer={activeServer}
+								setActiveServer={setActiveServer}
+							/>
+						</div>
+
+						<Separator className="my-8" />
+					</motion.div>
+				) : null}
+			</AnimatePresence>
 			<div className="section-container flex flex-col gap-10">
 				<div>
 					<div className="flex items-center gap-5 mb-5">
