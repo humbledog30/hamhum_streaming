@@ -87,6 +87,7 @@ const InfoPage = () => {
 				};
 			})
 			.filter((item): item is NonNullable<typeof item> => item !== null) ?? [];
+	console.log(movieFullDetails?.runtime);
 	return (
 		<div className="w-full flex flex-col">
 			{movieFullDetails ? (

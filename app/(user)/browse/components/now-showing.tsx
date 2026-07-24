@@ -26,7 +26,7 @@ const NowShowing = ({
 					{movieDetails?.runtime ? (
 						<p>{useFormatRuntime(movieDetails?.runtime)}</p>
 					) : null}
-					{movieDetails?.runtime ? (
+					{movieDetails?.vote_average ? (
 						<div className="flex gap-2 items-center">
 							<Star size={14} />
 							<p>{movieDetails.vote_average?.toPrecision(2)}</p>

@@ -33,37 +33,12 @@ const BrowsePage = () => {
 		queryKey: ["browse-page"],
 		queryFn: async (): Promise<BrowseGenre[]> => {
 			const supabase = await createClient();
-			const { data, error } = await supabase
-				.from("genre_movies_ranked")
-				.select("*")
-				.lte("rn", 10)
-				.order("genre_id", { ascending: true })
-				.order("release_date", { ascending: false });
+			const { data, error } = await supabase.rpc("get_genre_movies_ranked", {
+				max_per_genre: 10,
+			});
 
 			if (error) throw error;
-			const grouped = Object.values(
-				data.reduce<Record<number, BrowseGenre>>((acc, row) => {
-					if (!acc[row.genre_id]) {
-						acc[row.genre_id] = {
-							id: row.genre_id,
-							genre_id: row.tmdb_genre_id,
-							tmdb_genre_name: row.tmdb_genre_name,
-							movies: [],
-						};
-					}
-					acc[row.genre_id].movies.push({
-						id: row.movie_id,
-						tmdb_id: row.tmdb_id,
-						title: row.title,
-						poster_path: row.poster_path,
-						release_date: row.release_date,
-						runtime: row.runtime,
-					});
-
-					return acc;
-				}, {}),
-			);
-			return grouped;
+			return data as BrowseGenre[];
 		},
 	});
 	if (isLoading) {
