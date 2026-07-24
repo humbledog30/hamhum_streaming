@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-	cacheComponents: true,
+	cacheComponents: false,
 	allowedDevOrigins: ["192.168.0.101", "192.168.0.103", "127.0.0.1", "192.168.0.107"],
 	images: {
 		remotePatterns: [
@@ -12,9 +12,6 @@ const nextConfig: NextConfig = {
 				pathname: "/t/p/**",
 			},
 		],
-	},
-	experimental: {
-		cacheComponents: false,
 	},
 };
 

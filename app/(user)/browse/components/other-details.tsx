@@ -10,7 +10,7 @@ const OtherDetails = ({
 	className?: string;
 }) => {
 	return (
-		<div className="flex justify-between items-center gap-3 border-b border-foreground/10 pb-3">
+		<div className="flex justify-between items-center last:border-b-0 last:pb-0 gap-3 border-b border-foreground/10 pb-3">
 			<span className="text-foreground/50 text-sm font-light">{label}</span>
 			<span
 				className={cn(

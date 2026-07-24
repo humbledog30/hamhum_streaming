@@ -5,10 +5,11 @@ import { Movie } from "@/types/movie";
 import Image from "next/image";
 
 const MovieCard = ({ item, onSelect }: { item: Movie; onSelect: () => void }) => {
-	const genres = item.genre_ids.map((genre) => {
-		const { label } = useGenresLabel(genre);
-		return label;
-	});
+	const genres =
+		item.genre_ids?.map((genre) => {
+			const { label } = useGenresLabel(genre);
+			return label;
+		}) ?? [];
 	const imageSrc = useFormatImagePath(item.poster_path);
 
 	return (
@@ -24,10 +25,12 @@ const MovieCard = ({ item, onSelect }: { item: Movie; onSelect: () => void }) =>
 				/>
 			</div>
 			<div className="py-2">
-				<p className="font-semibold mt-2 truncate">{item.title}</p>
+				<p className="font-semibold mt-2 truncate">{item?.title}</p>
 				<div className="text-sm flex text-muted-foreground gap-2">
-					<p>{item.release_date.split("-")[0]}</p>
-					<p className="flex-1 text-nowrap truncate">{genres.join(", ")}</p>
+					{item?.release_date ? <p>{item.release_date.split("-")[0]}</p> : null}
+					{genres.length > 0 ? (
+						<p className="flex-1 text-nowrap truncate">{genres.join(", ")}</p>
+					) : null}
 				</div>
 			</div>
 			<div

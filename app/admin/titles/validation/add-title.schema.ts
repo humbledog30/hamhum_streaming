@@ -50,7 +50,7 @@ export type MovieInsertResult =
 export function tmdbToMovieInsert(
 	tmdb: TmdbMovieResponse,
 	certification?: string | null,
-	status?: string,
+	publishStatus?: string,
 ): MovieInsertResult {
 	const result = tmdbMovieDetailsSchema.safeParse({
 		tmdb_id: tmdb.id,
@@ -68,7 +68,7 @@ export function tmdbToMovieInsert(
 		vote_average: tmdb.vote_average || null,
 		vote_count: tmdb.vote_count || null,
 		popularity: tmdb.popularity || null,
-		status: status?.toLowerCase() || "draft",
+		status: publishStatus?.toLowerCase() || "draft",
 	});
 
 	if (!result.success) {

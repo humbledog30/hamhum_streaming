@@ -2,17 +2,48 @@
 
 import { genreIcons, genreList } from "@/lib/hooks/useGenresLabel";
 import { useGenreScrollSpy } from "@/lib/hooks/useGenreScrollSpy";
-import { MoveRight, Slash } from "lucide-react";
+import { Dot, DotSquare, MoveRight, Slash } from "lucide-react";
 import { browseSample } from "./data/sameple";
 import { useFormatImagePath } from "@/lib/hooks/useFormatImagePath";
 import Link from "next/link";
 import { GenreTabs } from "@/components/genre-tabs";
+import { useQuery } from "@tanstack/react-query";
+import { createClient } from "@/lib/supabase/client";
+import { useFormatRuntime } from "@/lib/hooks/useFormatRuntime";
 
 const genreIds = genreList.map((g) => g.id);
 
+interface BrowseGenre {
+	id: number;
+	genre_id: number;
+	movies: {
+		id: number;
+		poster_path: string;
+		release_date: string | null;
+		title: string;
+		tmdb_id: number;
+		runtime: number | null;
+	}[];
+	tmdb_genre_name: string;
+}
+
 const BrowsePage = () => {
 	const scrollSpy = useGenreScrollSpy(genreIds);
+	const { data, isLoading, error } = useQuery<BrowseGenre[]>({
+		queryKey: ["browse-page"],
+		queryFn: async (): Promise<BrowseGenre[]> => {
+			const supabase = await createClient();
+			const { data, error } = await supabase.rpc("get_genre_movies_ranked", {
+				max_per_genre: 10,
+			});
 
+			if (error) throw error;
+			return data as BrowseGenre[];
+		},
+	});
+	if (isLoading) {
+		return null;
+	}
 	return (
 		<>
 			<section className="relative w-full">
@@ -41,8 +72,8 @@ const BrowsePage = () => {
 			<GenreTabs scrollSpy={scrollSpy} />
 
 			<section className="section-container py-8 flex flex-col gap-15">
-				{genreList.map((item) => {
-					const Icon = genreIcons[item.id];
+				{data?.map((item) => {
+					const Icon = genreIcons[item.genre_id];
 					return (
 						<div
 							key={`section-title-${item.id}`}
@@ -53,7 +84,7 @@ const BrowsePage = () => {
 							<div className="flex justify-between items-center gap-5 flex-wrap ">
 								<h6 className="section-title flex gap-3 items-center ">
 									<Icon />
-									{item.name}
+									{item.tmdb_genre_name}
 								</h6>
 								<div className="border-b border-foreground/80 flex-1"></div>
 								<div className="flex gap-2 ">
@@ -67,8 +98,9 @@ const BrowsePage = () => {
 								</div>
 							</div>
 							<div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-								{browseSample.map((browseItem) => (
-									<div
+								{item?.movies.map((browseItem) => (
+									<Link
+										href={`/browse/${browseItem.id}`}
 										key={`section-genre-item-${browseItem.id}-${item.id}`}
 										className="text-center"
 									>
@@ -82,12 +114,21 @@ const BrowsePage = () => {
 												alt={`Poster ${browseItem.title}`}
 											/>
 										</div>
-										<p>{browseItem.title}</p>
-										<p>
-											<span>{browseItem.release_date.split("-")[0]}</span>
-											<span>1h 52m</span>
+										<p className="font-semibold mt-2 text-balance">
+											{browseItem.title}
 										</p>
-									</div>
+										<p className="flex justify-center text-sm text-muted-foreground items-center">
+											{browseItem.release_date ? (
+												<span>{browseItem.release_date.split("-")[0]}</span>
+											) : null}
+											{browseItem?.release_date && browseItem?.runtime ? (
+												<Dot />
+											) : null}
+											{browseItem?.runtime ? (
+												<span>{useFormatRuntime(browseItem?.runtime)}</span>
+											) : null}
+										</p>
+									</Link>
 								))}
 							</div>
 						</div>
