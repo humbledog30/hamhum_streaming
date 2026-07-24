@@ -39,7 +39,7 @@ const DialogMovie = ({
 		}
 
 		mutate(
-			{ movieid, status: selectedStatus },
+			{ movieid, publishStatus: selectedStatus },
 			{
 				onSuccess: (data) => {
 					appToast.success(data?.message ?? "Title added successfully!");

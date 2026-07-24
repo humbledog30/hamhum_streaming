@@ -14,7 +14,13 @@ export const useFullMovieDetailsTmdb = () => {
 	const queryClient = useQueryClient();
 
 	return useMutation({
-		mutationFn: async ({ movieid }: { movieid: number; status: string }) => {
+		mutationFn: async ({
+			movieid,
+			publishStatus,
+		}: {
+			movieid: number;
+			publishStatus: string;
+		}) => {
 			const response = await apiTmdbClient
 				.get(`/movie/${movieid}?append_to_response=credits,release_dates`)
 				.then((res) => res.data);
@@ -24,24 +30,23 @@ export const useFullMovieDetailsTmdb = () => {
 			}
 
 			const supabase = await createClient();
-
-			const movieResult = await saveMovie(supabase, response);
+			const responseWithStatus = { ...response };
+			const movieResult = await saveMovie(supabase, response, publishStatus);
 			if (!movieResult.status) return movieResult;
 
 			const { id: movieUuid, wasInserted } = movieResult.data;
 
-			// Rollback helper: only deletes if THIS call created the movie
 			const rollbackIfNeeded = async () => {
 				if (wasInserted) await rollbackMovie(supabase, movieUuid);
 			};
 
-			const genresResult = await saveGenres(supabase, movieUuid, response.genres);
+			const genresResult = await saveGenres(supabase, movieUuid, responseWithStatus.genres);
 			if (!genresResult.status) {
 				await rollbackIfNeeded();
 				return genresResult;
 			}
 
-			const { people, credits } = mapCredits(response.credits, movieUuid);
+			const { people, credits } = mapCredits(responseWithStatus.credits, movieUuid);
 
 			const peopleResult = await savePeople(supabase, people);
 			if (!peopleResult.status) {

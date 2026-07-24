@@ -32,9 +32,10 @@ const findExistingMovieId = async (supabase: SupabaseClient, tmdbMovieId: number
 export const saveMovie = async (
 	supabase: SupabaseClient,
 	response: MovieDetailsWithAppend,
+	publishStatus: string,
 ): Promise<Result<{ id: string; wasInserted: boolean }>> => {
 	const certification = getUsCertification(response);
-	const movieRow = tmdbToMovieInsert(response, certification);
+	const movieRow = tmdbToMovieInsert(response, certification, publishStatus);
 	if (!movieRow.success) return fail("Movie row is invalid!");
 
 	const existingId = await findExistingMovieId(supabase, response.id);

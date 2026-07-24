@@ -7,15 +7,15 @@ import { Play, Plus, Share2, Star } from "lucide-react";
 
 const BannerSection = ({ details }: { details: MovieDetailsRow }) => {
 	return (
-		<section className="w-full h-fit min-h-150 relative overflow-hidden">
-			<div className="w-full h-full relative">
+		<section className="w-full flex flex-col min-h-[80vh] relative overflow-hidden">
+			<div className="w-full flex-1 flex flex-col relative">
 				<img
-					className="w-full h-full object-cover absolute z-0"
+					className="w-full h-full object-cover absolute z-0 object-top"
 					src={`${useFormatImagePath(details?.backdrop_path)}`}
 					alt={`${details.title} Backdrop`}
 				/>
 				<BannerOverlay />
-				<div className="section-container h-full z-20 relative flex item items-end gap-5 md:gap-8 flex-wrap pt-20 pb-10">
+				<div className="section-container flex-1 z-20 relative flex item items-end gap-5 md:gap-8 flex-wrap pt-20 pb-10">
 					<img
 						className="aspect-2/3 h-50 sm:h-70 md:h-80 lg:h-90 object-cover border rounded-xl border-primary"
 						src={`${useFormatImagePath(details?.poster_path)}`}

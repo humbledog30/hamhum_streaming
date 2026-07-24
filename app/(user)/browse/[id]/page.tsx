@@ -37,7 +37,7 @@ const InfoPage = () => {
 					)
 				`,
 				)
-				.eq("tmdb_id", movieId)
+				.eq("id", movieId)
 				.single();
 			if (error) throw error;
 			return data;
@@ -97,7 +97,7 @@ const InfoPage = () => {
 							<Details data={writer} label="Writers" />
 							<Details data={genres} label="Genres" />
 						</div>
-						<div className="col-span-1 flex flex-col gap-3 p-5 px-7 bg-chart-5/40 rounded-2xl">
+						<div className="col-span-1 flex flex-col gap-3 h-fit p-5 px-7 bg-chart-5/40 rounded-2xl">
 							<OtherDetails
 								data={
 									movieFullDetails?.vote_average ? (

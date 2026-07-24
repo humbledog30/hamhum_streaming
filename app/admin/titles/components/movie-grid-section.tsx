@@ -22,7 +22,7 @@ const MovieGridSection = ({
 	if (dataResult.length <= 0) {
 		return <EmptyResult search={searchKey} />;
 	}
-	return dataResult.map((item) => (
+	return dataResult?.map((item) => (
 		<MovieCard key={item.id} item={item} onSelect={() => setSelectedMovie(item)} />
 	));
 };
