@@ -10,9 +10,8 @@ import { GenreTabs } from "@/components/genre-tabs";
 import { useQuery } from "@tanstack/react-query";
 import { createClient } from "@/lib/supabase/client";
 import { useFormatRuntime } from "@/lib/hooks/useFormatRuntime";
-
-const genreIds = genreList.map((g) => g.id);
-
+import { useMemo } from "react";
+import { BrowsePageSkeleton } from "./components/skeleton-loader/browse-page-skeleton";
 interface BrowseGenre {
 	id: number;
 	genre_id: number;
@@ -28,7 +27,6 @@ interface BrowseGenre {
 }
 
 const BrowsePage = () => {
-	const scrollSpy = useGenreScrollSpy(genreIds);
 	const { data, isLoading, error } = useQuery<BrowseGenre[]>({
 		queryKey: ["browse-page"],
 		queryFn: async (): Promise<BrowseGenre[]> => {
@@ -41,8 +39,12 @@ const BrowsePage = () => {
 			return data as BrowseGenre[];
 		},
 	});
+
+	const genreIds = useMemo(() => data?.map((g) => g.genre_id) ?? [], [data]);
+	const scrollSpy = useGenreScrollSpy(genreIds);
+
 	if (isLoading) {
-		return null;
+		return <BrowsePageSkeleton />;
 	}
 	return (
 		<>
@@ -69,16 +71,17 @@ const BrowsePage = () => {
 				</div>
 			</section>
 
-			<GenreTabs scrollSpy={scrollSpy} />
+			<GenreTabs scrollSpy={scrollSpy} genreIds={genreIds} />
 
 			<section className="section-container py-8 flex flex-col gap-15">
 				{data?.map((item) => {
+					console.log(item.id);
 					const Icon = genreIcons[item.genre_id];
 					return (
 						<div
 							key={`section-title-${item.id}`}
-							ref={scrollSpy.registerSection(item.id)}
-							data-genre-id={item.id}
+							ref={scrollSpy.registerSection(item.genre_id)}
+							data-genre-id={item.genre_id}
 							className="flex flex-col gap-y-5 scroll-mt-32"
 						>
 							<div className="flex justify-between items-center gap-5 flex-wrap ">

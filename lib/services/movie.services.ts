@@ -13,8 +13,9 @@ const ok = <T>(data: T): Result<T> => ({ status: true, data });
 const fail = (message: string): Result<never> => ({ status: false, message });
 
 const getUsCertification = (response: MovieDetailsWithAppend) => {
+	const originated = response?.origin_country[0].toUpperCase() ?? "US";
 	const usRelease = response.release_dates.results.find(
-		(item: CountryReleaseDates) => item.iso_3166_1 === "US",
+		(item: CountryReleaseDates) => item.iso_3166_1 === originated,
 	);
 	return usRelease?.release_dates.findLast((release: ReleaseDate) => release.certification !== "")
 		?.certification;
