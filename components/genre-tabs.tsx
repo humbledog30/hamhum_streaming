@@ -6,20 +6,26 @@ import { useDragScroll } from "@/lib/hooks/useDragScroll";
 
 type GenreTabsProps = {
 	scrollSpy: ReturnType<typeof useGenreScrollSpy>;
+	genreIds: number[];
 };
 
-export const GenreTabs = ({ scrollSpy }: GenreTabsProps) => {
+export const GenreTabs = ({ scrollSpy, genreIds }: GenreTabsProps) => {
 	const { activeId, indicator, tabsScrollerRef, registerTab, handleTabClick } = scrollSpy;
-
+	const genreData = genreIds.map((item) => {
+		const genre = genreList.find((u) => u.id === item);
+		return {
+			id: item,
+			name: genre?.name,
+		};
+	});
 	useDragScroll(tabsScrollerRef);
-
 	return (
 		<div className="sticky top-16 z-40 border-b bg-background/90 backdrop-blur">
 			<div
 				ref={tabsScrollerRef}
-				className="section-container relative flex gap-3 overflow-x-auto scrollbar-none cursor-grab select-none [&.dragging]:cursor-grabbing"
+				className="section-container mask-[linear-gradient(to_right,transparent,hsl(var(--background))_5%,hsl(var(--background))_95%,transparent)] relative flex gap-3 overflow-x-auto scrollbar-none cursor-grab select-none [&.dragging]:cursor-grabbing"
 			>
-				{genreList.map((item) => (
+				{genreData.map((item) => (
 					<button
 						key={item.id}
 						type="button"
