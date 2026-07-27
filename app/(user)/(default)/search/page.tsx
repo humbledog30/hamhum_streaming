@@ -141,8 +141,8 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
 									alt={bestMatch.title}
 									fill
 									sizes="100vw"
-									className="object-cover rounded-md"
-									loading="lazy"
+									className="object-cover rounded-md brightness-[.80] saturate-[.85] transition-all"
+									loading="eager"
 								/>
 							</div>
 							<div className=" flex-1 px-5 pb-5 md:px-10 pt-40 md:pb-10 text-pretty group-hover:bg-accent/20 relative z-10">
@@ -210,7 +210,7 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
 											alt={item.title}
 											fill
 											sizes="(max-width: 768px) 50vw, 16vw"
-											className="object-cover rounded-md"
+											className="object-cover rounded-md brightness-[.65] saturate-[.85] group-hover:brightness-100 transition-all"
 											loading="lazy"
 										/>
 									</div>

@@ -12,6 +12,7 @@ import { createClient } from "@/lib/supabase/client";
 import { useFormatRuntime } from "@/lib/hooks/useFormatRuntime";
 import { useMemo } from "react";
 import { BrowsePageSkeleton } from "./components/skeleton-loader/browse-page-skeleton";
+import Image from "next/image";
 interface BrowseGenre {
 	id: number;
 	genre_id: number;
@@ -104,32 +105,41 @@ const BrowsePage = () => {
 									<Link
 										href={`/browse/${browseItem.id}`}
 										key={`section-genre-item-${browseItem.id}-${item.id}`}
-										className="text-center"
+										className="text-center flex flex-col group hover:outline overflow-hidden rounded-md hover:shadow-lg shadow-primary hover:-translate-y-1 transition-all"
 									>
-										<div className="border rounded-xl">
-											<img
+										<div className="relative aspect-2/3 border overflow-hidden">
+											<Image
 												src={useFormatImagePath(
 													browseItem.poster_path,
 													"w300",
 												)}
-												className="rounded-xl"
+												className=" object-cover brightness-[.80] saturate-[.85] group-hover:brightness-100 group-hover:scale-105 transition-all "
 												alt={`Poster ${browseItem.title}`}
+												fill
+												loading="lazy"
+												sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
 											/>
 										</div>
-										<p className="font-semibold mt-2 text-balance">
-											{browseItem.title}
-										</p>
-										<p className="flex justify-center text-sm text-muted-foreground items-center">
-											{browseItem.release_date ? (
-												<span>{browseItem.release_date.split("-")[0]}</span>
-											) : null}
-											{browseItem?.release_date && browseItem?.runtime ? (
-												<Dot />
-											) : null}
-											{browseItem?.runtime ? (
-												<span>{useFormatRuntime(browseItem?.runtime)}</span>
-											) : null}
-										</p>
+										<div className="text-center flex-1 p-3 text-pretty group-hover:bg-accent/20">
+											<p className="font-semibold mt-2 text-balance">
+												{browseItem.title}
+											</p>
+											<p className="flex justify-center text-sm text-muted-foreground items-center">
+												{browseItem.release_date ? (
+													<span>
+														{browseItem.release_date.split("-")[0]}
+													</span>
+												) : null}
+												{browseItem?.release_date && browseItem?.runtime ? (
+													<Dot />
+												) : null}
+												{browseItem?.runtime ? (
+													<span>
+														{useFormatRuntime(browseItem?.runtime)}
+													</span>
+												) : null}
+											</p>
+										</div>
 									</Link>
 								))}
 							</div>

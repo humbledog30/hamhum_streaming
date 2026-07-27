@@ -89,7 +89,7 @@ const UpcomingContent = ({ data }: { data: MovieDetails[] | null }) => {
 							</div>
 							<div
 								className={cn(
-									"flex flex-col sm:flex-row relative overflow-hidden rounded-md border border-primary/50 hover:border-primary transition-all",
+									"flex flex-col sm:flex-row relative overflow-hidden rounded-md group border border-primary/50 hover:border-primary transition-all",
 									movieIndex !== item?.movies.length - 1 && "mb-5",
 								)}
 							>
@@ -99,7 +99,7 @@ const UpcomingContent = ({ data }: { data: MovieDetails[] | null }) => {
 										alt={movie.title}
 										fill
 										sizes="96px"
-										className="object-cover object-center"
+										className="object-cover object-center brightness-[.80] saturate-[.85] group-hover:brightness-100 group-hover:scale-105 transition-all"
 										loading="lazy"
 									/>
 								</div>
