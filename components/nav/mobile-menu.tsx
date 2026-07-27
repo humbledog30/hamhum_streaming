@@ -43,7 +43,12 @@ const MobileMenu = ({ className }: { className?: string }) => {
 					Popular Movies
 					<ChevronRight />
 				</DropdownMenuItem>
-				<DropdownMenuItem className="flex-1 justify-between">
+				<DropdownMenuItem
+					className="flex-1 justify-between"
+					onSelect={() => {
+						router.push("/upcoming-releases");
+					}}
+				>
 					Upcoming Releases
 					<ChevronRight />
 				</DropdownMenuItem>

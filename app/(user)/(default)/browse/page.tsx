@@ -47,7 +47,7 @@ const BrowsePage = () => {
 		return <BrowsePageSkeleton />;
 	}
 	return (
-		<>
+		<div>
 			<section className="relative w-full">
 				<div className="absolute inset-0 bg-background">
 					<div className="absolute inset-0 bg-[radial-gradient(ellipse_1200px_800px_at_15%_0%,hsl(var(--primary)/0.30),transparent_60%)]" />
@@ -75,7 +75,6 @@ const BrowsePage = () => {
 
 			<section className="section-container py-8 flex flex-col gap-15">
 				{data?.map((item) => {
-					console.log(item.id);
 					const Icon = genreIcons[item.genre_id];
 					return (
 						<div
@@ -138,7 +137,7 @@ const BrowsePage = () => {
 					);
 				})}
 			</section>
-		</>
+		</div>
 	);
 };
 
