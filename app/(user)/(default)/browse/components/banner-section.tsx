@@ -7,6 +7,7 @@ import { BadgeHelp, Play, Plus, Share2, Star } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CalendarPlus, CircleX, Clapperboard, MessageCircleQuestion, Scissors } from "lucide-react";
 import { appToast } from "@/components/app-toast";
+import Image from "next/image";
 
 export const buttonIcons: Record<
 	string,
@@ -35,19 +36,27 @@ const BannerSection = ({ details, onWatch }: { details: MovieDetailsRow; onWatch
 			style={{ backfaceVisibility: "hidden" }}
 		>
 			<div className="w-full flex-1 flex flex-col relative">
-				<img
-					className="w-full h-full object-cover absolute z-0"
+				<Image
+					className="w-full h-full object-cover absolute z-0 brightness-[.65] saturate-[.85]"
 					src={`${useFormatImagePath(details?.backdrop_path)}`}
 					alt={`${details.title} Backdrop`}
+					fill
+					sizes="100vw"
+					loading={"eager"}
 				/>
 				<BannerOverlay />
-				<div className="section-container flex-1 z-20 relative flex item items-end gap-5 md:gap-8 flex-wrap pt-20 pb-10 bottom-15">
-					<img
-						className="aspect-2/3 h-50 sm:h-70 md:h-80 lg:h-90 object-cover border rounded-xl border-primary"
-						src={`${useFormatImagePath(details?.poster_path)}`}
-						alt={details.title}
-					/>
-					<div className="flex-1 flex-col flex gap-3">
+				<div className="section-container flex-1 z-20 relative flex flex-col md:flex-row item items-start md:items-end gap-5 md:gap-8 flex-wrap pt-20 pb-10 bottom-15">
+					<div className="relative aspect-2/3 h-50 sm:h-70 md:h-80 lg:h-90">
+						<Image
+							className="object-cover w-full border rounded-xl border-primary brightness-80"
+							src={useFormatImagePath(details?.poster_path)}
+							alt={details?.title ?? "Poster"}
+							fill
+							sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+							loading={"eager"}
+						/>
+					</div>
+					<div className="flex-1 flex-col flex gap-3 ">
 						<h1 className="text-5xl md:text-6xl uppercase font-fraunces font-semibold">
 							{details.title}
 						</h1>
@@ -68,7 +77,7 @@ const BannerSection = ({ details, onWatch }: { details: MovieDetailsRow; onWatch
 								</span>
 							) : null}
 						</div>
-						<div className="flex gap-1">
+						<div className="flex gap-1 flex-wrap">
 							{details.genres.map((item, index) => {
 								const { genre } = item;
 								if (!genre) return null;

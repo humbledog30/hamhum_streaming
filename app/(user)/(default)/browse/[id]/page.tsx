@@ -18,6 +18,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import ServerChoices from "../components/server-choices";
 import NowShowing from "../components/now-showing";
+import Image from "next/image";
 
 const InfoPage = () => {
 	const params = useParams();
@@ -155,7 +156,7 @@ const InfoPage = () => {
 						</h6>
 						<div className=" border-b border-foreground/80 w-full" />
 					</div>
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-10">
+					<div className="grid grid-cols-1 lg:grid-cols-3 gap-y-10 lg:gap-10">
 						<div className="col-span-2 flex flex-col gap-3 justify-center">
 							<Details data={cast} label="Cast" />
 							<Details data={director} label="Director" />
@@ -211,23 +212,27 @@ const InfoPage = () => {
 						</h6>
 					</div>
 
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-10 ">
+					<div className="grid grid-cols-1 lg:grid-cols-3 gap-y-10 md:gap-10 ">
 						<div className="col-span-2">
 							<ExpandableWrapper>
-								<div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+								<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
 									{cast.map((item, index) => {
 										const castProfile = useFormatImagePath(item?.profile_path);
 										return (
 											<div
 												key={`cast-profile-${index}`}
-												className="shrink-0 text-center  "
+												className="shrink-0 text-center"
 											>
-												<img
-													className="w-full aspect-square rounded-full object-cover mx-auto mb-2 opacity-80 border-2 border-primary"
-													src={castProfile}
-													alt={item.name}
-												/>
-
+												<div className="relative aspect-square w-full mx-auto mb-2">
+													<Image
+														className="rounded-full object-cover opacity-80 border-2 border-primary"
+														src={castProfile}
+														alt={item?.name ?? "Cast member"}
+														fill
+														sizes="(max-width: 768px) 33vw, (max-width: 1024px) 25vw, 16vw"
+														loading="lazy"
+													/>
+												</div>
 												<p className="font-semibold text-base">
 													{item?.name}
 												</p>
@@ -241,14 +246,19 @@ const InfoPage = () => {
 										const castProfile = useFormatImagePath(item?.profile_path);
 										return (
 											<div
-												key={`cast-profile-${index}`}
-												className="shrink-0 text-center "
+												key={`crew-profile-${index}`}
+												className="shrink-0 text-center"
 											>
-												<img
-													className="w-full aspect-square rounded-full object-cover mx-auto mb-2 opacity-80 border-2 border-primary"
-													src={castProfile}
-													alt={item.name}
-												/>
+												<div className="relative aspect-square w-full mx-auto mb-2">
+													<Image
+														className="rounded-full object-cover opacity-80 border-2 border-primary"
+														src={castProfile}
+														alt={item?.name ?? "Crew member"}
+														fill
+														sizes="(max-width: 768px) 33vw, (max-width: 1024px) 25vw, 16vw"
+														loading="lazy"
+													/>
+												</div>
 												<p className="font-semibold text-base">
 													{item?.name}
 												</p>
