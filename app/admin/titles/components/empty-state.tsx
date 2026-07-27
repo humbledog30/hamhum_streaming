@@ -8,7 +8,7 @@ const EmptyState = () => {
 			</div>
 			<p>Search TMDB to get started</p>
 			<p className="max-w-100 text-center text-muted-foreground text-sm">
-				Type a movie title above and we'll pull matching posters, ratings, and details
+				Type a movie title above and we&apos;ll pull matching posters, ratings, and details
 				straight from TMDB.
 			</p>
 		</div>

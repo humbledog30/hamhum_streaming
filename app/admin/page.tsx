@@ -3,8 +3,6 @@ import { ChevronRight } from "lucide-react";
 import WelcomeAdmin from "./components/welcome-admin";
 import { Suspense } from "react";
 
-interface Props {}
-
 const Page = ({}) => {
 	return (
 		<div className="h-full max-w-125 w-full mx-auto text-center gap-5 flex justify-center items-center flex-col px-5 py-15 rleative">

@@ -5,7 +5,6 @@ import {
 	searchTitleResult,
 	searchTitleSchema,
 } from "./validation/search-title.schema";
-import { createClient } from "@/lib/supabase/server";
 
 export async function searchTitle(input: searchTitleForm): Promise<searchTitleResult> {
 	const result = searchTitleSchema.safeParse(input);

@@ -25,19 +25,15 @@ import { Input } from "@/components/ui/input"
 import { ChevronLeft, ChevronRight, Search } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
+import { MovieDetailsRow } from "@/types/movie"
 
-interface CustomTData {
-    status?: string
-    genre_ids?: number[]
-    date_added?: string
-}
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
 }
 
-export function DataTable<TData extends CustomTData, TValue>({
+export function DataTable<TData extends Partial<MovieDetailsRow>, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
@@ -45,7 +41,7 @@ export function DataTable<TData extends CustomTData, TValue>({
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([],)
     const [globalFilter, setGlobalFilter] = useState('')
     const [sorting, setSorting] = useState<SortingState>([]);
-
+    
     const table = useReactTable({
         data,
         columns,
@@ -76,15 +72,22 @@ export function DataTable<TData extends CustomTData, TValue>({
         new Set(data.map((row) => row.status))
     );
 
-    const genreColumn = table.getColumn("genre_ids")
+    const genreColumn = table.getColumn("genres")
     const genraList = Array.from(
-        new Set(data.map((row) => row.genre_ids))
+        new Set(data.map((row) => row.genres))
+    );
+    const flatGenreList = genraList.flatMap((items) => items?.flatMap((item) => item.genre?.tmdb_genre_name))
+    const uniqueFilteredGenreList = [...new Set(flatGenreList)].toSorted()
+
+    const releaseDateColumn = table.getColumn("release_date")
+    const releaseDateList = Array.from(
+        new Set(data.map((row) => row.release_date))
     );
 
-    const yearAddedColumn = table.getColumn("date_added")
-    const yearAddedList = Array.from(
-        new Set(data.map((row) => row.date_added))
-    );
+    // const yearAddedColumn = table.getColumn("created_at")
+    // const yearAddedList = Array.from(
+    //     new Set(data.map((row) => row.created_at))
+    // );
 
     const sortValue =
         sorting.length === 0
@@ -152,9 +155,9 @@ export function DataTable<TData extends CustomTData, TValue>({
                         <SelectContent>
                             <SelectItem value="all">All</SelectItem>
                             {
-                                genraList.map((genre, index) => (
+                                uniqueFilteredGenreList.map((genre, index) => (
                                     genre ?
-                                    <SelectItem key={index} value={genre?.toString()}>{genre}</SelectItem>
+                                    <SelectItem key={index} value={genre}>{genre}</SelectItem>
                                     : ""
                                 ))
                             }
@@ -162,9 +165,9 @@ export function DataTable<TData extends CustomTData, TValue>({
                     </Select>
 
                     <Select
-                        value={(yearAddedColumn?.getFilterValue() as string) ?? ""}
+                        value={(releaseDateColumn?.getFilterValue() as string) ?? ""}
                         onValueChange={(value) =>
-                            yearAddedColumn?.setFilterValue(value === "all" ? undefined : value)
+                            releaseDateColumn?.setFilterValue(value === "all" ? undefined : value)
                         }
                     >
                         <SelectTrigger className="max-w-45 w-auto">
@@ -173,7 +176,7 @@ export function DataTable<TData extends CustomTData, TValue>({
 
                         <SelectContent>
                             <SelectItem value="all">All</SelectItem>
-                            {yearAddedList.map((year, index) => (
+                            {releaseDateList.map((year, index) => (
                                 year ? <SelectItem key={index} value={year}>{year}</SelectItem> : ""
                             ))}
                         </SelectContent>
@@ -204,6 +207,8 @@ export function DataTable<TData extends CustomTData, TValue>({
                             <SelectItem value="genre_ids-desc">Genre (9-0)</SelectItem>
                             <SelectItem value="vote_average-asc">Rating (0–9)</SelectItem>
                             <SelectItem value="vote_average-desc">Rating (9-0)</SelectItem>
+                            <SelectItem value="release_date-asc">Release Date (0-9)</SelectItem>
+                            <SelectItem value="release_date-desc">Release Date (9-0)</SelectItem>
                             <SelectItem value="status-asc">Status (A–Z)</SelectItem>
                             <SelectItem value="status-desc">Status (Z–A)</SelectItem>
                         </SelectContent>
