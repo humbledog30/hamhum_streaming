@@ -1,5 +1,5 @@
 import { Input } from "@base-ui/react";
-import { Dot, Play, RotateCw, Search, Star, X } from "lucide-react";
+import { Dot, Flame, Play, RotateCw, Search, Star, TrendingUp, X } from "lucide-react";
 import SearchBox from "./components/search-box";
 import { createClient } from "@/lib/supabase/server";
 import { useFormatImagePath } from "@/lib/hooks/useFormatImagePath";
@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useFormatRuntime } from "@/lib/hooks/useFormatRuntime";
 import SearchNoResult from "./components/search-no-result";
 import { redirect } from "next/navigation";
+import { Badge } from "@/components/ui/badge";
 
 type SearchParams = Promise<{ [q: string]: string | undefined }>;
 interface SearchResult {
@@ -24,6 +25,19 @@ interface SearchResult {
 	runtime: number | null;
 	backdrop_path: string | null;
 }
+
+const trendingSearch = [
+	"Avatar aang",
+	"Swapped",
+	"Hoppers",
+	"Barbie",
+	"Demon Slayer",
+	"One Piece",
+	"Moana",
+	"Elemental",
+	"Wild Robot",
+];
+
 export default async function Page({ searchParams }: { searchParams: SearchParams }) {
 	const resolvedParams = await searchParams;
 	const supabase = await createClient();
@@ -44,7 +58,6 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
 		const title = normalize(bestMatchTitle ?? " ");
 		return title === term || title.includes(term);
 	};
-
 	return (
 		<div className="w-full flex flex-col">
 			<div className="section-container py-5 flex flex-col gap-3">
@@ -54,47 +67,66 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
 						Every search leads to a new story.
 					</p>
 				</div>
-				<SearchBox value={resolvedParams.q} />
-				{data?.length > 0 ? (
-					<div className="flex gap-2 items-center justify-center text-sm text-muted-foreground mb-10">
-						<RotateCw size={18} className="text-primary" />
-						{isSpellingCorrect(resolvedParams.q ?? "", bestMatch.title) ? (
-							<div className="flex gap-1">
-								<span>Showing results for </span>
-								<span className="font-semibold text-primary capitalize">
-									"{resolvedParams.q}"
-								</span>
-							</div>
-						) : (
-							<div className="flex gap-1">
-								<span>Showing results for </span>
-								<span className="font-semibold text-primary">
-									"{bestMatch.title}"
-								</span>
-								<p className="flex gap-1">
-									<span>—</span>
-									<span className="line-through italic">{resolvedParams.q}</span>
-								</p>
-							</div>
-						)}
-					</div>
-				) : (
-					<SearchNoResult search={resolvedParams.q ?? ""} />
-				)}
-				{/* <div className="mt-15 mb-5">
-					<p className="text-muted-foreground">
-						<span className="font-semibold text-foreground">{data?.length}</span>{" "}
-						results
-					</p>
+				<SearchBox />
+				<div>
+					{data?.length > 0 ? (
+						<div className="flex gap-2 items-center justify-center text-sm text-muted-foreground mb-5">
+							<RotateCw size={18} className="text-primary" />
+							{isSpellingCorrect(resolvedParams.q ?? "", bestMatch.title) ? (
+								<div className="flex gap-1">
+									<span>Showing {data?.length} results for </span>
+									<span className="font-semibold text-primary capitalize">
+										"{resolvedParams.q}"
+									</span>
+								</div>
+							) : (
+								<div className="flex gap-1">
+									<span>Showing {data?.length} results for </span>
+									<span className="font-semibold text-primary">
+										"{bestMatch.title}"
+									</span>
+									<p className="flex gap-1">
+										<span>—</span>
+										<span className="line-through italic">
+											{resolvedParams.q}
+										</span>
+									</p>
+								</div>
+							)}
+						</div>
+					) : (
+						<SearchNoResult search={resolvedParams.q ?? ""} />
+					)}
 				</div>
-				<Separator className="mb-5" /> */}
+				<div className="flex flex-col mt-5 mb-5">
+					<p className="text-xs uppercase tracking-widest text-muted-foreground flex gap-3">
+						Trending Searches <TrendingUp size={14} />
+					</p>
+					<div className="flex flex-wrap gap-2 mt-5">
+						{trendingSearch?.map((item, index) => {
+							return (
+								<Link key={item} href={`/search?q=${encodeURIComponent(item)}`}>
+									<Badge
+										className="py-1.5 px-4 rounded-2xl font-normal bg-accent/30 hover:border-primary hover:bg-accent/60 cursor-pointer"
+										variant={"outline"}
+									>
+										{index === 0 ? (
+											<Flame size={13} className="mr-2 text-orange-400" />
+										) : null}
+										{item}
+									</Badge>
+								</Link>
+							);
+						})}
+					</div>
+				</div>
 				{bestMatch ? (
 					<div className="flex flex-col gap-3">
 						<div className="flex gap-3 items-center ">
 							<span className="text-muted-foreground uppercase font-semibold text-nowrap">
 								Best match
 							</span>
-							<Separator />
+							<Separator className="flex-1" />
 						</div>
 
 						<Link
@@ -113,14 +145,14 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
 									loading="lazy"
 								/>
 							</div>
-							<div className=" flex-1 px-10 pt-40 pb-10 text-pretty group-hover:bg-accent/20 relative z-10">
+							<div className=" flex-1 px-5 pb-5 md:px-10 pt-40 md:pb-10 text-pretty group-hover:bg-accent/20 relative z-10">
 								<p className="text-amber-400 uppercase text-sm font-semibold flex gap-1 items-center mb-3">
 									<Star size={16} /> Top Result{" "}
 								</p>
 								<p className=" font-semibold font-fraunces text-4xl mb-1 max-w-140 text-pretty">
 									{bestMatch.title}
 								</p>
-								<div className="flex items-center text-muted-foreground font-semibold gap-3 uppercase text-sm">
+								<div className="flex items-center flex-wrap text-muted-foreground font-semibold gap-3 gap-y-0 uppercase text-sm">
 									{bestMatch?.release_date ? (
 										<p>
 											Year{" "}
@@ -162,7 +194,7 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
 							<span className="text-muted-foreground uppercase font-semibold">
 								Related
 							</span>
-							<Separator />
+							<Separator className="flex-1" />
 						</div>
 						{related?.map((item: SearchResult) => {
 							const imageSrc = useFormatImagePath(item.poster_path ?? "");

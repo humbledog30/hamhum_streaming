@@ -9,6 +9,7 @@ import { Bookmark, LayoutGrid, Search } from "lucide-react";
 import { Button } from "../ui/button";
 import MobileMenu from "./mobile-menu";
 import { Skeleton } from "../ui/skeleton";
+import SearchPopover from "../search-popover";
 
 interface Props {}
 
@@ -27,11 +28,7 @@ const MainNavigation: NextPage<Props> = ({}) => {
 				</div>
 
 				<div className="flex gap-2 items-center">
-					<Button asChild size="sm" className="rounded-full p-2" variant={"outline"}>
-						<Link href="#">
-							<Search />
-						</Link>
-					</Button>
+					<SearchPopover />
 					{!hasEnvVars ? (
 						<EnvVarWarning />
 					) : (

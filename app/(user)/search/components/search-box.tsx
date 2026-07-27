@@ -3,15 +3,20 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@base-ui/react";
 import { Search, X } from "lucide-react";
 import { NextPage } from "next";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
-const SearchBox = ({ value }: { value: string | undefined }) => {
-	const [search, setSearch] = useState(value ?? "");
+const SearchBox = () => {
+	const searchParams = useSearchParams();
+	const [search, setSearch] = useState(searchParams.get("q") ?? "");
 	const router = useRouter();
 	const handleSearch = () => {
 		router.push(`/search?q=${search}`);
 	};
+
+	useEffect(() => {
+		setSearch(searchParams.get("q") ?? "");
+	}, [searchParams]);
 
 	return (
 		<div className="flex gap-3 focus-within:outline-2 focus-within:outline-primary/60 items-center max-w-150 w-full mx-auto bg-card border border-muted-foreground/50 rounded-4xl py-2 pl-4 pr-2">
