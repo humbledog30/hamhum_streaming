@@ -72,6 +72,9 @@ export const columns: ColumnDef<MovieDetailsRow>[] = [
         }
         return "N/A"
     },
+    meta: {
+        filterVariant: 'range',
+    },
   },
   {
     accessorKey: "status",
