@@ -17,7 +17,7 @@ export default function Home() {
 			<div className="flex-1 w-full flex flex-col items-center ">
 				<MainNavigation />
 				<div className="mt-16 w-full gap-10 flex flex-col">
-					{/* <Suspense fallback={<BannerSliderSkeleton />}>
+					<Suspense fallback={<BannerSliderSkeleton />}>
 						<HeroSection />
 					</Suspense>
 					<Trending />
@@ -25,7 +25,7 @@ export default function Home() {
 					<AllTimeGreat />
 					<UpcomingSection />
 					<BrowseGenre />
-					<Footer /> */}
+					<Footer />
 				</div>
 			</div>
 		</main>
