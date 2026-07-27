@@ -1,11 +1,8 @@
 import { Movie } from "@/types/movie";
-import { NextPage } from "next";
 import MovieCard from "./movie-card";
 import { Dispatch, SetStateAction } from "react";
 import EmptyResult from "./empty-result";
 import EmptyState from "./empty-state";
-
-interface Props {}
 
 const MovieGridSection = ({
 	searchKey,

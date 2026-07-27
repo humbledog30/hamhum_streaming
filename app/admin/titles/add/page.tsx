@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { useRef, useState } from "react";
-import { useSearchTmdbTitle } from "../hook/use-search-tmdb-title";
+import { useSearchTmdbTitle } from "@/lib/hooks/use-search-tmdb-title";
 import { searchTitle } from "../title.action";
 import { appToast } from "@/components/app-toast";
 import { Input } from "@/components/ui/input";
@@ -63,7 +63,7 @@ const Page = () => {
 			</form>
 			{data?.total_results ? (
 				<p className="col-span-6 text-sm text-muted-foreground">
-					Showing {data?.total_results} results for "{searchKey}"
+					Showing {data?.total_results} results for &quot;{searchKey}&quot;
 				</p>
 			) : null}
 			<div className="col-span-6 lg:col-span-5 "></div>

@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@radix-ui/react-dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { useFullMovieDetailsTmdb } from "../hook/use-full-movie-details-tmdb";
+import { useFullMovieDetailsTmdb } from "@/lib/hooks/use-full-movie-details-tmdb";
 import { appToast } from "@/components/app-toast";
 
 const DialogMovie = ({

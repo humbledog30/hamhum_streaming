@@ -4,27 +4,19 @@ import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { DataTable } from "./components/data-table";
 import { columns } from "./components/column-def";
-import { Suspense, useEffect, useState } from "react";
-import { Movie } from "@/types/movie";
-import { movies } from "./data/sample";
-import { useRouter } from "next/navigation";
+import { Suspense } from "react";
 
-interface MovieProps extends Partial<Movie> {
-	date_added: string;
-	status: string;
-}
+import { useRouter } from "next/navigation";
+import { useGetMovies } from "@/lib/services/get-movies.services";
+
 
 export default function Page() {
-	const [movieList, setMovieList] = useState<MovieProps[]>([]);
 	const router = useRouter();
-	useEffect(() => {
-		async function getMovie() {
-			const list = await movies; // sample get for server component
-			setMovieList(list);
-		}
+	const {data: movieList, isLoading} = useGetMovies()
 
-		getMovie();
-	}, []);
+	if(isLoading){
+		return <>Loading ngani ! ! !</>
+	}
 
 	return (
 		<div className="flex flex-1 flex-col gap-4 p-5 pt-0">
@@ -45,7 +37,7 @@ export default function Page() {
 
 			<section>
 				<Suspense>
-					<DataTable columns={columns} data={movieList} />
+					{movieList ? <DataTable columns={columns} data={movieList} /> : null}
 				</Suspense>
 			</section>
 		</div>

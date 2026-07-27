@@ -1,17 +1,13 @@
 "use client"
 
 import { useFormatImagePath } from "@/lib/hooks/useFormatImagePath"
-import { Movie } from "@/types/movie"
+import { MovieDetailsRow } from "@/types/movie"
 import { ColumnDef } from "@tanstack/react-table"
 import { StarIcon } from "lucide-react"
 import Image from "next/image"
 
-interface MovieProps extends Partial<Movie>{
-    date_added: string
-    status: string
-}
 
-export const columns: ColumnDef<MovieProps>[] = [
+export const columns: ColumnDef<MovieDetailsRow>[] = [
   {
     accessorKey: "original_title",
     header: "Title",
@@ -34,8 +30,23 @@ export const columns: ColumnDef<MovieProps>[] = [
     }
   },
   {
-    accessorKey: "genre_ids",
+    accessorKey: "genres",
     header: "Genres",
+    cell: ({row}) =>{
+        if(row.original.genres){
+            const data = row.original.genres
+            const filtered = data?.flatMap((items) => items.genre?.tmdb_genre_name)
+            return(
+                filtered?.join(", ")
+            )
+        }
+        return "N/A"
+    },
+    filterFn: (row, columnId, filterValue) => {
+        const genres = row.getValue(columnId) as typeof row.original.genres;
+
+        return genres.some(g => g.genre?.tmdb_genre_name === filterValue);
+    },
   },
   {
     accessorKey: "vote_average",
@@ -44,29 +55,47 @@ export const columns: ColumnDef<MovieProps>[] = [
         const data = row.original.vote_average
         return (
             <span className="flex flex-row items-center gap-1">
-                <StarIcon color="yellow" size={16} fill="yellow"/> {data?.toPrecision(2) ?? "-"}
+                <StarIcon color="yellow" size={16} fill="yellow"/> {data?.toPrecision(2) ?? "0"}
             </span>
         )
     }
   },
   {
-    accessorKey: "date_added",
-    header: "Added",
+    accessorKey: "release_date",
+    header: "Release Date",
     cell({row}) {
-        const data = new Date(row.original.date_added.replace("/-/g",'/'))
-        return(
-            new Intl.DateTimeFormat('en-PH', { dateStyle: 'long'}).format(data)
-        )
+        if(row.original?.release_date){
+            const data = new Date(row.original.release_date)
+            return(
+                new Intl.DateTimeFormat('en-PH', { dateStyle: 'long'}).format(data)
+            )
+        }
+        return "N/A"
     },
   },
   {
     accessorKey: "status",
     header: "Status",
     cell({row}) {
-        const data = row.original.status
-        return(
-            data.charAt(0).toUpperCase() + data.slice(1)
-        )
+        if(row.original.status){
+            const data = row.original.status
+            return(
+                data.charAt(0).toUpperCase() + data.slice(1)
+            )
+        }
+    },
+  },
+  {
+    accessorKey: "created_at",
+    header: "Date Added",
+    cell({row}) {
+        if(row.original?.created_at){
+            const data = new Date(row.original.created_at)
+            return(
+                new Intl.DateTimeFormat('en-PH', { dateStyle: 'long'}).format(data)
+            )
+        }
+        return "N/A"
     },
   },
 ]

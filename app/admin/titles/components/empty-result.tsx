@@ -8,7 +8,7 @@ const EmptyResult = ({ search }: { search: string }) => {
 			</div>
 			<p className="text-lg font-semibold">No matches on TMDB</p>
 			<p className="text-muted-foreground">
-				We couldn't find anything for "<span className="text-foreground">{search}</span>".
+				We couldn&apos;t find anything for &quot;<span className="text-foreground">{search}</span>&quot;.
 				Try:
 			</p>
 			<ul className="max-w-100 text-muted-foreground text-sm list-disc">
