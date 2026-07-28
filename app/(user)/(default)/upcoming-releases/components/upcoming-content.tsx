@@ -2,8 +2,8 @@
 import { appToast } from "@/components/app-toast";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { useFormatImagePath } from "@/lib/hooks/useFormatImagePath";
 import { cn } from "@/lib/utils";
+import { formatImagePath } from "@/lib/utils/format-image-path";
 import { MovieDetailsRow } from "@/types/movie";
 import { Bell, Bookmark, Heart } from "lucide-react";
 import Image from "next/image";
@@ -68,8 +68,8 @@ const UpcomingContent = ({ data }: { data: MovieDetails[] | null }) => {
 							weekday: "short",
 						});
 					}
-					const poster = useFormatImagePath(movie?.poster_path ?? "");
-					const backdrop = useFormatImagePath(movie?.backdrop_path ?? "");
+					const poster = formatImagePath(movie?.poster_path ?? "");
+					const backdrop = formatImagePath(movie?.backdrop_path ?? "");
 					return (
 						<div key={movie.id} className="grid rid-cols-1 md:grid-cols-[auto_1fr] ">
 							<div className="hidden md:flex justify-end pr-10 gap-5">
@@ -89,7 +89,7 @@ const UpcomingContent = ({ data }: { data: MovieDetails[] | null }) => {
 							</div>
 							<div
 								className={cn(
-									"flex flex-col sm:flex-row relative overflow-hidden rounded-md group border border-primary/50 hover:border-primary transition-all",
+									"flex flex-col sm:flex-row relative overflow-hidden rounded-md border border-primary/50 hover:border-primary transition-all",
 									movieIndex !== item?.movies.length - 1 && "mb-5",
 								)}
 							>

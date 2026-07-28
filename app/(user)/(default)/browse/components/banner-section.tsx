@@ -1,13 +1,13 @@
 import BannerOverlay from "@/components/banner-overlay";
 import { Button } from "@/components/ui/button";
-import { useFormatImagePath } from "@/lib/hooks/useFormatImagePath";
-import { useFormatRuntime } from "@/lib/hooks/useFormatRuntime";
 import { MovieDetails, MovieDetailsRow, MovieDetailsWithAppend } from "@/types/movie";
 import { BadgeHelp, Play, Plus, Share2, Star } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CalendarPlus, CircleX, Clapperboard, MessageCircleQuestion, Scissors } from "lucide-react";
 import { appToast } from "@/components/app-toast";
 import Image from "next/image";
+import { formatImagePath } from "@/lib/utils/format-image-path";
+import { formatRuntime } from "@/lib/utils/format-time";
 
 export const buttonIcons: Record<
 	string,
@@ -38,7 +38,7 @@ const BannerSection = ({ details, onWatch }: { details: MovieDetailsRow; onWatch
 			<div className="w-full flex-1 flex flex-col relative">
 				<Image
 					className="w-full h-full object-cover absolute z-0 brightness-[.65] saturate-[.85]"
-					src={`${useFormatImagePath(details?.backdrop_path)}`}
+					src={`${formatImagePath(details?.backdrop_path)}`}
 					alt={`${details.title} Backdrop`}
 					fill
 					sizes="100vw"
@@ -49,7 +49,7 @@ const BannerSection = ({ details, onWatch }: { details: MovieDetailsRow; onWatch
 					<div className="relative aspect-2/3 h-50 sm:h-70 md:h-80 lg:h-90">
 						<Image
 							className="object-cover w-full border rounded-xl border-primary brightness-80"
-							src={useFormatImagePath(details?.poster_path)}
+							src={formatImagePath(details?.poster_path)}
 							alt={details?.title ?? "Poster"}
 							fill
 							sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
@@ -68,7 +68,7 @@ const BannerSection = ({ details, onWatch }: { details: MovieDetailsRow; onWatch
 								<span>{details?.release_date.split("-")[0]}</span>
 							) : null}
 							{details?.runtime ? (
-								<span>{useFormatRuntime(details.runtime)}</span>
+								<span>{formatRuntime(details.runtime)}</span>
 							) : null}
 							{details?.vote_average ? (
 								<span className="flex gap-1 items-center font-medium text-primary dark:text-yellow-400">
@@ -94,7 +94,7 @@ const BannerSection = ({ details, onWatch }: { details: MovieDetailsRow; onWatch
 						<p className="max-w-full md:max-w-200">{details.overview}</p>
 						<div className="flex gap-2 items-center mt-5 flex-wrap">
 							<Button
-								className=" px-6 h-11 bg-accent primary-btn"
+								className=" px-6 h-11  primary-btn"
 								variant={"default"}
 								onClick={
 									details?.tmdb_status === "Released"

@@ -1,11 +1,11 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { useGenresLabel } from "@/lib/hooks/useGenresLabel";
 import { ChevronRight, Dot, SlashIcon } from "lucide-react";
 import React, { useState } from "react";
 import { saveOnboardingProfile } from "../action";
 import { appToast } from "@/components/app-toast";
 import { useRouter } from "next/navigation";
+import { genresLabel } from "@/lib/utils/format-genre";
 
 interface OnboardinThirdProps {
 	isActive: boolean;
@@ -44,7 +44,7 @@ const OnboardingThird = ({
 			</p>
 			<div className="flex mt-3 uppercase text-xs text-muted-foreground items-center gap-1 justify-center max-w-130 flex-wrap">
 				{selectedGenres.map((genre, index) => {
-					const { label } = useGenresLabel(genre);
+					const { label } = genresLabel(genre);
 					return (
 						<React.Fragment key={`index-${genre}`}>
 							<span>{label}</span>

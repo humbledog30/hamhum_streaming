@@ -1,8 +1,8 @@
 "use server";
 
 import { appToast } from "@/components/app-toast";
-import { useGenresLabel } from "@/lib/hooks/useGenresLabel";
 import { createClient } from "@/lib/supabase/server";
+import { genresLabel } from "@/lib/utils/format-genre";
 
 const ProfileFavoriteGenre = async () => {
 	const supabase = await createClient();
@@ -16,7 +16,7 @@ const ProfileFavoriteGenre = async () => {
 	return (
 		<div className="flex flex-wrap gap-3 text-sm mt-4">
 			{selectedGenres?.map((id) => {
-				const { label } = useGenresLabel(id);
+				const { label } = genresLabel(id);
 				return (
 					<span
 						key={`favorite-genre-${id}`}

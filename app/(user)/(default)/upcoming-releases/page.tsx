@@ -36,10 +36,10 @@ const Page = async ({}) => {
 	return (
 		<div>
 			<section className="relative w-full">
-				<div className="absolute inset-0 bg-background">
+				{/* <div className="absolute inset-0 bg-background">
 					<div className="absolute inset-0 bg-[radial-gradient(ellipse_1200px_800px_at_15%_0%,hsl(var(--primary)/0.30),transparent_60%)]" />
 					<div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-b from-transparent to-background" />
-				</div>
+				</div> */}
 				<div className="section-container relative z-10 flex flex-col gap-y-4 pt-30 pb-10">
 					<span className="flex items-center gap-3 font-semibold tracking-widest uppercase text-muted-foreground">
 						<Slash className="rotate-45 text-primary" />
@@ -56,10 +56,11 @@ const Page = async ({}) => {
 					</p>
 				</div>
 			</section>
-			<Separator />
+			{/* <Separator /> */}
 			<section className="max-w-200 mx-auto px-5 py-8 flex flex-col gap-10">
-				<div className="flex gap-3 justify-between items-center text-lg font-semibold text-muted-foreground font-fraunces">
-					This Year's Lineup{" "}
+				<div className="flex gap-5 items-center text-lg font-semibold text-muted-foreground font-fraunces uppercase">
+					<p>This Year's Lineup </p>
+					<Separator className="flex-1" />
 					<Badge
 						className="rounded-2xl font-inter p-1.5 px-4 text-muted-foreground bg-accent/30"
 						variant={"outline"}

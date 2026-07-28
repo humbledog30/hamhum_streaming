@@ -1,6 +1,5 @@
 "use client";
-import { useFormatImagePath } from "@/lib/hooks/useFormatImagePath";
-import { useFormatRuntime } from "@/lib/hooks/useFormatRuntime";
+
 import { MovieDetailsRow } from "@/types/movie";
 import { Star } from "lucide-react";
 import { ExpandableWrapper } from "@/components/ExpandableSection";
@@ -19,6 +18,8 @@ import { Separator } from "@/components/ui/separator";
 import ServerChoices from "../components/server-choices";
 import NowShowing from "../components/now-showing";
 import Image from "next/image";
+import { formatImagePath } from "@/lib/utils/format-image-path";
+import { formatRuntime } from "@/lib/utils/format-time";
 
 const InfoPage = () => {
 	const params = useParams();
@@ -88,7 +89,6 @@ const InfoPage = () => {
 				};
 			})
 			.filter((item): item is NonNullable<typeof item> => item !== null) ?? [];
-	console.log(movieFullDetails?.runtime);
 	return (
 		<div className="w-full flex flex-col">
 			{movieFullDetails ? (
@@ -191,7 +191,7 @@ const InfoPage = () => {
 							<OtherDetails
 								data={
 									movieFullDetails?.runtime ? (
-										useFormatRuntime(movieFullDetails?.runtime)
+										formatRuntime(movieFullDetails?.runtime)
 									) : (
 										<>N/A</>
 									)
@@ -217,7 +217,7 @@ const InfoPage = () => {
 							<ExpandableWrapper>
 								<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
 									{cast.map((item, index) => {
-										const castProfile = useFormatImagePath(item?.profile_path);
+										const castProfile = formatImagePath(item?.profile_path);
 										return (
 											<div
 												key={`cast-profile-${index}`}
@@ -243,7 +243,7 @@ const InfoPage = () => {
 										);
 									})}
 									{directorAndWriter.map((item, index) => {
-										const castProfile = useFormatImagePath(item?.profile_path);
+										const castProfile = formatImagePath(item?.profile_path);
 										return (
 											<div
 												key={`crew-profile-${index}`}

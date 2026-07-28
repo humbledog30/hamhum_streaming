@@ -1,9 +1,9 @@
 "use client";
 import { appToast } from "@/components/app-toast";
 import { Button } from "@/components/ui/button";
-import { genreIcons, genreList } from "@/lib/hooks/useGenresLabel";
 import { useState } from "react";
 import savePreferences from "../settings/action";
+import { genreIcons, genreList } from "@/lib/utils/format-genre";
 
 interface ProfileGenreFormProps {
 	profileGenres: number[];

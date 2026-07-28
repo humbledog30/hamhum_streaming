@@ -1,4 +1,4 @@
-export function useFormatRelativeTime(dateString: string): string {
+export function formatRelativeTime(dateString: string): string {
 	const date = new Date(dateString);
 	const now = new Date();
 
@@ -28,3 +28,12 @@ export function useFormatRelativeTime(dateString: string): string {
 	}
 	return "";
 }
+
+export const formatRuntime = (runtime: number) => {
+	const hours = Math.floor(runtime / 60);
+	const minutes = runtime % 60;
+	if (hours > 0) {
+		return `${hours}h ${minutes}m`;
+	}
+	return `${minutes}m`;
+};

@@ -1,8 +1,8 @@
 "use client";
 
-import { genreList } from "@/lib/hooks/useGenresLabel";
 import { useGenreScrollSpy } from "@/lib/hooks/useGenreScrollSpy";
 import { useDragScroll } from "@/lib/hooks/useDragScroll";
+import { genreList } from "@/lib/utils/format-genre";
 
 type GenreTabsProps = {
 	scrollSpy: ReturnType<typeof useGenreScrollSpy>;
@@ -36,12 +36,12 @@ export const GenreTabs = ({ scrollSpy, genreIds }: GenreTabsProps) => {
 					>
 						{item.name}
 
-						<span
+						{/* <span
 							data-highlight={activeId === item.id ? "active" : "inactive"}
-							className="transition-all duration-200 rounded-2xl border data-[highlight=active]:bg-primary/20 data-[highlight=active]:border-primary data-[highlight=active]:text-primary border-muted-foreground/60 bg-primary/0 px-3 py-0.5 text-xs font-semibold text-muted-foreground/60"
+							className="transition-all duration-200 border data-[highlight=active]:bg-primary/20 data-[highlight=active]:border-primary data-[highlight=active]:text-primary border-muted-foreground/60 bg-primary/0 px-3 py-0.5 text-xs font-semibold text-muted-foreground/60"
 						>
 							100
-						</span>
+						</span> */}
 					</button>
 				))}
 

@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import "swiper/css/effect-fade";
-import { useFormatImagePath } from "@/lib/hooks/useFormatImagePath";
+import { formatImagePath } from "@/lib/utils/format-image-path";
 
 interface bannerListProps {
 	src: string;
@@ -39,7 +39,7 @@ const AuthHeroSection = ({ items, paginationEl }: AuthHeroSectionProps) => {
 				bulletActiveClass: "hero-bullet-active",
 				renderBullet: (index, className) => `
 						<div class="${className}">
-							<img src="${useFormatImagePath(items[index].src)}" alt="${items[index].alt}" class="hero-bullet-bg"/>
+							<img src="${formatImagePath(items[index].src)}" alt="${items[index].alt}" class="hero-bullet-bg"/>
 							<span class="hero-bullet-fill"></span>
 						</div>
 					`,
@@ -61,7 +61,7 @@ const AuthHeroSection = ({ items, paginationEl }: AuthHeroSectionProps) => {
 				<SwiperSlide key={item.src}>
 					<img
 						className="w-full h-full object-cover"
-						src={`${useFormatImagePath(item.src)}`}
+						src={`${formatImagePath(item.src)}`}
 						alt={item.alt}
 					/>
 				</SwiperSlide>

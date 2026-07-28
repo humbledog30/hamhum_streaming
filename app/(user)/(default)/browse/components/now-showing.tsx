@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useFormatRuntime } from "@/lib/hooks/useFormatRuntime";
+import { formatRuntime } from "@/lib/utils/format-time";
 import { MovieDetailsRow } from "@/types/movie";
 import { Dot, ArrowLeft, Bookmark, RotateCcw, Share2, Star } from "lucide-react";
 
@@ -23,9 +23,7 @@ const NowShowing = ({
 				<span className="text-[10px] uppercase text-primary">Now playing</span>
 				<p className="text-xl lg:text-2xl font-fraunces">{movieDetails?.title}</p>
 				<div className="flex gap-3 text-sm text-muted-foreground/70 [&>*:not(:last-child)]:border-r [&>*:not(:last-child)]:border-muted-foreground/70 [&>*:not(:last-child)]:pr-3">
-					{movieDetails?.runtime ? (
-						<p>{useFormatRuntime(movieDetails?.runtime)}</p>
-					) : null}
+					{movieDetails?.runtime ? <p>{formatRuntime(movieDetails?.runtime)}</p> : null}
 					{movieDetails?.vote_average ? (
 						<div className="flex gap-2 items-center">
 							<Star size={14} />

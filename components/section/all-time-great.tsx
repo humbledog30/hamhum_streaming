@@ -1,5 +1,5 @@
-import { useFormatImagePath } from "@/lib/hooks/useFormatImagePath";
-import { useGenresLabel } from "@/lib/hooks/useGenresLabel";
+import { genresLabel } from "@/lib/utils/format-genre";
+import { formatImagePath } from "@/lib/utils/format-image-path";
 import { Movie } from "@/types/movie";
 import { Trophy } from "lucide-react";
 
@@ -171,7 +171,7 @@ const AllTimeGreat = ({}) => {
 								</span>
 								<img
 									className="w-25 rounded-lg"
-									src={`${useFormatImagePath(item.poster_path)}`}
+									src={`${formatImagePath(item.poster_path)}`}
 									alt={item.title}
 								/>
 								<div className="px-5 flex flex-col gap-3">
@@ -180,7 +180,7 @@ const AllTimeGreat = ({}) => {
 									</p>
 									<div className="flex gap-3 flex-wrap text-xs uppercase">
 										{item.genre_ids.map((genre, genreIndex) => {
-											const { label } = useGenresLabel(genre);
+											const { label } = genresLabel(genre);
 											return (
 												<span
 													key={`genre-${genreIndex}`}

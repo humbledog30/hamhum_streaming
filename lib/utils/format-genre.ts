@@ -67,7 +67,7 @@ export const genreIcons: Record<
 	37: Mountain,
 };
 
-export const useGenresLabel = (id: number) => {
+export const genresLabel = (id: number) => {
 	if (!id) {
 		return {
 			label: "",

@@ -3,7 +3,6 @@ import { MovieDetailsRow } from "@/types/movie";
 import { ArrowLeft, Bookmark, RotateCcw, Share2, Star, VideoOff } from "lucide-react";
 import { Dispatch, SetStateAction, useState } from "react";
 import { Button } from "./ui/button";
-import { useFormatRuntime } from "@/lib/hooks/useFormatRuntime";
 export const videoSource = [
 	{
 		server: "VidNest",

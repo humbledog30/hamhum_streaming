@@ -1,6 +1,4 @@
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
-import { useFormatImagePath } from "@/lib/hooks/useFormatImagePath";
-import { useGenresLabel } from "@/lib/hooks/useGenresLabel";
 import { Movie } from "@/types/movie";
 import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
@@ -15,6 +13,8 @@ import { Separator } from "@radix-ui/react-dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { useFullMovieDetailsTmdb } from "@/lib/hooks/use-full-movie-details-tmdb";
 import { appToast } from "@/components/app-toast";
+import { formatImagePath } from "@/lib/utils/format-image-path";
+import { genresLabel } from "@/lib/utils/format-genre";
 
 const DialogMovie = ({
 	selectedMovie,
@@ -56,7 +56,7 @@ const DialogMovie = ({
 			<DialogContent className="p-0 gap-5 pb-5 max-h-[90%] overflow-auto scrollbar-thumb-primary scrollbar-track-muted-foreground/20 scrollbar-thin">
 				<div className="relative w-full aspect-video rounded-t-md ">
 					<Image
-						src={useFormatImagePath(selectedMovie?.backdrop_path)}
+						src={formatImagePath(selectedMovie?.backdrop_path)}
 						alt={selectedMovie?.title ?? ""}
 						fill
 						sizes="(max-width: 768px) 100vw, 600px"
@@ -74,7 +74,7 @@ const DialogMovie = ({
 						<span>
 							{selectedMovie?.genre_ids
 								.map((item) => {
-									const { label } = useGenresLabel(item);
+									const { label } = genresLabel(item);
 									return label;
 								})
 								.join(", ")}

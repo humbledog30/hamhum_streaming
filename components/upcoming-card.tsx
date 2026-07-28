@@ -5,8 +5,8 @@ import { Button } from "./ui/button";
 import { Bell, Plus } from "lucide-react";
 import { Suspense, useEffect, useState } from "react";
 import { Movie } from "@/types/movie";
-import { useGenresLabel } from "@/lib/hooks/useGenresLabel";
-import { useFormatImagePath } from "@/lib/hooks/useFormatImagePath";
+import { formatImagePath } from "@/lib/utils/format-image-path";
+import { genresLabel } from "@/lib/utils/format-genre";
 
 const UpcomingCard = ({ items }: { items: Movie[] }) => {
 	if (!items) {
@@ -33,7 +33,7 @@ const UpcomingCard = ({ items }: { items: Movie[] }) => {
 					<div className="flex flex-col justify-end p-4 items-start gap-3 absolute h-full w-full left-0 top-0 z-10 translate-y-2 group-hover:translate-y-0 bg-linear-to-t from-background from-30% to-primary/20 opacity-0 group-hover:opacity-100 transition duration-200">
 						<div className="flex flex-wrap text-[10px] gap-1 items-center uppercase text-muted-foreground">
 							{item.genre_ids.map((genre, genreIndex) => {
-								const { label } = useGenresLabel(genre);
+								const { label } = genresLabel(genre);
 								return (
 									<div
 										className="gap-1 flex"
@@ -69,7 +69,7 @@ const UpcomingCard = ({ items }: { items: Movie[] }) => {
 							</Button>
 						</div>
 					</div>
-					<img src={`${useFormatImagePath(item.poster_path)}`} alt={item.title} />
+					<img src={`${formatImagePath(item.poster_path)}`} alt={item.title} />
 				</div>
 				<h6 className="font-fraunces text-lg font-semibold">{item.title}</h6>
 				<p className="text-xs font-thin font-jetbrains-mono">Releases {formatted}</p>

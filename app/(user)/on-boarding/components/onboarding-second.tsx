@@ -1,5 +1,5 @@
 "use client";
-import { genreIcons, genreList } from "@/lib/hooks/useGenresLabel";
+import { genreIcons, genreList } from "@/lib/utils/format-genre";
 import { SlashIcon } from "lucide-react";
 
 interface OnboardingSecondProps {
