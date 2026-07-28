@@ -27,7 +27,8 @@ const Page = async ({}) => {
 		)
 		.gte("release_date", startDate)
 		.lte("release_date", endDate)
-		.eq("tmdb_status", "Post Production");
+		.eq("tmdb_status", "Post Production")
+		.order("release_date", { ascending: true });
 
 	if (error) {
 		console.error(error);
@@ -57,8 +58,8 @@ const Page = async ({}) => {
 				</div>
 			</section>
 			{/* <Separator /> */}
-			<section className="max-w-200 mx-auto px-5 py-8 flex flex-col gap-10">
-				<div className="flex gap-5 items-center text-lg font-semibold text-muted-foreground font-fraunces uppercase">
+			<section className="px-5 py-8 flex flex-col gap-10">
+				<div className="section-container flex gap-5 items-center text-lg font-semibold text-muted-foreground font-fraunces uppercase">
 					<p>This Year's Lineup </p>
 					<Separator className="flex-1" />
 					<Badge
