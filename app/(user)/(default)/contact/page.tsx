@@ -3,9 +3,14 @@ import { Mail, Github } from "lucide-react";
 import BasicHeader from "@/components/basic-header";
 import { FiGithub } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
+import { Metadata } from "next";
+import { defaultUrl } from "@/lib/utils";
 
-export const metadata = {
-	title: "Ham+Hum — Contact",
+export const metadata: Metadata = {
+	title: "Ham+Hum | Contact",
+	metadataBase: new URL(`${defaultUrl}/contact`),
+	description:
+		"Whether you have a suggestion, found an issue, or just want to say hello, we're always happy to hear from you.",
 };
 
 export default function ContactPage() {

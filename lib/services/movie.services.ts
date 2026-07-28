@@ -6,6 +6,7 @@ import { MovieDetailsWithAppend } from "@/types/movie";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { CreditRow } from "@/types/cast";
 import { PersonRow } from "../utils/format-movie-data";
+import { ParamValue } from "next/dist/server/request/params";
 
 type Result<T> = { status: true; data: T } | { status: false; message: string };
 
@@ -92,4 +93,72 @@ export const saveCredits = async (
 /** Deletes the movie row; genres and credits cascade automatically. */
 export const rollbackMovie = async (supabase: SupabaseClient, movieId: string) => {
 	await supabase.from("movies").delete().eq("id", movieId);
+};
+
+/** Get Upcoming Releases Movie */
+export const getUpcomingReleases = async (supabase: SupabaseClient) => {
+	const today = new Date();
+	const startDate = today.toISOString().split("T");
+
+	const endOfYear = new Date(today.getFullYear(), 11, 31);
+	const endDate = endOfYear.toISOString().split("T")[0];
+
+	const { data, error } = await supabase
+		.from("movies")
+		.select(
+			`
+      *,
+      genres:movie_genres(genre:genres(id, tmdb_genre_name))
+    `,
+		)
+		.gte("release_date", startDate)
+		.lte("release_date", endDate)
+		.eq("tmdb_status", "Post Production")
+		.order("release_date", { ascending: true });
+
+	if (error) {
+		throw error;
+	}
+
+	return data;
+};
+
+/** Get Popular Movies */
+export const getPopularMovies = async (supabase: SupabaseClient) => {
+	const { data, error } = await supabase
+		.from("movies")
+		.select(
+			`
+					*,
+					genres:movie_genres(genre:genres(id, tmdb_genre_name))
+				`,
+		)
+		.order("popularity", { ascending: false })
+		.order("vote_count", { ascending: false })
+		.order("vote_average", { ascending: false })
+		.limit(15);
+	if (error) {
+		throw error;
+	}
+	return data;
+};
+
+export const getMovieDetails = async (supabase: SupabaseClient, id: ParamValue) => {
+	const { data, error } = await supabase
+		.from("movies")
+		.select(
+			`
+			*,
+			genres:movie_genres(genre:genres(id, tmdb_genre_name)),
+			movie_credits(
+				role,
+				job,
+				person:people(tmdb_person_id, name, profile_path)
+			)
+		`,
+		)
+		.eq("id", id)
+		.single();
+	if (error) throw error;
+	return data;
 };

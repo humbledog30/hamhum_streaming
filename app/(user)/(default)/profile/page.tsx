@@ -10,6 +10,13 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import ProfileFavoriteGenre from "./components/profile-favorite-genre";
 import ProfileFavoriteGenreSkeleton from "./components/SkeletonLoader/profile-favorite-genre-skeleton";
+import { Metadata } from "next";
+import { defaultUrl } from "@/lib/utils";
+
+export const metadata: Metadata = {
+	title: "Ham+Hum | Profile",
+	metadataBase: new URL(`${defaultUrl}/profile`),
+};
 
 const ViewProfilePage = () => {
 	return (
