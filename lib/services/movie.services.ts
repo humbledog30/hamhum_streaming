@@ -4,8 +4,8 @@ import {
 } from "@/app/admin/titles/validation/add-title.schema";
 import { MovieDetailsWithAppend } from "@/types/movie";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { PersonRow } from "../hooks/useMovieCredits";
 import { CreditRow } from "@/types/cast";
+import { PersonRow } from "../utils/format-movie-data";
 
 type Result<T> = { status: true; data: T } | { status: false; message: string };
 
