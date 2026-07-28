@@ -39,7 +39,12 @@ const MobileMenu = ({ className }: { className?: string }) => {
 					Browse
 					<ChevronRight />
 				</DropdownMenuItem>
-				<DropdownMenuItem className="flex-1 justify-between">
+				<DropdownMenuItem
+					className="flex-1 justify-between"
+					onSelect={() => {
+						router.push("/popular-movies");
+					}}
+				>
 					Popular Movies
 					<ChevronRight />
 				</DropdownMenuItem>
@@ -52,7 +57,12 @@ const MobileMenu = ({ className }: { className?: string }) => {
 					Upcoming Releases
 					<ChevronRight />
 				</DropdownMenuItem>
-				<DropdownMenuItem className="flex-1 justify-between">
+				<DropdownMenuItem
+					className="flex-1 justify-between"
+					onSelect={() => {
+						router.push("/all-time-great");
+					}}
+				>
 					All Time Great
 					<ChevronRight />
 				</DropdownMenuItem>

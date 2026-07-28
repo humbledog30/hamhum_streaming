@@ -13,7 +13,7 @@ import PageSectionHeader from "@/components/page-section-header";
 import { useGenreWithMovie } from "@/lib/queries/useGenreQuery";
 import { BrowsePageSkeleton } from "./skeleton-loader/browse-page-skeleton";
 
-const BrowseContent = () => {
+const BrowsePage = () => {
 	const { data, isLoading, error } = useGenreWithMovie();
 
 	const genreIds = useMemo(() => data?.map((g) => g.genre_id) ?? [], [data]);
@@ -117,4 +117,4 @@ const BrowseContent = () => {
 	);
 };
 
-export default BrowseContent;
+export default BrowsePage;

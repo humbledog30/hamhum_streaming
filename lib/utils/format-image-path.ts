@@ -1,4 +1,4 @@
-type srcSize = "original" | "w500" | "w400" | "w300" | "w200";
+type srcSize = "original" | "w500" | "w400" | "w300" | "w200" | "w92";
 
 export const formatImagePath = (src?: string | null, size: srcSize = "original") => {
 	if (!src) {

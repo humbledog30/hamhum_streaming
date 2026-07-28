@@ -218,7 +218,7 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
 											alt={item.title}
 											fill
 											sizes="(max-width: 768px) 50vw, 16vw"
-											className="object-cover rounded-md brightness-[.65] saturate-[.85] group-hover:brightness-100 transition-all"
+											className="object-cover rounded-md img-brightness-saturate group-hover:brightness-100 transition-all"
 											loading="lazy"
 										/>
 									</div>
