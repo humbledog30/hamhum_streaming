@@ -10,13 +10,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import UpcomingContentEmpty from "./upcoming-content-empty";
 type MovieDetails = Omit<MovieDetailsRow, "movie_credits">;
 
-const UpcomingContent = ({ data }: { data: MovieDetails[] | null }) => {
+const UpcomingContent = ({ data }: { data: MovieDetails[] | null | undefined }) => {
 	const router = useRouter();
+
 	if (!data) {
-		return null;
+		return <UpcomingContentEmpty />;
 	}
+
 	return (
 		<div className="section-container">
 			{data?.map((movie: MovieDetails, movieIndex: number) => {

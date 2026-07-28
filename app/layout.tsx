@@ -7,10 +7,7 @@ import Providers from "./providers";
 import { Toaster } from "@/components/ui/sonner";
 import { DEFAULT_TOAST_DURATION } from "@/components/app-toast";
 import { GlobalSpotlight } from "@/components/global-spotlight";
-
-const defaultUrl = process.env.VERCEL_URL
-	? `https://${process.env.VERCEL_URL}`
-	: "http://localhost:3000";
+import { defaultUrl } from "@/lib/utils";
 
 export const metadata: Metadata = {
 	metadataBase: new URL(defaultUrl),

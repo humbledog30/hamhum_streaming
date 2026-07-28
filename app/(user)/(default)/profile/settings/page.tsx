@@ -1,5 +1,5 @@
 import BasicHeader from "@/components/basic-header";
-import { NextPage } from "next";
+import { Metadata, NextPage } from "next";
 import ProfileSection from "../components/profile-section";
 import ProfileInformationEdit from "../components/profile-information-edit";
 import { Suspense } from "react";
@@ -8,6 +8,12 @@ import ProfilePasswordForm from "../components/profile-password-form";
 import ProfileDeleteForm from "../components/profile-delete-form";
 import ProfileGenreEdit from "../components/profile-genre-edit";
 import ProfileGenreSkeleton from "../components/SkeletonLoader/profile-genre-skeleton";
+import { defaultUrl } from "@/lib/utils";
+
+export const metadata: Metadata = {
+	title: "Ham+Hum | Profile Settings",
+	metadataBase: new URL(`${defaultUrl}/profile/settings`),
+};
 
 const AccountSettingsPage = () => {
 	return (

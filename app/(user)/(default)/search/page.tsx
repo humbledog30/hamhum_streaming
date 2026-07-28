@@ -10,6 +10,8 @@ import { redirect } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { formatImagePath } from "@/lib/utils/format-image-path";
 import { formatRuntime } from "@/lib/utils/format-time";
+import { Metadata } from "next";
+import { defaultUrl } from "@/lib/utils";
 
 type SearchParams = Promise<{ [q: string]: string | undefined }>;
 interface SearchResult {
@@ -38,6 +40,12 @@ const trendingSearch = [
 	"Wild Robot",
 ];
 
+export const metadata: Metadata = {
+	title: "Ham+Hum | Search",
+	metadataBase: new URL(`${defaultUrl}/search`),
+	description:
+		"Search for movies and uncover timeless classics, hidden gems, and the latest releases.",
+};
 export default async function Page({ searchParams }: { searchParams: SearchParams }) {
 	const resolvedParams = await searchParams;
 	const supabase = await createClient();
