@@ -74,6 +74,11 @@ const UpcomingContent = ({ data }: { data: MovieDetails[] | null | undefined }) 
 										sizes="100vw"
 										className="object-cover object-center"
 										loading="lazy"
+										blurDataURL={formatImagePath(
+											movie?.backdrop_path ?? "",
+											"w200",
+										)}
+										placeholder={"blur"}
 									/>
 								</div>
 							</div>

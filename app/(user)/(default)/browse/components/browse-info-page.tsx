@@ -17,11 +17,11 @@ import { formatImagePath } from "@/lib/utils/format-image-path";
 import { formatRuntime } from "@/lib/utils/format-time";
 import { useMovieDetails } from "@/lib/queries/useMovieQuery";
 
-interface BrowseInfoContentProps {
+interface BrowseInfoPageProps {
 	movieId: string;
 }
 
-const BrowseInfoContent = ({ movieId }: BrowseInfoContentProps) => {
+const BrowseInfoPage = ({ movieId }: BrowseInfoPageProps) => {
 	const [isWatching, setIsWatching] = useState(false);
 	const [activeServer, setActiveServer] = useState<VideoSourceProps>(videoSource[0]);
 
@@ -252,4 +252,4 @@ const BrowseInfoContent = ({ movieId }: BrowseInfoContentProps) => {
 	);
 };
 
-export default BrowseInfoContent;
+export default BrowseInfoPage;

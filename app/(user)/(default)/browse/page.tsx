@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { defaultUrl } from "@/lib/utils";
-import BrowseContent from "./components/browse-content";
+import BrowsePage from "./components/browse-page";
 
 export const metadata: Metadata = {
 	title: "Ham+Hum | Browse Movies",
@@ -11,5 +11,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-	return <BrowseContent />;
+	return <BrowsePage />;
 }

@@ -24,7 +24,7 @@ const MainNavigation: NextPage<Props> = ({}) => {
 					<Link href={"/browse"}>Browse</Link>
 					<Link href={"/popular-movies"}>Popular Movies</Link>
 					<Link href={"/upcoming-releases"}>Upcoming Releases</Link>
-					<Link href={"#"}>All Time Great</Link>
+					<Link href={"/all-time-great"}>All Time Great</Link>
 				</div>
 
 				<div className="flex gap-2 items-center">

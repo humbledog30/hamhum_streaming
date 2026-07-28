@@ -26,6 +26,7 @@ const PopularMoviesContent = ({ data }: { data: MovieDetailsRow[] | null | undef
 			<div className="grid grid-cols-1 sm:grid-cols-[1fr_1.22fr_1fr] gap-3 sm:items-end">
 				{top3?.map((item: Omit<MovieDetailsRow, "movie_credits">, index: number) => {
 					const imageSrc = formatImagePath(item.poster_path);
+					const blurUrl = formatImagePath(item?.poster_path ?? "", "w200");
 					const genres = item?.genres.flatMap((g) => g.genre?.tmdb_genre_name) ?? [];
 					const isCenter = index === 0;
 
@@ -54,6 +55,8 @@ const PopularMoviesContent = ({ data }: { data: MovieDetailsRow[] | null | undef
 									sizes="100vw"
 									loading="eager"
 									className="brightness-[.80] saturate-[.85] group-hover:scale-[105%] transition-all object-cover"
+									blurDataURL={blurUrl}
+									placeholder={"blur"}
 								/>
 							</div>
 							<div className="bg-linear-to-t from-background from-5% to-transparent to-70% absolute top-0 left-0 h-full w-full" />
@@ -125,6 +128,7 @@ const PopularMoviesContent = ({ data }: { data: MovieDetailsRow[] | null | undef
 				{remainingData?.map(
 					(item: Omit<MovieDetailsRow, "movie_credits">, index: number) => {
 						const imageSrc = formatImagePath(item.backdrop_path);
+						const blurUrl = formatImagePath(item.backdrop_path, "w200");
 						const genres = item?.genres.flatMap((g) => g.genre?.tmdb_genre_name) ?? [];
 
 						return (
@@ -143,6 +147,8 @@ const PopularMoviesContent = ({ data }: { data: MovieDetailsRow[] | null | undef
 										sizes="100vw"
 										loading="lazy"
 										className="brightness-[.80] saturate-[.85] group-hover:scale-[105%] transition-all object-cover"
+										blurDataURL={blurUrl}
+										placeholder={"blur"}
 									/>
 									<div className="bg-linear-to-t from-background from-5% to-transparent to-70% absolute -bottom-2 left-0 h-full w-full" />
 									<div className="absolute bottom-0 left-0 p-5 pb-0 w-full">

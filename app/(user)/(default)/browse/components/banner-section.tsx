@@ -37,12 +37,14 @@ const BannerSection = ({ details, onWatch }: { details: MovieDetailsRow; onWatch
 		>
 			<div className="w-full flex-1 flex flex-col relative">
 				<Image
-					className="w-full h-full object-cover absolute z-0 brightness-[.65] saturate-[.85]"
+					className="w-full h-full object-cover absolute z-0 img-brightness-saturate"
 					src={`${formatImagePath(details?.backdrop_path)}`}
 					alt={`${details.title} Backdrop`}
 					fill
 					sizes="100vw"
 					loading={"eager"}
+					placeholder={"blur"}
+					blurDataURL={formatImagePath(details?.backdrop_path, "w200")}
 				/>
 				<BannerOverlay />
 				<div className="section-container flex-1 z-20 relative flex flex-col md:flex-row item items-start md:items-end gap-5 md:gap-8 flex-wrap pt-20 pb-10 bottom-15">
@@ -54,6 +56,8 @@ const BannerSection = ({ details, onWatch }: { details: MovieDetailsRow; onWatch
 							fill
 							sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
 							loading={"eager"}
+							placeholder={"blur"}
+							blurDataURL={formatImagePath(details?.poster_path, "w200")}
 						/>
 					</div>
 					<div className="flex-1 flex-col flex gap-3 ">

@@ -204,6 +204,9 @@
 	.hero-bullet-bg {
 		@apply absolute top-0 left-0 z-1 w-full h-full object-cover;
 	}
+	.img-brightness-saturate {
+		@apply brightness-[.80] saturate-[.85];
+	}
 }
 
 @utility text-stroke {
