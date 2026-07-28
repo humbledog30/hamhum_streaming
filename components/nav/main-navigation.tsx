@@ -22,7 +22,7 @@ const MainNavigation: NextPage<Props> = ({}) => {
 				</div>
 				<div className="gap-6 mr-auto ml-5 hidden lg:flex [&>a]:hover:text-primary [&>a]:transition-all [&>a]:duration-200">
 					<Link href={"/browse"}>Browse</Link>
-					<Link href={"#"}>Popular Movies</Link>
+					<Link href={"/popular-movies"}>Popular Movies</Link>
 					<Link href={"/upcoming-releases"}>Upcoming Releases</Link>
 					<Link href={"#"}>All Time Great</Link>
 				</div>

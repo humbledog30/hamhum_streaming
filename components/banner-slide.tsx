@@ -3,10 +3,10 @@ import "swiper/css/effect-fade";
 import { Dot, Play, Plus } from "lucide-react";
 import { FaPlay, FaStar } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
-import { useGenresLabel } from "@/lib/hooks/useGenresLabel";
 import { MovieAdditionalProp } from "@/types/movie";
 import BannerOverlay from "./banner-overlay";
 import StreamingIndicator from "./streaming-indicator";
+import { genresLabel } from "@/lib/utils/format-genre";
 const BannerSlide = ({ item }: { item: MovieAdditionalProp }) => {
 	return (
 		<div className="w-full h-full relative">
@@ -36,7 +36,7 @@ const BannerSlide = ({ item }: { item: MovieAdditionalProp }) => {
 						{item.genre_ids ? (
 							<div className="flex gap-3">
 								{item.genre_ids.map((genre, index) => {
-									const { label } = useGenresLabel(genre);
+									const { label } = genresLabel(genre);
 									return (
 										<span key={`genre-banner-${genre}-${item.id}`}>
 											{label}

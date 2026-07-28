@@ -46,6 +46,7 @@
 	--font-fraunces: var(--font-fraunces), sans;
 	--font-outfit: var(--font-outfit), serif;
 	--font-jetbrains-mono: var(--font-jetbrains-mono), serif;
+	--color-highlight: hsl(var(--highlight));
 }
 
 /*
@@ -95,6 +96,7 @@
 		--chart-5: 180 5% 60%; /* neutral grey */
 		--radius: 0.5rem;
 		--glow: hsl(var(--primary) / 0.3);
+		--highlight: 158 49% 47%;
 
 		/* toast-type accents, light — new, layered on top of your palette */
 		--toast-success: 155 40% 30%;
@@ -135,6 +137,7 @@
 		--chart-4: 0 0% 90%; /* near white */
 		--chart-5: 210 15% 30%; /* cool dark grey */
 		--glow: hsl(var(--accent) / 0.5);
+		--highlight: 158 49% 47%;
 
 		/* toast-type accents, dark */
 		--toast-success: 160 40% 55%;

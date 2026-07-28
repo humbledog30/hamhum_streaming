@@ -1,16 +1,16 @@
 import { Button } from "@/components/ui/button";
-import { useFormatImagePath } from "@/lib/hooks/useFormatImagePath";
-import { useGenresLabel } from "@/lib/hooks/useGenresLabel";
+import { genresLabel } from "@/lib/utils/format-genre";
+import { formatImagePath } from "@/lib/utils/format-image-path";
 import { Movie } from "@/types/movie";
 import Image from "next/image";
 
 const MovieCard = ({ item, onSelect }: { item: Movie; onSelect: () => void }) => {
 	const genres =
 		item.genre_ids?.map((genre) => {
-			const { label } = useGenresLabel(genre);
+			const { label } = genresLabel(genre);
 			return label;
 		}) ?? [];
-	const imageSrc = useFormatImagePath(item.poster_path);
+	const imageSrc = formatImagePath(item.poster_path);
 
 	return (
 		<div className="hover:outline outline-offset-4 rounded-md outline-primary relative group">

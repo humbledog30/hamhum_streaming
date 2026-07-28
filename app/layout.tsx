@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Providers from "./providers";
 import { Toaster } from "@/components/ui/sonner";
 import { DEFAULT_TOAST_DURATION } from "@/components/app-toast";
+import { GlobalSpotlight } from "@/components/global-spotlight";
 
 const defaultUrl = process.env.VERCEL_URL
 	? `https://${process.env.VERCEL_URL}`
@@ -52,6 +53,7 @@ export default function RootLayout({
 			<body
 				className={`${inter.className} ${fraunces.variable} ${jetbrains.variable} ${outfit.variable} antialiased `}
 			>
+				{/* <GlobalSpotlight /> */}
 				<Providers>{children}</Providers>
 				<Toaster
 					position="top-center"

@@ -1,5 +1,4 @@
 import { apiTmdbClient } from "@/lib/api-client";
-import { mapCredits } from "@/lib/hooks/useMovieCredits";
 import {
 	rollbackMovie,
 	saveCredits,
@@ -9,6 +8,7 @@ import {
 } from "@/lib/services/movie.services";
 import { createClient } from "@/lib/supabase/client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { mapCredits } from "../utils/format-movie-data";
 
 export const useFullMovieDetailsTmdb = () => {
 	const queryClient = useQueryClient();

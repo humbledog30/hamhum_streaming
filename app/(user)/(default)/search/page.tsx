@@ -2,14 +2,14 @@ import { Input } from "@base-ui/react";
 import { Dot, Flame, Play, RotateCw, Search, Star, TrendingUp, X } from "lucide-react";
 import SearchBox from "./components/search-box";
 import { createClient } from "@/lib/supabase/server";
-import { useFormatImagePath } from "@/lib/hooks/useFormatImagePath";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
-import { useFormatRuntime } from "@/lib/hooks/useFormatRuntime";
 import SearchNoResult from "./components/search-no-result";
 import { redirect } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
+import { formatImagePath } from "@/lib/utils/format-image-path";
+import { formatRuntime } from "@/lib/utils/format-time";
 
 type SearchParams = Promise<{ [q: string]: string | undefined }>;
 interface SearchResult {
@@ -137,7 +137,7 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
 							<div className="bg-linear-to-r from-accent/90 from-100% lg:from-30% to-transparent to-100% absolute inset-0 left-0 top-0 z-10" />
 							<div className="aspect-video w-full h-full absolute z-0">
 								<Image
-									src={useFormatImagePath(bestMatch.backdrop_path ?? "")}
+									src={formatImagePath(bestMatch.backdrop_path ?? "")}
 									alt={bestMatch.title}
 									fill
 									sizes="100vw"
@@ -165,7 +165,7 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
 										<p>
 											Runtime{" "}
 											<span className="text-foreground text-base">
-												{useFormatRuntime(bestMatch.runtime)}
+												{formatRuntime(bestMatch.runtime)}
 											</span>
 										</p>
 									) : null}
@@ -197,7 +197,7 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
 							<Separator className="flex-1" />
 						</div>
 						{related?.map((item: SearchResult) => {
-							const imageSrc = useFormatImagePath(item.poster_path ?? "");
+							const imageSrc = formatImagePath(item.poster_path ?? "");
 							return (
 								<Link
 									href={`/browse/${item.id}`}
