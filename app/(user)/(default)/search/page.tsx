@@ -52,6 +52,7 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
 	const { data, error } = await supabase.rpc("search_movies_with_related", {
 		search_term: resolvedParams.q,
 		match_limit: 10,
+		related_limit: 20,
 	});
 	if (!resolvedParams.q) {
 		redirect("/");

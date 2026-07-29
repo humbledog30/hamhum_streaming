@@ -11,7 +11,7 @@ interface Props {}
 
 const PopularCards = ({ item }: { item: MovieDetailsRow; index: number }) => {
 	return (
-		<div className="relative group rounded-lg overflow-hidden border hover:cursor-pointer aspect-2/3">
+		<div className="relative group rounded-md overflow-hidden hover:cursor-pointer aspect-2/3">
 			<Link href={`/browse/${item.id}`}>
 				{item?.popularity ? (
 					<Badge
