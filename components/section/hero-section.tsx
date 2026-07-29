@@ -6,10 +6,6 @@ import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade";
 
-import { Dot, Plus } from "lucide-react";
-import { FaPlay, FaStar } from "react-icons/fa";
-import { Button } from "@/components/ui/button";
-import { useGenresLabel } from "@/lib/hooks/useGenresLabel";
 import { MovieAdditionalProp } from "@/types/movie";
 import BannerSlide from "../banner-slide";
 

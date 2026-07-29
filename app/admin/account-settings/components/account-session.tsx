@@ -1,7 +1,7 @@
 import { ExpandableWrapper } from "@/components/ExpandableSection";
 import { Separator } from "@/components/ui/separator";
-import { useFormatRelativeTime } from "@/lib/hooks/useFormatRelativeTime";
 import { createClient } from "@/lib/supabase/server";
+import { formatRelativeTime } from "@/lib/utils/format-time";
 import React from "react";
 import { FaDesktop, FaMobileScreen } from "react-icons/fa6";
 
@@ -27,7 +27,7 @@ const AccountSession = async ({}) => {
 	return (
 		<div className="flex flex-col gap-3">
 			{sessionData?.map((session: SessionProps, sessionIndex) => {
-				const lastActive = useFormatRelativeTime(session.last_active_at);
+				const lastActive = formatRelativeTime(session.last_active_at);
 				const isDesktop = session?.user_agent.includes("Windows");
 				return (
 					<React.Fragment key={session.id}>

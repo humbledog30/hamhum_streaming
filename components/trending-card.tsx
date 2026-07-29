@@ -1,4 +1,4 @@
-import { useFormatImagePath } from "@/lib/hooks/useFormatImagePath";
+import { formatImagePath } from "@/lib/utils/format-image-path";
 import { Movie } from "@/types/movie";
 import { NextPage } from "next";
 import { FaStar } from "react-icons/fa6";
@@ -13,7 +13,7 @@ const TrendingCard = ({ item, index }: { item: Movie; index: number }) => {
 			</span>
 			<img
 				className="relative z-0 w-full h-full object-cover"
-				src={`${useFormatImagePath(item.backdrop_path, "w500")}`}
+				src={`${formatImagePath(item.backdrop_path, "w500")}`}
 				alt=""
 			/>
 			<div className=" text-foreground flex flex-col gap-1 absolute top-0 left-0 w-full h-full z-20 justify-end p-5 bg-[linear-gradient(0deg,hsl(var(--background)/1)_0%,hsl(var(--background)/0.05)_60%)]">
