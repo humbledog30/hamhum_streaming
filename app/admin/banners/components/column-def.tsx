@@ -1,27 +1,39 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
 import { formatImagePath } from "@/lib/utils/format-image-path";
 import { MovieDetailsRow } from "@/types/movie";
-import { Button } from "@base-ui/react";
 import { ColumnDef } from "@tanstack/react-table";
-import { SquarePen, StarIcon, Trash2 } from "lucide-react";
+import { SquarePen, Trash2 } from "lucide-react";
 import Image from "next/image";
 
 export const columns: ColumnDef<MovieDetailsRow>[] = [
+	{
+		accessorKey: "id",
+		header: "Order",
+		cell({ row }) {
+			const data = row.index + 1;  // Temp ID as ID provided in the DB uses UUID
+			if (data) {
+				return data;
+			}
+			return "N/A";
+		},
+	},
 	{
 		accessorKey: "original_title",
 		header: "Title",
 		cell: ({ row }) => {
 			const data = row.original;
-			const backdrop = formatImagePath(data.poster_path);
+			const backdrop = formatImagePath(data.backdrop_path);
 			return (
 				<div className="flex flex-row gap-3">
 					<Image
 						src={backdrop}
 						alt=""
-						width={60}
-						height={90}
-						className="object-contain"
+						width={90}
+						height={60}
+						className="object-contain rounded-md"
 					/>
 					<div className="flex flex-col justify-center">
 						<p>{data.title}</p>
@@ -36,41 +48,12 @@ export const columns: ColumnDef<MovieDetailsRow>[] = [
 	},
 	{
 		accessorKey: "genres",
-		header: "Genres",
+		header: "Type",
 		cell: ({ row }) => {
 			if (row.original.genres) {
 				const data = row.original.genres;
 				const filtered = data?.flatMap((items) => items.genre?.tmdb_genre_name);
-				return filtered?.join(", ");
-			}
-			return "N/A";
-		},
-		filterFn: (row, columnId, filterValue) => {
-			const genres = row.getValue(columnId) as typeof row.original.genres;
-
-			return genres.some((g) => g.genre?.tmdb_genre_name === filterValue);
-		},
-	},
-	{
-		accessorKey: "vote_average",
-		header: "Rating",
-		cell: ({ row }) => {
-			const data = row.original.vote_average;
-			return (
-				<span className="flex flex-row items-center gap-1">
-					<StarIcon color="yellow" size={16} fill="yellow" />{" "}
-					{data?.toPrecision(2) ?? "0"}
-				</span>
-			);
-		},
-	},
-	{
-		accessorKey: "release_date",
-		header: "Release Date",
-		cell({ row }) {
-			if (row.original?.release_date) {
-				const data = new Date(row.original.release_date);
-				return new Intl.DateTimeFormat("en-PH", { dateStyle: "long" }).format(data);
+				return filtered[0];
 			}
 			return "N/A";
 		},
@@ -79,21 +62,16 @@ export const columns: ColumnDef<MovieDetailsRow>[] = [
 		accessorKey: "status",
 		header: "Status",
 		cell({ row }) {
-			if (row.original.status) {
-				const data = row.original.status;
-				return data.charAt(0).toUpperCase() + data.slice(1);
+			const data = row.original.id;
+			const isActive = row.original.original_title?.includes("The")
+			if (data) {
+				return (
+					<span className="flex flex-row items-center gap-2">
+						<Switch id={data.toString()} checked={isActive} onCheckedChange={() => ""} />
+						<label htmlFor={data.toString()}>{isActive ? "Active" : "Inactive"}</label>
+					</span>
+				);
 			}
-		},
-	},
-	{
-		accessorKey: "created_at",
-		header: "Date Added",
-		cell({ row }) {
-			if (row.original?.created_at) {
-				const data = new Date(row.original.created_at);
-				return new Intl.DateTimeFormat("en-PH", { dateStyle: "long" }).format(data);
-			}
-			return "N/A";
 		},
 	},
 	{
