@@ -47,7 +47,7 @@ const BannerSection = ({ details, onWatch }: { details: MovieDetailsRow; onWatch
 					blurDataURL={formatImagePath(details?.backdrop_path, "w200")}
 				/>
 				<BannerOverlay />
-				<div className="section-container flex-1 z-20 relative flex flex-col md:flex-row item items-start md:items-end gap-5 md:gap-8 flex-wrap pt-20 pb-10 bottom-15">
+				<div className="section-container flex-1 z-20 relative flex flex-col md:flex-row item items-start md:items-end gap-5 md:gap-8 flex-wrap pt-40 md:pt-20 pb-10 bottom-15">
 					<div className="relative aspect-2/3 h-50 sm:h-70 md:h-80 lg:h-90">
 						<Image
 							className="object-cover w-full border rounded-xl border-primary brightness-80"
