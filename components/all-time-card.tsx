@@ -1,6 +1,9 @@
 import { formatImagePath } from "@/lib/utils/format-image-path";
 import { MovieDetailsRowNoMovieCredits } from "@/types/movie";
 import { AllTimeGreatCardSkeleton } from "./skeleton-loader/homepage-skeleton";
+import Image from "next/image";
+import Link from "next/link";
+import { PlayCircleIcon } from "lucide-react";
 
 type MovieDetailsRowWithScore = Omit<MovieDetailsRowNoMovieCredits, "movie_credits" | "genres"> & {
 	weighted_score: number;
@@ -38,7 +41,23 @@ const AllTimeCard = ({
 						<span className="absolute -z-1 text-stroke font-bold text-7xl left-0 font-fraunces text-s opacity-40">
 							{index + 1}
 						</span>
-						<img className="w-25 rounded-lg" src={imageSrc} alt={item.title} />
+						<div className="relative w-25 aspect-2/3 overflow-hidden rounded-md shrink-0 group">
+							<div className=" lg:hidden bg-linear-to-b from-background/80 to-transparent absolute h-full w-full top-0 left-0 z-10" />
+
+							<Link
+								href={`/browse/${item.id}`}
+								className="group-hover:opacity-100 transition-all absolute w-full h-full text-accent dark:text-muted-foreground top-0 left-0 z-30 flex justify-center items-center bg-background/20 opacity-0"
+							>
+								<PlayCircleIcon className="size-10 translate-y-4 group-hover:translate-0 transition-all" />
+							</Link>
+							<Image
+								src={imageSrc}
+								className="object-cover img-brightness-saturate"
+								alt={item.title}
+								fill
+								sizes="(max-width: 640px) 100vw, 224px"
+							/>
+						</div>
 						<div className="px-5 flex flex-col gap-3">
 							<p className="font-fraunces font-semibold text-xl">{item.title}</p>
 							<div className="flex gap-3 flex-wrap text-[10px] font-jetbrains-mono uppercase">

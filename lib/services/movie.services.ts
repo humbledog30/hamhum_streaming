@@ -26,7 +26,7 @@ const findExistingMovieId = async (supabase: SupabaseClient, tmdbMovieId: number
 	const { data } = await supabase
 		.from("movies")
 		.select("id")
-		.eq("tmdb_movie_id", tmdbMovieId)
+		.eq("tmdb_id", tmdbMovieId)
 		.maybeSingle();
 	return data?.id ?? null;
 };
