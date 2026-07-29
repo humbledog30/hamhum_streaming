@@ -6,7 +6,7 @@ import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade";
 
-import { MovieAdditionalProp } from "@/types/movie";
+import { MovieAdditionalProp, MovieAdditionalPropRestructure } from "@/types/movie";
 import BannerSlide from "../banner-slide";
 
 export interface Movie {
@@ -27,7 +27,7 @@ export interface Movie {
 	vote_count: number;
 }
 
-const slides: MovieAdditionalProp[] = [
+const slides: MovieAdditionalPropRestructure[] = [
 	{
 		id: "538cc83b-cf53-4965-b146-d9fc9edf518d",
 		backdrop_path: "https://image.tmdb.org/t/p/original/4D1pdB27uph7J8HQzNf8QvvH9bn.jpg",

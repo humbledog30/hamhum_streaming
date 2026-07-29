@@ -4,7 +4,7 @@ export interface Movie {
 	adult: boolean;
 	backdrop_path: string;
 	genre_ids: number[];
-	id: string;
+	id: number;
 	title: string;
 	original_language: string;
 	original_title: string;
@@ -22,6 +22,11 @@ export interface MovieAdditionalProp extends Partial<Movie> {
 	rating: string;
 	runtime: string;
 }
+
+//tempo
+export type MovieAdditionalPropRestructure = Omit<MovieAdditionalProp, "id"> & {
+	id: string;
+};
 export interface MovieDetailsRow {
 	id: number;
 	tmdb_id: number;

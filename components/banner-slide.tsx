@@ -3,12 +3,12 @@ import "swiper/css/effect-fade";
 import { Dot, Play, Plus } from "lucide-react";
 import { FaPlay, FaStar } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
-import { MovieAdditionalProp } from "@/types/movie";
+import { MovieAdditionalProp, MovieAdditionalPropRestructure } from "@/types/movie";
 import BannerOverlay from "./banner-overlay";
 import StreamingIndicator from "./streaming-indicator";
 import { genresLabel } from "@/lib/utils/format-genre";
 import { useRouter } from "next/navigation";
-const BannerSlide = ({ item }: { item: MovieAdditionalProp }) => {
+const BannerSlide = ({ item }: { item: MovieAdditionalPropRestructure }) => {
 	const router = useRouter();
 	return (
 		<div className="w-full h-full relative">
