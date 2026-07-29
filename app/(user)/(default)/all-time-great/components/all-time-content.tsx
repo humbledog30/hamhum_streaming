@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { formatImagePath } from "@/lib/utils/format-image-path";
 import { MovieDetailsRow } from "@/types/movie";
+import { motion } from "framer-motion";
 import { Bookmark, Flame, Play, PlayCircle, Star } from "lucide-react";
 import { NextPage } from "next";
 import Image from "next/image";
@@ -29,8 +30,12 @@ const AllTimeContent = ({ data }: { data: MovieDetailsRowWithScore[] | null | un
 					const imageSrc = formatImagePath(item.backdrop_path ?? "", "w500");
 					const genres = item.genres.flatMap((g) => g.tmdb_genre_name) ?? [];
 					return (
-						<div
+						<motion.div
+							initial={{ opacity: 0, y: 100 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							viewport={{ once: true, amount: 0.3 }}
 							key={item.id}
+							transition={{ duration: 0.6, ease: "easeOut" }}
 							className="flex flex-col lg:flex-row gap-4 lg:gap-6 lg:items-center relative"
 						>
 							<p className="absolute lg:static top-3 left-3 z-20 text-4xl lg:text-6xl italic font-fraunces font-bold lg:w-20 shrink-0 text-muted-foreground">
@@ -74,11 +79,11 @@ const AllTimeContent = ({ data }: { data: MovieDetailsRowWithScore[] | null | un
 
 							<div className="absolute lg:static top-3 right-3 z-10 flex lg:flex-col items-center lg:items-end gap-3">
 								<div className="flex gap-1 text-sm items-center">
-									<Star size={14} />
+									<Star size={14} className="text-yellow-400" />
 									<span>{item.vote_average?.toPrecision(2)}</span>
 								</div>
 								<div className="flex gap-1 text-sm items-center">
-									<Flame size={14} />
+									<Flame size={14} className="text-orange-400" />
 									<span>{item.vote_count?.toFixed(0)}</span>
 								</div>
 								<Button
@@ -88,7 +93,7 @@ const AllTimeContent = ({ data }: { data: MovieDetailsRowWithScore[] | null | un
 									<Bookmark className="size-3 md:size-4" />
 								</Button>
 							</div>
-						</div>
+						</motion.div>
 					);
 				})}
 			</div>
@@ -101,8 +106,12 @@ const AllTimeContent = ({ data }: { data: MovieDetailsRowWithScore[] | null | un
 					const imageSrc = formatImagePath(item.backdrop_path ?? "", "w500");
 					const genres = item.genres.flatMap((g) => g.tmdb_genre_name) ?? [];
 					return (
-						<div
+						<motion.div
+							initial={{ opacity: 0, y: 100 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							viewport={{ once: true, amount: 0.3 }}
 							key={item.id}
+							transition={{ duration: 0.6, ease: "easeOut" }}
 							className="flex flex-col lg:flex-row gap-4 lg:gap-6 lg:items-center relative"
 						>
 							<p className="absolute lg:static top-3 left-3 z-20 text-2xl lg:text-2xl italic font-fraunces font-bold w-10 shrink-0 text-muted-foreground">
@@ -131,7 +140,7 @@ const AllTimeContent = ({ data }: { data: MovieDetailsRowWithScore[] | null | un
 								<p className="font-fraunces text-xl lg:text-2xl font-semibold">
 									{item.title}
 								</p>
-								<div className="flex gap-3 flex-wrap text-sm text-muted-foreground">
+								<div className="flex gap-3 flex-wrap text-sm text-muted-foreground ">
 									{item?.release_date ? (
 										<span>{item.release_date.split("-")[0]}</span>
 									) : null}
@@ -145,11 +154,11 @@ const AllTimeContent = ({ data }: { data: MovieDetailsRowWithScore[] | null | un
 
 							<div className="absolute lg:static top-3 text-xs md:text-sm right-3 z-10 flex flex-row items-center gap-3">
 								<div className="flex gap-1 items-center">
-									<Star size={14} />
+									<Star size={14} className="text-yellow-400" />
 									<span>{item.vote_average?.toPrecision(2)}</span>
 								</div>
 								<div className="flex gap-1  items-center">
-									<Flame size={14} />
+									<Flame size={14} className="text-orange-400" />
 									<span>{item.vote_count?.toFixed(0)}</span>
 								</div>
 								<Button
@@ -159,7 +168,7 @@ const AllTimeContent = ({ data }: { data: MovieDetailsRowWithScore[] | null | un
 									<Bookmark className="size-3 md:size-4" />
 								</Button>
 							</div>
-						</div>
+						</motion.div>
 					);
 				})}
 			</div>

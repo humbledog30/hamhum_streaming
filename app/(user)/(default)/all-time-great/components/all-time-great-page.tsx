@@ -3,6 +3,7 @@ import PageSectionHeader from "@/components/page-section-header";
 import { createClient } from "@/lib/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 import AllTimeContent from "./all-time-content";
+import { AllTimeSkeleton } from "./all-time-skeleton";
 
 const AllTimeGreatPage = ({}) => {
 	const { data, error, isLoading } = useQuery({
@@ -19,6 +20,9 @@ const AllTimeGreatPage = ({}) => {
 			return data;
 		},
 	});
+	if (isLoading) {
+		return <AllTimeSkeleton />;
+	}
 	return (
 		<div>
 			<PageSectionHeader
