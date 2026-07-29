@@ -22,6 +22,11 @@ export interface MovieAdditionalProp extends Partial<Movie> {
 	rating: string;
 	runtime: string;
 }
+
+//tempo
+export type MovieAdditionalPropRestructure = Omit<MovieAdditionalProp, "id"> & {
+	id: string;
+};
 export interface MovieDetailsRow {
 	id: number;
 	tmdb_id: number;
@@ -124,3 +129,5 @@ export interface BelongsToCollection {
 	poster_path: string | null;
 	backdrop_path: string | null;
 }
+
+export type MovieDetailsRowNoMovieCredits = Omit<MovieDetailsRow, "movie_credits">;

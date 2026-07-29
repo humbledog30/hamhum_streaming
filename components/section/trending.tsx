@@ -5,6 +5,8 @@ import { ChevronLeft, ChevronRight, Flame, MoveRight } from "lucide-react";
 import Link from "next/link";
 import SwiperCarousel from "../swiper-carousel";
 import TrendingCard from "../trending-card";
+import { usePopularMovie } from "@/lib/queries/useMovieQuery";
+import TrendingCardSkeleton from "../skeleton-loader/homepage-skeleton";
 
 const movieData = [
 	{
@@ -119,6 +121,11 @@ const movieData = [
 const Trending = ({}) => {
 	const prevRef = useRef<HTMLButtonElement>(null);
 	const nextRef = useRef<HTMLButtonElement>(null);
+
+	const { data, isLoading, error } = usePopularMovie();
+	if (error) {
+		return null;
+	}
 	return (
 		<section className="py-5 section-container flex flex-col gap-5">
 			<div className="flex justify-between items-center gap-5 flex-wrap ">
@@ -152,7 +159,9 @@ const Trending = ({}) => {
 			</div>
 			<div>
 				<SwiperCarousel
-					data={movieData}
+					data={data}
+					isLoading={isLoading}
+					SkeletonCard={TrendingCardSkeleton}
 					Card={TrendingCard}
 					navigation={{ prevRef, nextRef }}
 				/>

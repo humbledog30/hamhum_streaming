@@ -166,13 +166,13 @@
 		@apply text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-fraunces text-foreground transition-all duration-250 font-bold;
 	}
 	.section-title {
-		@apply font-fraunces text-2xl font-semibold;
+		@apply text-lg font-semibold text-muted-foreground font-fraunces uppercase;
 	}
 	.section-title-line {
 		@apply text-xl font-fraunces;
 	}
 	.genre-cards {
-		@apply rounded-xl border h-40 flex items-end p-4 overflow-hidden;
+		@apply rounded-md border h-40 flex items-end p-4 overflow-hidden;
 	}
 	.profile-step {
 		@apply data-[step-indicator=active]:from-background/80 data-[step-indicator=active]:to-primary bg-linear-to-br data-[step-indicator=active]:text-foreground;

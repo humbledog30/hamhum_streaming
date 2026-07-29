@@ -1,6 +1,9 @@
 "use client";
-import { LayoutGrid } from "lucide-react";
+import { LayoutGrid, MoveRight } from "lucide-react";
 import { NextPage } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { Separator } from "../ui/separator";
 
 const movieData = [
 	{
@@ -71,26 +74,38 @@ const BrowseGenre = ({}) => {
 			<div className="flex gap-5 flex-col w-full">
 				<div className="flex items-center gap-5">
 					<h6 className="section-title text-nowrap flex items-center gap-3">
-						<LayoutGrid />
 						Browse by Genre
 					</h6>
-					<div className=" border-b border-foreground/80 w-full" />
+
+					<Separator className="flex-1" />
+					<Link
+						href="/browse"
+						className="flex items-center ml-auto gap-2 text-sm opacity-60 hover:opacity-100"
+					>
+						See all
+						<MoveRight size={16} />
+					</Link>
 				</div>
 
-				<div className="w-full grid grid-cols-6 gap-3 mx-auto text-2xl font-fraunces font-medium uppercase">
+				<div className="w-full grid grid-cols-6 gap-3 mx-auto text-xl font-fraunces font-medium">
 					{movieData.map((item: movieProps, index: number) => {
 						return (
 							<div
 								key={`genre-cards-${index}`}
-								className={`col-span-6 ${item.size} genre-cards relative`}
+								className={`col-span-6 lg:col-span-2  genre-cards relative group cursor-pointer`}
 							>
-								<img
-									className="absolute left-0 top-0 z-0 w-full h-full object-cover"
+								<Image
+									className="absolute left-0 top-0 z-0 w-full h-full object-cover grayscale-30 group-hover:grayscale-0 brightness-[.65] saturate-[.85] group-hover:brightness-75 group-hover:saturate-100 transition-all"
 									src={item.src}
 									alt={item.alt}
+									sizes="50vw"
+									fill
 								/>
-								<div className="absolute inset-0 left-0 top-0 z-10 bg-linear-to-t from-background/80 from-20% to-primary/20"></div>
-								<p className="relative z-20">{item.genre}</p>
+								<div className="absolute inset-0 left-0 top-0 z-10 bg-background/20 flex justify-center items-center">
+									<p className="relative z-20 text-secondary/60 group-hover:text-secondary dark:text-foreground/60 group-hover:dark:text-foreground transition-all">
+										{item.genre}
+									</p>
+								</div>
 							</div>
 						);
 					})}

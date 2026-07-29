@@ -162,3 +162,14 @@ export const getMovieDetails = async (supabase: SupabaseClient, id: ParamValue) 
 	if (error) throw error;
 	return data;
 };
+
+export const getAllTimeGreatMovie = async (supabase: SupabaseClient) => {
+	const { data, error } = await supabase.rpc("get_top_movies", {
+		min_votes: 5000,
+		result_limit: 15,
+	});
+
+	if (error) throw error;
+
+	return data;
+};
