@@ -4,22 +4,10 @@ import { createClient } from "@/lib/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 import AllTimeContent from "./all-time-content";
 import { AllTimeSkeleton } from "./all-time-skeleton";
+import { useAllTimeGreatMovie } from "@/lib/queries/useMovieQuery";
 
 const AllTimeGreatPage = ({}) => {
-	const { data, error, isLoading } = useQuery({
-		queryKey: ["all-time-great"],
-		queryFn: async () => {
-			const supabase = await createClient();
-			const { data, error } = await supabase.rpc("get_top_movies", {
-				min_votes: 5000,
-				result_limit: 15,
-			});
-
-			if (error) throw error;
-
-			return data;
-		},
-	});
+	const { data, error, isLoading } = useAllTimeGreatMovie();
 	if (isLoading) {
 		return <AllTimeSkeleton />;
 	}

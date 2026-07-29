@@ -13,6 +13,7 @@ import PageSectionHeader from "@/components/page-section-header";
 import { useGenreWithMovie } from "@/lib/queries/useGenreQuery";
 import { BrowsePageSkeleton } from "./skeleton-loader/browse-page-skeleton";
 import { motion, type Variants } from "framer-motion";
+import BrowseMovies from "./browse-movies";
 
 const sectionVariants: Variants = {
 	hidden: { opacity: 0, y: 24 },
@@ -54,9 +55,6 @@ const BrowsePage = () => {
 	}
 	return (
 		<div>
-			{/* <div className="relative h-[80vh]">
-				<Image sizes="100vw" fill src={"/browse-banner.jpg"} alt="Browse Banner" />
-				<div className="bg-linear-to-t from-background to-transparent to-50% absolute left-0 bottom-0 h-full w-full" /> */}
 			<PageSectionHeader
 				tagline="Browse the library"
 				title={
@@ -67,7 +65,6 @@ const BrowsePage = () => {
 				}
 				description="Whether you're seeking wonder, suspense, laughter, or longing—every journey begins with the right story."
 			/>
-			{/* </div> */}
 
 			<GenreTabs scrollSpy={scrollSpy} genreIds={genreIds} />
 
@@ -106,70 +103,7 @@ const BrowsePage = () => {
 									</div>
 								</div>
 
-								<motion.div
-									className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
-									variants={gridVariants}
-									initial="hidden"
-									whileInView="visible"
-									viewport={{ once: true, amount: 0.1 }}
-								>
-									{item?.movies.map((browseItem) => (
-										<motion.div
-											key={`section-genre-item-${browseItem.id}-${item.id}`}
-											variants={cardVariants}
-											whileHover={{ y: -6, scale: 1.02 }}
-											transition={{
-												type: "spring",
-												stiffness: 300,
-												damping: 20,
-											}}
-										>
-											<Link
-												href={`/browse/${browseItem.id}`}
-												className="text-center flex flex-col group overflow-hidden rounded-md hover:shadow-lg shadow-primary transition-all"
-											>
-												<div className="relative aspect-2/3 border overflow-hidden">
-													<Image
-														src={formatImagePath(
-															browseItem.poster_path,
-															"w300",
-														)}
-														className="object-cover brightness-[.80] saturate-[.85] group-hover:brightness-100 transition-all"
-														alt={`Poster ${browseItem.title}`}
-														fill
-														loading="lazy"
-														sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
-													/>
-												</div>
-												<div className="text-center flex-1 p-3 text-pretty group-hover:bg-accent/20">
-													<p className="font-semibold mt-2 text-balance">
-														{browseItem.title}
-													</p>
-													<p className="flex justify-center text-sm text-muted-foreground items-center">
-														{browseItem.release_date ? (
-															<span>
-																{
-																	browseItem.release_date.split(
-																		"-",
-																	)[0]
-																}
-															</span>
-														) : null}
-														{browseItem?.release_date &&
-														browseItem?.runtime ? (
-															<Dot />
-														) : null}
-														{browseItem?.runtime ? (
-															<span>
-																{formatRuntime(browseItem?.runtime)}
-															</span>
-														) : null}
-													</p>
-												</div>
-											</Link>
-										</motion.div>
-									))}
-								</motion.div>
+								<BrowseMovies data={item.movies} item={item.id} />
 							</motion.div>
 						</div>
 					);

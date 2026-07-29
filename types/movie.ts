@@ -4,7 +4,7 @@ export interface Movie {
 	adult: boolean;
 	backdrop_path: string;
 	genre_ids: number[];
-	id: number;
+	id: string;
 	title: string;
 	original_language: string;
 	original_title: string;
@@ -124,3 +124,5 @@ export interface BelongsToCollection {
 	poster_path: string | null;
 	backdrop_path: string | null;
 }
+
+export type MovieDetailsRowNoMovieCredits = Omit<MovieDetailsRow, "movie_credits">;

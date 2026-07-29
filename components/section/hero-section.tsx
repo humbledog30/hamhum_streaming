@@ -29,7 +29,7 @@ export interface Movie {
 
 const slides: MovieAdditionalProp[] = [
 	{
-		id: 1084244,
+		id: "538cc83b-cf53-4965-b146-d9fc9edf518d",
 		backdrop_path: "https://image.tmdb.org/t/p/original/4D1pdB27uph7J8HQzNf8QvvH9bn.jpg",
 		title: "Toy Story 5",
 		overview: `"When Bonnie receives a Lilypad tablet as a gift and becomes obsessed, Buzz, Woody, Jessie and the rest of the gang's jobs become exponentially harder when they have to go head to head with the all-new threat to playtime."`,
@@ -40,7 +40,7 @@ const slides: MovieAdditionalProp[] = [
 		genre_ids: [16, 10751, 35, 12],
 	},
 	{
-		id: 1007757,
+		id: "b0dbbb63-2b4e-42ee-a986-73943d7a90ea",
 		backdrop_path: "https://image.tmdb.org/t/p/original/zMwhWailP1WY7sb6AoE6b8ugoy.jpg",
 		title: "Swapped",
 		overview:
@@ -60,7 +60,7 @@ const HeroSection = ({}) => {
 		setPaginationEl(node);
 	}, []);
 	return (
-		<div className="w-full h-[calc(100dvh-64px)] min-h-150 relative overflow-hidden">
+		<div className="w-full h-[calc(100dvh-64px)] max-h-250 min-h-150 relative overflow-hidden">
 			<Swiper
 				modules={[Autoplay, EffectFade, Pagination]}
 				effect="fade"

@@ -7,7 +7,9 @@ import { MovieAdditionalProp } from "@/types/movie";
 import BannerOverlay from "./banner-overlay";
 import StreamingIndicator from "./streaming-indicator";
 import { genresLabel } from "@/lib/utils/format-genre";
+import { useRouter } from "next/navigation";
 const BannerSlide = ({ item }: { item: MovieAdditionalProp }) => {
+	const router = useRouter();
 	return (
 		<div className="w-full h-full relative">
 			<img
@@ -53,7 +55,11 @@ const BannerSlide = ({ item }: { item: MovieAdditionalProp }) => {
 						{item.overview}
 					</p>
 					<div className="action-buttons flex gap-3 flex-wrap">
-						<Button size="lg" className="py-3 primary-btn">
+						<Button
+							size="lg"
+							className="py-3 primary-btn"
+							onClick={() => router.push(`/browse/${item.id}`)}
+						>
 							<Play /> Watch now
 						</Button>
 						<Button

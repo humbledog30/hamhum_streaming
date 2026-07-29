@@ -7,7 +7,7 @@ type ReleaseStatus = {
 	isReleased: boolean;
 };
 
-export const useReleaseStatus = (releaseDate: string) => {
+export const useReleaseStatus = (releaseDate: string | null | undefined) => {
 	const [state, setState] = useState<ReleaseStatus>({
 		days: 0,
 		status: "",
@@ -15,6 +15,10 @@ export const useReleaseStatus = (releaseDate: string) => {
 	});
 
 	useEffect(() => {
+		if (!releaseDate) {
+			setState({ days: 0, status: "N/A", isReleased: false });
+			return;
+		}
 		const today = new Date();
 		const release = new Date(releaseDate);
 

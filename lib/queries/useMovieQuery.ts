@@ -1,6 +1,11 @@
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { createClient } from "../supabase/client";
-import { getMovieDetails, getPopularMovies, getUpcomingReleases } from "../services/movie.services";
+import {
+	getAllTimeGreatMovie,
+	getMovieDetails,
+	getPopularMovies,
+	getUpcomingReleases,
+} from "../services/movie.services";
 import { MovieDetailsRow } from "@/types/movie";
 import { ParamValue } from "next/dist/server/request/params";
 
@@ -30,6 +35,16 @@ export const useMovieDetails = (movieId: ParamValue) => {
 		queryFn: async (): Promise<MovieDetailsRow> => {
 			const supabase = await createClient();
 			return getMovieDetails(supabase, movieId);
+		},
+	});
+};
+
+export const useAllTimeGreatMovie = () => {
+	return useQuery({
+		queryKey: ["all-time-great"],
+		queryFn: async () => {
+			const supabase = await createClient();
+			return getAllTimeGreatMovie(supabase);
 		},
 	});
 };

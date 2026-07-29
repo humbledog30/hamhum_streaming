@@ -20,7 +20,7 @@ export default function Home() {
 					<Suspense fallback={<BannerSliderSkeleton />}>
 						<HeroSection />
 					</Suspense>
-					<Trending />
+					{/* <Trending /> */}
 					<PopularSection />
 					<AllTimeGreat />
 					<UpcomingSection />
