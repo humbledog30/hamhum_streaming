@@ -1,0 +1,31 @@
+:root {
+	--aa-primary-color-rgb: 24, 49, 53;
+	--aa-selected-color-rgb: 24, 49, 53;
+	--aa-selected-color-alpha: 0.08;
+	--aa-icon-color-rgb: 92, 110, 112;
+	--aa-text-color-rgb: 18, 28, 33;
+	--aa-muted-color-rgb: 92, 110, 112;
+	--aa-background-color-rgb: 238, 242, 241;
+	--aa-input-background-color-rgb: 240, 244, 244;
+	--aa-panel-border-color-rgb: 216, 220, 220;
+	--aa-input-border-color-rgb: 216, 220, 220;
+
+	--aa-spacing: 12px;
+	--aa-panel-shadow: 0 4px 12px hsl(var(--foreground) / 0.08);
+
+	--aa-icon-size: 50px;
+}
+
+/* Dark mode */
+.dark {
+	--aa-primary-color-rgb: 92, 132, 138;
+	--aa-selected-color-rgb: 92, 132, 138;
+	--aa-icon-color-rgb: 159, 173, 173;
+	--aa-text-color-rgb: 250, 250, 250;
+	--aa-muted-color-rgb: 159, 173, 173;
+	--aa-background-color-rgb: 15, 22, 26;
+	--aa-input-background-color-rgb: 10, 12, 16;
+	--aa-panel-border-color-rgb: 38, 44, 48;
+	--aa-input-border-color-rgb: 38, 44, 48;
+	--aa-panel-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
