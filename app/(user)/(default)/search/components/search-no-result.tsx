@@ -8,7 +8,7 @@ const SearchNoResult = ({ search }: { search: string }) => {
 				<Search className=" text-background dark:text-foreground" size={25} />
 			</div>
 			<p className="text-lg lg:text-xl font-fraunces font-semibold">
-				No result for <span>"${search}"</span>
+				No result for <span>"{search}"</span>
 			</p>
 			<p className="text-muted-foreground text-center text-sm">
 				We couldn't find a close enough match, and couldn't find anything for that search.

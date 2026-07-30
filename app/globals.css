@@ -109,6 +109,15 @@
 		--toast-info-tint: 188 30% 90%;
 		--toast-neutral: 200 15% 30%;
 		--toast-neutral-tint: 200 10% 91%;
+
+		--sidebar: hsl(0 0% 98%);
+		--sidebar-foreground: hsl(240 5.3% 26.1%);
+		--sidebar-primary: hsl(240 5.9% 10%);
+		--sidebar-primary-foreground: hsl(0 0% 98%);
+		--sidebar-accent: hsl(240 4.8% 95.9%);
+		--sidebar-accent-foreground: hsl(240 5.9% 10%);
+		--sidebar-border: hsl(220 13% 91%);
+		--sidebar-ring: hsl(217.2 91.2% 59.8%);
 	}
 	.dark {
 		/* Dark mode — cool near-black, from the deepest region of the reference image */
@@ -150,6 +159,15 @@
 		--toast-info-tint: 188 30% 13%;
 		--toast-neutral: 200 12% 70%;
 		--toast-neutral-tint: 200 15% 13%;
+
+		--sidebar: hsl(240 5.9% 10%);
+		--sidebar-foreground: hsl(240 4.8% 95.9%);
+		--sidebar-primary: hsl(224.3 76.3% 48%);
+		--sidebar-primary-foreground: hsl(0 0% 100%);
+		--sidebar-accent: hsl(240 3.7% 15.9%);
+		--sidebar-accent-foreground: hsl(240 4.8% 95.9%);
+		--sidebar-border: hsl(240 3.7% 15.9%);
+		--sidebar-ring: hsl(217.2 91.2% 59.8%);
 	}
 }
 .aa-Panel,
@@ -212,6 +230,9 @@
 		@apply brightness-[.80] saturate-[.85];
 	}
 }
+.not-italic em {
+	font-style: normal !important;
+}
 
 @utility text-stroke {
 	-webkit-text-stroke-width: 1px;
@@ -231,36 +252,6 @@
 	to {
 		width: 0%;
 	}
-}
-
-/*
-  ---break---
-*/
-
-:root {
-	--sidebar: hsl(0 0% 98%);
-	--sidebar-foreground: hsl(240 5.3% 26.1%);
-	--sidebar-primary: hsl(240 5.9% 10%);
-	--sidebar-primary-foreground: hsl(0 0% 98%);
-	--sidebar-accent: hsl(240 4.8% 95.9%);
-	--sidebar-accent-foreground: hsl(240 5.9% 10%);
-	--sidebar-border: hsl(220 13% 91%);
-	--sidebar-ring: hsl(217.2 91.2% 59.8%);
-}
-
-/*
-  ---break---
-*/
-
-.dark {
-	--sidebar: hsl(240 5.9% 10%);
-	--sidebar-foreground: hsl(240 4.8% 95.9%);
-	--sidebar-primary: hsl(224.3 76.3% 48%);
-	--sidebar-primary-foreground: hsl(0 0% 100%);
-	--sidebar-accent: hsl(240 3.7% 15.9%);
-	--sidebar-accent-foreground: hsl(240 4.8% 95.9%);
-	--sidebar-border: hsl(240 3.7% 15.9%);
-	--sidebar-ring: hsl(217.2 91.2% 59.8%);
 }
 
 /*
