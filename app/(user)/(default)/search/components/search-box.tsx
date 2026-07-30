@@ -19,7 +19,7 @@ const SearchBox = () => {
 	}, [searchParams]);
 
 	return (
-		<div className="flex gap-3 focus-within:outline-2 focus-within:outline-primary/60 items-center max-w-150 w-full mx-auto bg-card border border-muted-foreground/50 rounded-4xl py-2 pl-4 pr-2">
+		<div className="flex gap-3 focus-within:outline-2 focus-within:outline-primary/60 items-center w-full mx-auto bg-card border border-muted-foreground/50 rounded-4xl py-2 pl-4 pr-2">
 			<Search size={16} className="text-muted-foreground" />
 
 			<Input

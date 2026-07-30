@@ -62,7 +62,6 @@ const AllTimeCard = ({
 							<p className="font-fraunces font-semibold text-xl">{item.title}</p>
 							<div className="flex gap-3 flex-wrap text-[10px] font-jetbrains-mono uppercase">
 								{item.genres.map((genre, genreIndex) => {
-									console.log(genre);
 									return (
 										<span
 											key={`genre-${genreIndex}`}

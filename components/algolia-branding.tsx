@@ -1,17 +1,21 @@
+import { cn, defaultUrl } from "@/lib/utils";
 import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FaAlgolia } from "react-icons/fa";
 
-const AlgoliaBranding = ({}) => {
+const AlgoliaBranding = ({ className }: { className?: string }) => {
 	return (
 		<Link
-			href="https://www.algolia.com/ref/docsearch/?utm_source=yoursite&utm_medium=referral&utm_content=powered_by&utm_campaign=docsearch"
+			href={`https://www.algolia.com/ref/docsearch/?utm_source=${defaultUrl}&utm_medium=referral&utm_content=powered_by&utm_campaign=docsearch`}
 			target="_blank"
 			rel="noopener noreferrer"
-			className="flex items-center gap-1 text-[11px] text-muted-foreground hover:text-foreground transition-colors"
+			className={cn(
+				"flex items-center gap-1 text-[11px] text-muted-foreground hover:text-foreground transition-colors",
+				className,
+			)}
 		>
-			Search by
+			Search enhanced by
 			<div className="relative aspect-800/182 w-auto h-3">
 				<Image
 					alt="Algolia"

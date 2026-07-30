@@ -71,7 +71,7 @@ const SearchPopover = ({}) => {
 					<Search className="text-muted-foreground" size={15} />
 					<Input
 						className="flex-1 focus:outline-0 w-30"
-						placeholder="Search titles, original titles, overview"
+						placeholder="Search titles, original titles"
 						value={search}
 						onChange={(e) => setSearch(e.target.value)}
 						onKeyDown={(e) => e.key === "Enter" && handleSearch()}
