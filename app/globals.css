@@ -152,6 +152,10 @@
 		--toast-neutral-tint: 200 15% 13%;
 	}
 }
+.aa-Panel,
+.aa-Form {
+	border-radius: var(--radius);
+}
 
 @layer base {
 	* {
