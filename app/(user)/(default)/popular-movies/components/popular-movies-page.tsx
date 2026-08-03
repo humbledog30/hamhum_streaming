@@ -3,6 +3,7 @@ import PopularMoviesLoading from "./popular-page-skeleton";
 import { usePopularMovie } from "@/lib/queries/useMovieQuery";
 import PageSectionHeader from "@/components/page-section-header";
 import PopularMoviesContent from "./popular-movies-content";
+import { MovieDetailsRowNoMovieCredits } from "@/types/movie";
 
 const PopularMoviesPage = ({}) => {
 	const { data, error, isLoading } = usePopularMovie();
@@ -13,7 +14,16 @@ const PopularMoviesPage = ({}) => {
 	if (error) {
 		return <div>Failed to load movies.</div>;
 	}
-
+	if (data) {
+		console.log(
+			data
+				.map((m: MovieDetailsRowNoMovieCredits) => {
+					const genres = m.genres.map((item) => item.genre?.tmdb_genre_name).join(", ");
+					return `${m.id} - ${m.title} | ${genres} | ${m.release_date}`;
+				})
+				.join("\n"),
+		);
+	}
 	return (
 		<div>
 			<PageSectionHeader

@@ -6,6 +6,7 @@ import BrandLogo from "../brand-logo";
 import MobileMenu from "./mobile-menu";
 import SearchPopover from "../search-popover";
 import Menus from "../menus";
+import AskGeminiButton from "../ask-gemini-button";
 
 const MainNavigation = ({}) => {
 	return (
@@ -19,6 +20,7 @@ const MainNavigation = ({}) => {
 
 				<div className="flex gap-2 items-center">
 					<SearchPopover />
+					<AskGeminiButton />
 					{!hasEnvVars ? (
 						<EnvVarWarning />
 					) : (
