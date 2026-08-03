@@ -45,9 +45,11 @@ export interface VideoSourceProps {
 const PlayerProvider = ({
 	details,
 	activeServer,
+	refreshCount
 }: {
 	details: MovieDetailsRow | undefined;
 	activeServer: VideoSourceProps;
+	refreshCount: number
 }) => {
 	const resumeAt = "&startAt=${resumeAt}";
 
@@ -57,7 +59,7 @@ const PlayerProvider = ({
 				<div className="mx-auto w-full max-h-175 max-w-full aspect-video">
 					{details?.tmdb_id ? (
 						<iframe
-							src={`${activeServer.source}/${details?.tmdb_id}?${activeServer.params}`}
+							src={`${activeServer.source}/${details?.tmdb_id}?${activeServer.params}&refresh=${refreshCount}`}
 							width="100%"
 							height="100%"
 							allowFullScreen

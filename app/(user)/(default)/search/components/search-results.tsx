@@ -87,7 +87,7 @@ export default function SearchResults({ query }: { query: string }) {
 						href={`/browse/${bestMatch.objectID}`}
 						className="relative flex flex-col rounded-md w-full overflow-hidden hover:outline hover:shadow-lg shadow-primary hover:-translate-y-1 transition-all"
 					>
-						<div className="bg-linear-to-r from-background/95 from-100% lg:from-30% to-transparent to-100% absolute inset-0 left-0 top-0 z-10" />
+						<div className="bg-linear-to-r from-background/50 lg:from-background/95 from-100% lg:from-30% to-transparent to-100% absolute inset-0 left-0 top-0 z-10" />
 
 						<div className="aspect-video w-full h-full absolute z-0">
 							<Image

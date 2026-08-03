@@ -254,10 +254,6 @@
 	}
 }
 
-/*
-  ---break---
-*/
-
 @theme inline {
 	--color-sidebar: var(--sidebar);
 	--color-sidebar-foreground: var(--sidebar-foreground);

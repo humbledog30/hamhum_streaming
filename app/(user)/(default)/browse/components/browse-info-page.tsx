@@ -24,6 +24,7 @@ interface BrowseInfoPageProps {
 const BrowseInfoPage = ({ movieId }: BrowseInfoPageProps) => {
 	const [isWatching, setIsWatching] = useState(false);
 	const [activeServer, setActiveServer] = useState<VideoSourceProps>(videoSource[0]);
+	const [refreshCount, setRefreshCount] = useState<number>(0);
 
 	const { data: movieFullDetails, error } = useMovieDetails(movieId);
 
@@ -48,7 +49,7 @@ const BrowseInfoPage = ({ movieId }: BrowseInfoPageProps) => {
 			})
 			.filter((item): item is NonNullable<typeof item> => item !== null) ?? [];
 
-	const cast = movieCredits.filter((cast) => cast.role === "cast");
+	const cast = movieCredits.filter((cast) => cast.role === "cast").slice(0, 10);
 	const director = movieCredits.filter((cast) => cast.role === "director");
 	const writer = movieCredits.filter((cast) => cast.role === "writer");
 	const directorAndWriter = [...director, ...writer];
@@ -91,6 +92,7 @@ const BrowseInfoPage = ({ movieId }: BrowseInfoPageProps) => {
 								<PlayerProvider
 									details={movieFullDetails}
 									activeServer={activeServer}
+									refreshCount={refreshCount}
 								/>
 							</motion.div>
 						)}
@@ -111,6 +113,8 @@ const BrowseInfoPage = ({ movieId }: BrowseInfoPageProps) => {
 							<NowShowing
 								movieDetails={movieFullDetails}
 								onWatch={() => setIsWatching(false)}
+								setRefreshCount={setRefreshCount}
+								refreshCount={refreshCount}
 							/>
 							<ServerChoices
 								activeServer={activeServer}
@@ -207,10 +211,10 @@ const BrowseInfoPage = ({ movieId }: BrowseInfoPageProps) => {
 														loading="lazy"
 													/>
 												</div>
-												<p className="font-semibold text-base">
+												<p className="font-semibold text-sm">
 													{item?.name}
 												</p>
-												<span className="text-foreground/50">
+												<span className="text-foreground/50 font-jetbrains-mono text-xs">
 													{item?.job}
 												</span>
 											</div>

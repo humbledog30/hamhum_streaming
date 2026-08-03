@@ -2,13 +2,18 @@ import { Button } from "@/components/ui/button";
 import { formatRuntime } from "@/lib/utils/format-time";
 import { MovieDetailsRow } from "@/types/movie";
 import { Dot, ArrowLeft, Bookmark, RotateCcw, Share2, Star } from "lucide-react";
+import { Dispatch, SetStateAction } from "react";
 
 const NowShowing = ({
 	movieDetails,
 	onWatch,
+	setRefreshCount,
+	refreshCount,
 }: {
 	movieDetails: MovieDetailsRow | undefined;
 	onWatch: () => void;
+	setRefreshCount: Dispatch<SetStateAction<number>>;
+	refreshCount: number;
 }) => {
 	return (
 		<div className="flex gap-10 items-center pt-5 flex-wrap">
@@ -42,7 +47,11 @@ const NowShowing = ({
 				<Button className="cursor-pointer" variant={"outline"}>
 					<Share2 />
 				</Button>
-				<Button className="cursor-pointer" variant={"outline"}>
+				<Button
+					className="cursor-pointer"
+					variant={"outline"}
+					onClick={() => setRefreshCount(refreshCount + 1)}
+				>
 					<RotateCcw />
 				</Button>
 			</div>
