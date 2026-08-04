@@ -139,7 +139,7 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
 						</div>
 
 						<Link
-							href={`/browse/${bestMatch.id}`}
+							href={`/browse/movie/${bestMatch.id}`}
 							key={bestMatch.id}
 							className="relative flex flex-col rounded-md w-full overflow-hidden hover:outline hover:shadow-lg shadow-primary hover:-translate-y-1 transition-all"
 						>
@@ -209,7 +209,7 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
 							const imageSrc = formatImagePath(item.poster_path ?? "");
 							return (
 								<Link
-									href={`/browse/${item.id}`}
+									href={`/browse/movie/${item.id}`}
 									key={item.id}
 									className="flex flex-col  rounded-md hover:outline outline-primary hover:shadow-lg shadow-primary group  hover:-translate-y-1 transition-all"
 								>

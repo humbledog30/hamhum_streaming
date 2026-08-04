@@ -58,7 +58,7 @@ const BannerSlide = ({ item }: { item: MovieAdditionalPropRestructure }) => {
 						<Button
 							size="lg"
 							className="py-3 primary-btn"
-							onClick={() => router.push(`/browse/${item.id}`)}
+							onClick={() => router.push(`/browse/movie/${item.id}`)}
 						>
 							<Play /> Watch now
 						</Button>

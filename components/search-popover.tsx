@@ -47,7 +47,7 @@ const SearchPopover = ({}) => {
 	};
 
 	const handleSelect = (id: string | number) => {
-		router.push(`/browse/${id}`);
+		router.push(`/browse/movie/${id}`);
 		setOpen(false);
 	};
 

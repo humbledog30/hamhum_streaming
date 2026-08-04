@@ -57,7 +57,7 @@ const UpcomingCardItem = ({ item }: { item: MovieDetailsRowNoMovieCredits }) => 
 							className="text-xs"
 							size={"sm"}
 							variant={"outline"}
-							onClick={() => router.push(`/browse/${item.id}`)}
+							onClick={() => router.push(`/browse/movie/${item.id}`)}
 						>
 							View
 							<MoveRight className={"size-3"} />

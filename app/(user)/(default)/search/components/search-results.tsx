@@ -84,7 +84,7 @@ export default function SearchResults({ query }: { query: string }) {
 					</div>
 
 					<Link
-						href={`/browse/${bestMatch.objectID}`}
+						href={`/browse/movie/${bestMatch.objectID}`}
 						className="relative flex flex-col rounded-md w-full overflow-hidden hover:outline hover:shadow-lg shadow-primary hover:-translate-y-1 transition-all"
 					>
 						<div className="bg-linear-to-r from-background/50 lg:from-background/95 from-100% lg:from-30% to-transparent to-100% absolute inset-0 left-0 top-0 z-10" />
@@ -178,7 +178,7 @@ export default function SearchResults({ query }: { query: string }) {
 					{related.map((item) => (
 						<Link
 							key={item.objectID}
-							href={`/browse/${item.objectID}`}
+							href={`/browse/movie/${item.objectID}`}
 							className="flex flex-col rounded-md hover:outline outline-primary hover:shadow-lg shadow-primary group hover:-translate-y-1 transition-all"
 						>
 							<div className="relative aspect-2/3 w-full">

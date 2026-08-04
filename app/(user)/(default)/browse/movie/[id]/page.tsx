@@ -1,12 +1,12 @@
 import { QueryClient, dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { getMovieDetails } from "@/lib/services/movie.services";
 import { createClient } from "@/lib/supabase/server";
-import BrowseInfoContent from "../components/browse-info-page";
+import BrowseInfoContent from "../../components/browse-info-page";
 import { Suspense } from "react";
-import MovieInfoPageSkeleton from "../components/skeleton-loader/movie-info-page-skeleton";
 import type { Metadata } from "next";
 import { defaultUrl } from "@/lib/utils";
 import { formatImagePath } from "@/lib/utils/format-image-path";
+import MovieInfoPageSkeleton from "../../components/skeleton-loader/movie-info-page-skeleton";
 
 interface PageProps {
 	params: Promise<{ id: string }>;

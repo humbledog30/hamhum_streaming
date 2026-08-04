@@ -45,7 +45,7 @@ const AllTimeContent = ({ data }: { data: MovieDetailsRowWithScore[] | null | un
 							<div className="relative w-full lg:w-80 aspect-video overflow-hidden rounded-md shrink-0 group">
 								<div className=" lg:hidden bg-linear-to-b from-background/80 to-transparent absolute h-full w-full top-0 left-0 z-10" />
 								<Link
-									href={`/browse/${item.id}`}
+									href={`/browse/movie/${item.id}`}
 									className="group-hover:opacity-100 transition-all absolute w-full h-full text-accent dark:text-muted-foreground top-0 left-0 z-30 flex justify-center items-center bg-background/20 opacity-0"
 								>
 									<PlayCircle className="size-10 translate-y-4 group-hover:translate-0 transition-all" />
@@ -122,7 +122,7 @@ const AllTimeContent = ({ data }: { data: MovieDetailsRowWithScore[] | null | un
 							<div className="relative w-full lg:w-40 aspect-video overflow-hidden rounded-md shrink-0 group">
 								<div className=" lg:hidden bg-linear-to-b from-background/80 to-transparent absolute h-full w-full top-0 left-0 z-10" />
 								<Link
-									href={`/browse/${item.id}`}
+									href={`/browse/movie/${item.id}`}
 									className="group-hover:opacity-100 transition-all absolute w-full h-full text-accent dark:text-muted-foreground top-0 left-0 z-30 flex justify-center items-center bg-background/20 opacity-0"
 								>
 									<PlayCircle className="size-10 translate-y-4 group-hover:translate-0 transition-all" />

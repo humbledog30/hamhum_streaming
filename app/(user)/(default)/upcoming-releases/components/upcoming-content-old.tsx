@@ -123,7 +123,7 @@ const UpcomingContent = ({ data }: { data: MovieDetails[] | null }) => {
 									</div>
 									<div className="flex items-center gap-2 mt-7">
 										<Button
-											onClick={() => router.push(`/browse/${movie.id}`)}
+											onClick={() => router.push(`/browse/movie/${movie.id}`)}
 											variant={"outline"}
 										>
 											View Info

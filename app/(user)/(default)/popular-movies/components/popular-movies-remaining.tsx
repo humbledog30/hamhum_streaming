@@ -44,7 +44,7 @@ const PopularMoviesRemaining = ({ data }: { data: MovieDetailsRow[] }) => {
 						transition={{ type: "spring", stiffness: 300, damping: 22 }}
 					>
 						<Link
-							href={`/browse/${item.id}`}
+							href={`/browse/movie/${item.id}`}
 							className={"relative group block overflow-hidden rounded-md"}
 						>
 							<div className={"relative aspect-video"}>
