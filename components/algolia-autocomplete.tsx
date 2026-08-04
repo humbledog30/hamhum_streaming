@@ -35,7 +35,7 @@ export default function Autocomplete({ placeholder = "Search for movies" }: Prop
 					{
 						sourceId: "movies",
 						getItemUrl({ item }) {
-							return `/browse/${item.id}`;
+							return `/browse/movie/${item.id}`;
 						},
 						getItems() {
 							return getAlgoliaResults({
@@ -59,7 +59,7 @@ export default function Autocomplete({ placeholder = "Search for movies" }: Prop
 									typeof item?.poster_path === "string" ? item.poster_path : "",
 								);
 								return html`<div class="aa-ItemWrapper">
-									<a href=${`/browse/${item.id}`} class="aa-ItemContent">
+									<a href=${`/browse/movie/${item.id}`} class="aa-ItemContent">
 										<div class="aa-ItemIcon aa-ItemIcon--alignTop">
 											<img
 												src="${imgSrc}"

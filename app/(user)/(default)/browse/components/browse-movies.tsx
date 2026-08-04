@@ -43,7 +43,7 @@ const BrowseMovies = ({ data, item }: { data: BrowseGenreMovies[]; item: number 
 					}}
 				>
 					<Link
-						href={`/browse/${browseItem.id}`}
+						href={`/browse/movie/${browseItem.id}`}
 						className="text-center flex flex-col group overflow-hidden rounded-md hover:shadow-lg shadow-primary transition-all"
 					>
 						<div className="relative aspect-2/3">

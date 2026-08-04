@@ -1,5 +1,6 @@
 "use client";
 
+import { useTextFit } from "@/lib/hooks/useTextFit";
 import { motion, type Variants } from "framer-motion";
 import { Slash } from "lucide-react";
 
@@ -26,9 +27,11 @@ interface HeroProps {
 	tagline?: string | null;
 	title: React.ReactNode;
 	description?: string | null;
+	backgroundTitle?: string | null;
 }
 
-const PageSectionHeader = ({ tagline, title, description }: HeroProps) => {
+const PageSectionHeader = ({ tagline, title, description, backgroundTitle }: HeroProps) => {
+	const ref = useTextFit<HTMLHeadingElement>({ mode: "single", max: 200 });
 	return (
 		<section className="relative w-full">
 			<motion.div
@@ -59,6 +62,15 @@ const PageSectionHeader = ({ tagline, title, description }: HeroProps) => {
 					>
 						{description}
 					</motion.p>
+				) : null}
+
+				{backgroundTitle ? (
+					<p
+						ref={ref}
+						className="absolute top-5 lg:top-1/2 lg:translate-y-[-75%] px-10 right-0 font-bold font-fraunces leading-none -z-1 opacity-5 max-w-full text-nowrap uppercase"
+					>
+						{backgroundTitle}
+					</p>
 				) : null}
 			</motion.div>
 		</section>

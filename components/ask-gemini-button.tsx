@@ -39,7 +39,7 @@ const AskGeminiButton = () => {
 				</svg>
 			</motion.div>
 			<p className="hidden xl:block bg-linear-to-r from-blue-500 via-violet-500 to-pink-500 bg-clip-text text-transparent">
-				Ask AI Movie Agent
+				AI Movie Assistant
 			</p>
 		</Button>
 	);

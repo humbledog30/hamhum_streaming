@@ -25,6 +25,7 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { appToast } from "@/components/app-toast";
+import GeminiBranding from "@/components/gemini-branding";
 
 const ai = new GoogleGenAI({ apiKey: process.env.NEXT_PUBLIC_GEMINI_API_KEY });
 
@@ -166,27 +167,34 @@ const Page = ({}) => {
 	return (
 		<div className="section-container relative z-10 flex flex-col gap-y-4 pt-20 pb-10">
 			<BasicHeader
-				sticker="AI Movie Agent"
+				sticker="AI Movie Assistant"
 				title="Stuck on What to Watch?"
 				description="Set the mood, describe the night you're having, and we'll hand you five picks pulled from the library — each one with the reasoning behind it, so you're not just trusting a shrug."
 			/>
 			<div className="max-w-200 mx-auto w-full rounded-md">
 				<CardContent className="p-0 xl:p-8 flex flex-col">
-					<Select value={selectedModel} onValueChange={setSelectedModel}>
-						<SelectGroup className="mb-5">
-							<SelectLabel>AI Model</SelectLabel>
-							<SelectTrigger className="w-50">
-								<SelectValue placeholder="AI Model" />
-							</SelectTrigger>
-							<SelectContent>
-								<SelectItem value="gemini-3.6-flash">Gemini 3.6 Flash</SelectItem>
-								<SelectItem value="gemini-3.5-flash">Gemini 3.5 Flash</SelectItem>
-								<SelectItem value="gemini-3.5-flash-lite">
-									Gemini 3.5 Flash Lite
-								</SelectItem>
-							</SelectContent>
-						</SelectGroup>
-					</Select>
+					<div className="flex gap-3 justify-between mb-5">
+						<Select value={selectedModel} onValueChange={setSelectedModel}>
+							<SelectGroup>
+								<SelectLabel>AI Model</SelectLabel>
+								<SelectTrigger className="w-50">
+									<SelectValue placeholder="AI Model" />
+								</SelectTrigger>
+								<SelectContent>
+									<SelectItem value="gemini-3.6-flash">
+										Gemini 3.6 Flash
+									</SelectItem>
+									<SelectItem value="gemini-3.5-flash">
+										Gemini 3.5 Flash
+									</SelectItem>
+									<SelectItem value="gemini-3.5-flash-lite">
+										Gemini 3.5 Flash Lite
+									</SelectItem>
+								</SelectContent>
+							</SelectGroup>
+						</Select>
+						<GeminiBranding className="mt-auto text-xs" />
+					</div>
 					<p className="px-2 py-1.5 text-xs text-muted-foreground">
 						Pick a mood (Optional)
 					</p>
@@ -253,7 +261,7 @@ const Page = ({}) => {
 						const poster = formatImagePath(movie.poster_path);
 						return (
 							<Link
-								href={`/browse/${movie.id}`}
+								href={`/browse/movie/${movie.id}`}
 								key={movie.id}
 								className="overflow-hidden group translate-y-0 hover:-translate-y-1.5 rounded-md hover:shadow-lg shadow-primary transition-all"
 							>

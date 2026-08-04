@@ -94,7 +94,7 @@ const BrowsePage = () => {
 									<div className="border-b border-foreground/80 flex-1"></div>
 									<div className="flex gap-2 ">
 										<Link
-											href="#"
+											href={`/browse/genre/${item.genre_id}`}
 											className="flex items-center ml-auto gap-2 text-sm opacity-60 hover:opacity-100"
 										>
 											See all
