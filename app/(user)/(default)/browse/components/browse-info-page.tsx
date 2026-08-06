@@ -15,7 +15,9 @@ import NowShowing from "../components/now-showing";
 import Image from "next/image";
 import { formatImagePath } from "@/lib/utils/format-image-path";
 import { formatRuntime } from "@/lib/utils/format-time";
-import { useMovieDetails } from "@/lib/queries/useMovieQuery";
+import { useMovieDetails, useRelatedMovies } from "@/lib/queries/useMovieQuery";
+import MovieCard from "@/components/MovieCard";
+import { MovieRelated } from "@/types/movie";
 
 interface BrowseInfoPageProps {
 	movieId: string;
@@ -27,7 +29,7 @@ const BrowseInfoPage = ({ movieId }: BrowseInfoPageProps) => {
 	const [refreshCount, setRefreshCount] = useState<number>(0);
 
 	const { data: movieFullDetails, error } = useMovieDetails(movieId);
-
+	const { data: relatedMovies, error: relatedMoviesError } = useRelatedMovies(movieId);
 	if (error) {
 		return <p>Failed to load movie details</p>;
 	}
@@ -64,6 +66,7 @@ const BrowseInfoPage = ({ movieId }: BrowseInfoPageProps) => {
 				};
 			})
 			.filter((item): item is NonNullable<typeof item> => item !== null) ?? [];
+
 	return (
 		<div className="w-full flex flex-col">
 			{movieFullDetails ? (
@@ -252,6 +255,21 @@ const BrowseInfoPage = ({ movieId }: BrowseInfoPageProps) => {
 					</div>
 				</div>
 			</div>
+			{relatedMovies ? (
+				<div className="section-container mt-10">
+					<div className="flex items-center gap-5 mb-5">
+						<h6 className="section-title text-nowrap flex items-center gap-3">
+							Related Movies
+						</h6>
+						<div className=" border-b border-foreground/80 w-full" />
+					</div>
+					<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-3">
+						{relatedMovies?.map((item) => {
+							return <MovieCard<MovieRelated> key={item.id} item={item} />;
+						})}
+					</div>
+				</div>
+			) : null}
 		</div>
 	);
 };

@@ -27,8 +27,29 @@ export interface MovieAdditionalProp extends Partial<Movie> {
 export type MovieAdditionalPropRestructure = Omit<MovieAdditionalProp, "id"> & {
 	id: string;
 };
+
+export interface MovieRelated {
+	id: string;
+	tmdb_id: number;
+	title: string;
+	poster_path: string | null;
+	backdrop_path: string | null;
+	release_date: string | null;
+	vote_average: number | null;
+	popularity: number | null;
+	match_count: number;
+	genres: MovieGenreProps[];
+}
+
+export interface MovieGenreProps {
+	genre: {
+		id: number;
+		tmdb_genre_name: string;
+	} | null;
+}
+
 export interface MovieDetailsRow {
-	id: number;
+	id: number | string;
 	tmdb_id: number;
 	title: string;
 	tagline: string | null;
@@ -49,12 +70,7 @@ export interface MovieDetailsRow {
 	vote_count: number | null;
 	credits: CreditsResponse;
 	release_dates: ReleaseDateResponse;
-	genres: {
-		genre: {
-			id: number;
-			tmdb_genre_name: string;
-		} | null;
-	}[];
+	genres: MovieGenreProps[];
 	movie_credits: {
 		role: string | null;
 		job: string | null;

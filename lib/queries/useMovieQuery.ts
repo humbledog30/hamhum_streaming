@@ -2,11 +2,13 @@ import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { createClient } from "../supabase/client";
 import {
 	getAllTimeGreatMovie,
+	getBookMark,
 	getMovieDetails,
 	getPopularMovies,
+	getRelatedMovies,
 	getUpcomingReleases,
 } from "../services/movie.services";
-import { MovieDetailsRow } from "@/types/movie";
+import { MovieDetailsRow, MovieRelated } from "@/types/movie";
 import { ParamValue } from "next/dist/server/request/params";
 
 export const useUpcomingRelease = () => {
@@ -38,6 +40,17 @@ export const useMovieDetails = (movieId: ParamValue) => {
 		},
 	});
 };
+export const useRelatedMovies = (movieId: ParamValue) => {
+	return useQuery({
+		queryKey: ["related-movies", movieId],
+
+		queryFn: async (): Promise<MovieRelated[]> => {
+			const supabase = await createClient();
+			return getRelatedMovies(supabase, movieId);
+		},
+		enabled: !!movieId,
+	});
+};
 
 export const useAllTimeGreatMovie = () => {
 	return useQuery({
@@ -45,6 +58,19 @@ export const useAllTimeGreatMovie = () => {
 		queryFn: async () => {
 			const supabase = await createClient();
 			return getAllTimeGreatMovie(supabase);
+		},
+	});
+};
+
+export const useBookMarkStatus = (movieId: string | number, userId: string | null) => {
+	return useQuery({
+		queryKey: [`movie-bookmark-${movieId}`, userId],
+		queryFn: async () => {
+			const supabase = await createClient();
+			return getBookMark(supabase, movieId);
+		},
+		select(data) {
+			return !!data;
 		},
 	});
 };

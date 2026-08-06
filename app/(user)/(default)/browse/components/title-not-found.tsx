@@ -1,3 +1,4 @@
+import Autocomplete from "@/components/algolia-autocomplete";
 import { Button } from "@/components/ui/button";
 import { Input } from "@base-ui/react";
 import { LayoutGrid, Search } from "lucide-react";
@@ -19,7 +20,7 @@ const TitleNotFound = ({}) => {
 				We looked through the library and came up empty. The title may have been removed,
 				renamed, or never made it to the shelf.
 			</p>
-			<div className="border flex items-center p-2 px-3 w-100 max-w-full rounded-md focus-within:outline focus-within:outline-primary">
+			{/* <div className="border flex items-center p-2 px-3 w-100 max-w-full rounded-md focus-within:outline focus-within:outline-primary">
 				<Input
 					className="flex-1 outline-0"
 					value={searchKey}
@@ -29,6 +30,10 @@ const TitleNotFound = ({}) => {
 				<Button className="rounded-md">
 					<Search />
 				</Button>
+				
+			</div> */}
+			<div className="max-w-full w-150">
+				<Autocomplete />
 			</div>
 			<div className="flex flex-wrap justify-center gap-3 mt-5">
 				<Link

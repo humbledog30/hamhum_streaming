@@ -12,10 +12,13 @@
 
 	--aa-spacing: 12px;
 	--aa-panel-shadow: 0 4px 12px hsl(var(--foreground) / 0.08);
-
-	--aa-icon-size: 50px;
 }
-
+.aa-ItemIcon img,
+.aa-ItemIcon {
+	--aa-icon-size: 80px;
+	aspect-ratio: 2/3;
+	width: auto;
+}
 /* Dark mode */
 .dark {
 	--aa-primary-color-rgb: 92, 132, 138;

@@ -8,6 +8,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { DEFAULT_TOAST_DURATION } from "@/components/app-toast";
 import { GlobalSpotlight } from "@/components/global-spotlight";
 import { defaultUrl } from "@/lib/utils";
+import { UserProvider } from "@/lib/context/UserContext";
+import { getCurrentUser, requireUser } from "@/lib/supabase/data-access";
 
 export const metadata: Metadata = {
 	metadataBase: new URL(defaultUrl),
@@ -40,18 +42,21 @@ const outfit = Outfit({
 	subsets: ["latin"],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const user = await requireUser();
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body
 				className={`${inter.className} ${fraunces.variable} ${jetbrains.variable} ${outfit.variable} antialiased `}
 			>
 				{/* <GlobalSpotlight /> */}
-				<Providers>{children}</Providers>
+				<Providers>
+					<UserProvider userId={user.id ?? null}>{children}</UserProvider>
+				</Providers>
 				<Toaster
 					position="top-center"
 					gap={10}

@@ -61,12 +61,7 @@ export default function Autocomplete({ placeholder = "Search for movies" }: Prop
 								return html`<div class="aa-ItemWrapper">
 									<a href=${`/browse/movie/${item.id}`} class="aa-ItemContent">
 										<div class="aa-ItemIcon aa-ItemIcon--alignTop">
-											<img
-												src="${imgSrc}"
-												alt="${item.title}"
-												width="40"
-												height="40"
-											/>
+											<img src="${imgSrc}" alt="${item.title}" />
 										</div>
 										<div class="aa-ItemContentBody">
 											<div class="aa-ItemContentTitle">

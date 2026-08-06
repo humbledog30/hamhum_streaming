@@ -2,7 +2,7 @@ import {
 	tmdbMovieResponseSchema,
 	tmdbToMovieInsert,
 } from "@/app/admin/titles/validation/add-title.schema";
-import { MovieDetailsWithAppend } from "@/types/movie";
+import { MovieDetailsWithAppend, MovieRelated } from "@/types/movie";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { CreditRow } from "@/types/cast";
 import { PersonRow } from "../utils/format-movie-data";
@@ -159,8 +159,17 @@ export const getMovieDetails = async (supabase: SupabaseClient, id: ParamValue) 
 		)
 		.eq("id", id)
 		.single();
-	if (error) throw error;
 	return data;
+};
+
+export const getRelatedMovies = async (supabase: SupabaseClient, id: ParamValue) => {
+	const { data, error } = await supabase.rpc("get_related_movies", {
+		p_movie_id: id,
+		p_limit: 6,
+	});
+
+	if (error) throw error;
+	return data as MovieRelated[];
 };
 
 export const getAllTimeGreatMovie = async (supabase: SupabaseClient) => {
@@ -171,5 +180,49 @@ export const getAllTimeGreatMovie = async (supabase: SupabaseClient) => {
 
 	if (error) throw error;
 
+	return data;
+};
+
+export const getBookMark = async (supabase: SupabaseClient, movieId: number | string) => {
+	const { data, error } = await supabase
+		.from("bookmarks")
+		.select()
+		.eq("movie_id", movieId)
+		.maybeSingle();
+	if (error) {
+		console.log(error);
+		throw error;
+	}
+	return data;
+};
+
+export const setBookMark = async (
+	supabase: SupabaseClient,
+	movieId: number | string,
+	userId: string | null,
+) => {
+	const { data, error } = await supabase
+		.from("bookmarks")
+		.insert({ movie_id: movieId, user_id: userId });
+	if (error) {
+		console.log(error);
+		throw error;
+	}
+	return data;
+};
+
+export const deleteBookMark = async (
+	supabase: SupabaseClient,
+	movieId: number | string,
+	userId: string | null,
+) => {
+	const { data, error } = await supabase
+		.from("bookmarks")
+		.delete()
+		.match({ movie_id: movieId, user_id: userId });
+	if (error) {
+		console.log(error);
+		throw error;
+	}
 	return data;
 };
