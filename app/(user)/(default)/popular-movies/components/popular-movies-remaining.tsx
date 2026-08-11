@@ -1,3 +1,4 @@
+import BookmarkButton from "@/components/bookmark-button";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { formatImagePath } from "@/lib/utils/format-image-path";
@@ -81,9 +82,7 @@ const PopularMoviesRemaining = ({ data }: { data: MovieDetailsRow[] }) => {
 									/>
 									<p>{item.vote_average?.toPrecision(2)}</p>
 								</Badge>
-								<Button className="rounded-full" variant={"outline"} size={"icon"}>
-									<Bookmark />
-								</Button>
+								<BookmarkButton movieId={item.id} className="rounded-full" />
 							</div>
 							<div className=" p-5 w-full flex justify-between  text-xs ">
 								<div className="flex items-center text-chart-2 ">

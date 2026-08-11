@@ -7,6 +7,8 @@ import type { Metadata } from "next";
 import { defaultUrl } from "@/lib/utils";
 import { formatImagePath } from "@/lib/utils/format-image-path";
 import MovieInfoPageSkeleton from "../../components/skeleton-loader/movie-info-page-skeleton";
+import { requireUser } from "@/lib/supabase/data-access";
+import { notFound } from "next/navigation";
 
 interface PageProps {
 	params: Promise<{ id: string }>;

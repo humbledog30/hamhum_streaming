@@ -1,10 +1,18 @@
+"use client";
 import { Skeleton } from "@/components/ui/skeleton";
 import BannerSectionSkeleton from "./banner-section-skeleton";
 import DetailsSkeleton from "./details-skeleton";
 import OtherDetailsSkeleton from "./other-details-skeleton";
 import CastCrewSkeleton from "./cast-crew-skeleton";
+import { useEffect } from "react";
 
 const MovieInfoPageSkeleton = () => {
+	useEffect(() => {
+		window.scrollTo({
+			top: 0,
+			behavior: "instant",
+		});
+	}, []);
 	return (
 		<div className="w-full flex flex-col">
 			{/* Info page Banner section */}

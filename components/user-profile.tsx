@@ -91,7 +91,10 @@ const UserProfile = ({ user }: { user: ProfilePayload }) => {
 					<PlayCircle />
 					Continue Watching
 				</DropdownMenuItem>
-				<DropdownMenuItem className="flex-1">
+				<DropdownMenuItem
+					className="flex-1  cursor-pointer"
+					onSelect={() => router.push("/bookmark")}
+				>
 					<Bookmark />
 					Bookmark
 				</DropdownMenuItem>

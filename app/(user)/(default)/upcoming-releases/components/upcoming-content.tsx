@@ -11,6 +11,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import UpcomingContentEmpty from "./upcoming-content-empty";
+import BookmarkButton from "@/components/bookmark-button";
 type MovieDetails = Omit<MovieDetailsRow, "movie_credits">;
 
 const UpcomingContent = ({ data }: { data: MovieDetails[] | null | undefined }) => {
@@ -101,7 +102,6 @@ const UpcomingContent = ({ data }: { data: MovieDetails[] | null | undefined }) 
 										View Info
 									</Button>
 									<Button
-										className="text"
 										size={"icon"}
 										variant={"outline"}
 										onClick={() =>
@@ -110,16 +110,7 @@ const UpcomingContent = ({ data }: { data: MovieDetails[] | null | undefined }) 
 									>
 										<Bell />
 									</Button>
-									<Button
-										className="text"
-										size={"icon"}
-										variant={"outline"}
-										onClick={() =>
-											appToast.info("Not available yet — check back soon!")
-										}
-									>
-										<Bookmark />
-									</Button>
+									<BookmarkButton movieId={movie.id} />
 								</div>
 							</div>
 						</motion.div>

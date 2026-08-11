@@ -1,3 +1,4 @@
+import BookmarkButton from "@/components/bookmark-button";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -50,7 +51,7 @@ const PopularMoviesTop3 = ({ data }: { data: MovieDetailsRow[] }) => {
 							index === 2 && "sm:order-3",
 						)}
 					>
-						<Link href={`/browse/${item.id}`} className="relative group block">
+						<Link href={`/browse/movie/${item.id}`} className="relative group block">
 							<div
 								className={cn(
 									"relative overflow-hidden rounded-md",
@@ -84,7 +85,7 @@ const PopularMoviesTop3 = ({ data }: { data: MovieDetailsRow[] }) => {
 								/>
 								<p>{item.vote_average?.toPrecision(2)}</p>
 							</Badge>
-							<div className="absolute left-0 bottom-0 p-5 lg:p-8 w-full">
+							<div className="absolute left-0 bottom-0 p-5 lg:p-8 w-full z-40">
 								{genres.length ? (
 									<p className="text-muted-foreground font-jetbrains-mono text-xs uppercase mb-2">
 										{genres.join(", ")}
@@ -115,13 +116,10 @@ const PopularMoviesTop3 = ({ data }: { data: MovieDetailsRow[] }) => {
 										<Flame className="size-4 text-orange-400" />
 										<p>{item.popularity?.toFixed(0)}</p>
 									</div>
-									<Button
+									<BookmarkButton
+										movieId={item.id}
 										className="rounded-full ml-auto"
-										variant={"outline"}
-										size={"icon"}
-									>
-										<Bookmark />
-									</Button>
+									/>
 								</div>
 							</div>
 						</Link>

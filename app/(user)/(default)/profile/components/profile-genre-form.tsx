@@ -14,7 +14,6 @@ const ProfileGenreForm = ({ profileGenres }: ProfileGenreFormProps) => {
 	const [isSavingPreferences, setIsSavingPreferences] = useState(false);
 	const handleProfileGenre = async (e: React.FormEvent) => {
 		e.preventDefault();
-		// appToast.info("Profile Update will available Soon!");
 		setIsSavingPreferences(true);
 		const { error } = await savePreferences({ genres: selectedGenres });
 		setIsSavingPreferences(false);

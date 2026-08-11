@@ -1,3 +1,4 @@
+import BookmarkButton from "@/components/bookmark-button";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { formatImagePath } from "@/lib/utils/format-image-path";
@@ -86,12 +87,11 @@ const AllTimeContent = ({ data }: { data: MovieDetailsRowWithScore[] | null | un
 									<Flame size={14} className="text-orange-400" />
 									<span>{item.vote_count?.toFixed(0)}</span>
 								</div>
-								<Button
+								<BookmarkButton
+									movieId={item.id}
 									className="size-6 md:size-8 rounded-full"
-									variant={"outline"}
-								>
-									<Bookmark className="size-3 md:size-4" />
-								</Button>
+									iconClassName="size-2 md:size-3"
+								/>
 							</div>
 						</motion.div>
 					);

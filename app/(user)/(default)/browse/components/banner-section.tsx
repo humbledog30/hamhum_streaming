@@ -1,3 +1,4 @@
+"use client";
 import BannerOverlay from "@/components/banner-overlay";
 import { Button } from "@/components/ui/button";
 import { MovieDetails, MovieDetailsRow, MovieDetailsWithAppend } from "@/types/movie";
@@ -8,6 +9,8 @@ import { appToast } from "@/components/app-toast";
 import Image from "next/image";
 import { formatImagePath } from "@/lib/utils/format-image-path";
 import { formatRuntime } from "@/lib/utils/format-time";
+
+import BookmarkButton from "@/components/bookmark-button";
 
 export const buttonIcons: Record<
 	string,
@@ -27,6 +30,7 @@ const BannerSection = ({ details, onWatch }: { details: MovieDetailsRow; onWatch
 		details?.tmdb_status && details?.tmdb_status in buttonIcons
 			? buttonIcons[details?.tmdb_status as keyof typeof buttonIcons]
 			: DEFAULT_STATUS_ICON;
+
 	return (
 		<motion.section
 			initial={{ y: 0, opacity: 1 }}
@@ -98,7 +102,7 @@ const BannerSection = ({ details, onWatch }: { details: MovieDetailsRow; onWatch
 						<p className="max-w-full md:max-w-200">{details.overview}</p>
 						<div className="flex gap-2 items-center mt-5 flex-wrap">
 							<Button
-								className=" px-6 h-11  primary-btn"
+								className=" px-6 primary-btn"
 								variant={"default"}
 								onClick={
 									details?.tmdb_status === "Released"
@@ -110,19 +114,20 @@ const BannerSection = ({ details, onWatch }: { details: MovieDetailsRow; onWatch
 											}
 								}
 							>
-								<Icon />{" "}
+								<Icon />
 								{details?.tmdb_status === "Released"
 									? "Watch now"
 									: details?.tmdb_status}
 							</Button>
 
-							<Button className=" px-6 bg-background/40 h-11" variant={"outline"}>
-								<Plus /> Add to list
-							</Button>
+							<BookmarkButton movieId={details.id} />
 							<Button
-								className="bg-background/40 rounded-full size-11"
+								className="bg-background/40 cursor-pointer hover:bg-background/90"
 								size={"icon"}
 								variant={"outline"}
+								onClick={() => {
+									appToast.info("Coming soon!");
+								}}
 							>
 								<Share2 />
 							</Button>
