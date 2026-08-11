@@ -121,7 +121,14 @@ const BannerSection = ({ details, onWatch }: { details: MovieDetailsRow; onWatch
 							</Button>
 
 							<BookmarkButton movieId={details.id} />
-							<Button className="bg-background/40" size={"icon"} variant={"outline"}>
+							<Button
+								className="bg-background/40 cursor-pointer hover:bg-background/90"
+								size={"icon"}
+								variant={"outline"}
+								onClick={() => {
+									appToast.info("Coming soon!");
+								}}
+							>
 								<Share2 />
 							</Button>
 						</div>

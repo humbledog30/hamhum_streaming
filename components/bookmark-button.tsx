@@ -46,7 +46,7 @@ const BookmarkButton = ({
 	if (!!bookmarkData) {
 		return (
 			<Button
-				className={cn("bg-background/40", className)}
+				className={cn("bg-background/40 cursor-pointer", className)}
 				variant={"outline"}
 				disabled={isLoading}
 				onClick={handleDeleteBookmark}
@@ -63,7 +63,7 @@ const BookmarkButton = ({
 
 	return (
 		<Button
-			className={cn("bg-background/40", className)}
+			className={cn("bg-background/40 cursor-pointer", className)}
 			variant={"outline"}
 			disabled={isLoading}
 			onClick={handleBookmark}

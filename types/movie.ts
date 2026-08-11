@@ -48,6 +48,14 @@ export interface MovieGenreProps {
 	} | null;
 }
 
+export interface BookmarkMovieRow {
+	created_at: string;
+	id: string;
+	movie_id: string;
+	movies: Omit<MovieDetailsRow, "genres"> & { movie_genres: MovieGenreProps[] };
+	user_id: string;
+}
+
 export interface MovieDetailsRow {
 	id: number | string;
 	tmdb_id: number;

@@ -35,6 +35,7 @@ export const useBookMarkDeletion = (movieId: string | number, userId: string | n
 		onSuccess(data) {
 			appToast.success("Removed successfully.");
 			queryClient.invalidateQueries({ queryKey: [`movie-bookmark-${movieId}`, userId] });
+			queryClient.invalidateQueries({ queryKey: ["bookmark", userId] });
 		},
 		onError(error) {
 			appToast.error("Failed to add bookmark. Please try again.");

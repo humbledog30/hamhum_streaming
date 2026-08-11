@@ -226,3 +226,23 @@ export const deleteBookMark = async (
 	}
 	return data;
 };
+
+export const getBookMarkList = async (supabase: SupabaseClient, userId: string | null) => {
+	const { data, error } = await supabase
+		.from("bookmarks")
+		.select(
+			`
+			*,
+			movies!inner(
+				*,
+				movie_genres!inner(
+					genres(id, tmdb_genre_name)
+				)
+			)
+			`,
+		)
+		.eq("user_id", userId)
+		.order("created_at", { ascending: false });
+	if (error) throw error;
+	return data;
+};

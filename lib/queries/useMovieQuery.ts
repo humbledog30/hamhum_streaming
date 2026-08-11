@@ -3,6 +3,7 @@ import { createClient } from "../supabase/client";
 import {
 	getAllTimeGreatMovie,
 	getBookMark,
+	getBookMarkList,
 	getMovieDetails,
 	getPopularMovies,
 	getRelatedMovies,
@@ -71,6 +72,16 @@ export const useBookMarkStatus = (movieId: string | number, userId: string | nul
 		},
 		select(data) {
 			return !!data;
+		},
+	});
+};
+
+export const useBookmarkList = (userId: string | null) => {
+	return useQuery({
+		queryKey: ["bookmark", userId],
+		queryFn: async () => {
+			const supabase = await createClient();
+			return getBookMarkList(supabase, userId);
 		},
 	});
 };
