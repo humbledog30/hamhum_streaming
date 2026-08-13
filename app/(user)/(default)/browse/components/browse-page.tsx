@@ -10,7 +10,7 @@ import { formatImagePath } from "@/lib/utils/format-image-path";
 import { formatRuntime } from "@/lib/utils/format-time";
 import { genreIcons } from "@/lib/utils/format-genre";
 import PageSectionHeader from "@/components/page-section-header";
-import { useGenreWithMovie } from "@/lib/queries/useGenreQuery";
+import { useGenreCount, useGenreWithMovie } from "@/lib/queries/useGenreQuery";
 import { BrowsePageSkeleton } from "./skeleton-loader/browse-page-skeleton";
 import { motion, type Variants } from "framer-motion";
 import BrowseMovies from "./browse-movies";
@@ -43,10 +43,10 @@ const cardVariants: Variants = {
 
 const BrowsePage = () => {
 	const { data, isLoading, error } = useGenreWithMovie();
+	const { data: genreCountData, isLoading: genreCountIsLoading } = useGenreCount();
 
-	const genreIds = useMemo(() => data?.map((g) => g.genre_id) ?? [], [data]);
+	const genreIds = useMemo(() => genreCountData?.map((g) => g.genre_id) ?? [], [genreCountData]);
 	const scrollSpy = useGenreScrollSpy(genreIds);
-
 	if (isLoading) {
 		return <BrowsePageSkeleton />;
 	}
@@ -66,7 +66,7 @@ const BrowsePage = () => {
 				description="Whether you're seeking wonder, suspense, laughter, or longing—every journey begins with the right story."
 			/>
 
-			<GenreTabs scrollSpy={scrollSpy} genreIds={genreIds} />
+			<GenreTabs scrollSpy={scrollSpy} genreIds={genreIds} genreCountData={genreCountData} />
 
 			<section className="section-container py-8 flex flex-col gap-15">
 				{data?.map((item, itemIndex) => {

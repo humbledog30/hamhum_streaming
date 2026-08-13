@@ -13,3 +13,20 @@ export const useGenreWithMovie = () => {
 		},
 	});
 };
+
+export interface GenreCount {
+	genre_id: number;
+	genre_name: string;
+	movie_count: number;
+}
+export const useGenreCount = () => {
+	return useQuery({
+		queryKey: ["genre-count"],
+		queryFn: async (): Promise<GenreCount[]> => {
+			const supabase = await createClient();
+			const { data, error } = await supabase.rpc("get_genre_counts").select("*");
+			if (error) throw error;
+			return data;
+		},
+	});
+};
