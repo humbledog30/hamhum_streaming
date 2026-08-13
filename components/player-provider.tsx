@@ -27,13 +27,19 @@ export const videoSource = [
 		server: "VidSrc",
 		source: "https://vidsrc.to/embed/movie",
 		params: "",
-		status: false,
+		status: true,
 	},
 	{
 		server: "VsEmbed",
 		source: "https://vsembed.ru/embed/movie",
 		params: "",
-		status: false,
+		status: true,
+	},
+	{
+		server: "SuperEmbed",
+		source: "https://multiembed.mov/?video_id=",
+		params: "tmdb=1",
+		status: true,
 	},
 ];
 export interface VideoSourceProps {
@@ -45,21 +51,20 @@ export interface VideoSourceProps {
 const PlayerProvider = ({
 	details,
 	activeServer,
-	refreshCount
+	refreshCount,
 }: {
 	details: MovieDetailsRow | undefined;
 	activeServer: VideoSourceProps;
-	refreshCount: number
+	refreshCount: number;
 }) => {
 	const resumeAt = "&startAt=${resumeAt}";
-
 	return (
 		<div className="section-container">
 			<div className="bg-accent/30">
 				<div className="mx-auto w-full max-h-175 max-w-full aspect-video">
 					{details?.tmdb_id ? (
 						<iframe
-							src={`${activeServer.source}/${details?.tmdb_id}?${activeServer.params}&refresh=${refreshCount}`}
+							src={`${formatVideoSrc(activeServer, details?.tmdb_id)}&refresh=${refreshCount}`}
 							width="100%"
 							height="100%"
 							allowFullScreen
@@ -78,4 +83,10 @@ const PlayerProvider = ({
 	);
 };
 
+const formatVideoSrc = (activeServer: VideoSourceProps, id: number | undefined) => {
+	if (activeServer.server === "SuperEmbed") {
+		return `${activeServer.source}${id}&${activeServer.params}`;
+	}
+	return `${activeServer.source}/${id}?${activeServer.params}`;
+};
 export default PlayerProvider;

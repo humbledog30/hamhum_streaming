@@ -83,11 +83,11 @@ const UserProfile = ({ user }: { user: ProfilePayload }) => {
 					Profile Settings
 				</DropdownMenuItem>
 				<DropdownMenuSeparator />
-				<DropdownMenuItem className="flex-1">
+				<DropdownMenuItem className="flex-1" disabled>
 					<Bell />
 					Notification
 				</DropdownMenuItem>
-				<DropdownMenuItem className="flex-1">
+				<DropdownMenuItem className="flex-1" disabled>
 					<PlayCircle />
 					Continue Watching
 				</DropdownMenuItem>
