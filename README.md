@@ -16,9 +16,8 @@ Ham+Hum is a movie/series streaming demo site — "your own screening room, buil
 
 ## Features
 
-- **Trending Now** — carousel of currently popular titles with ratings and release year
 - **Popular Movies** — grid of movies with TMDB ratings
-- **All Time Great** — top-rated classics and modern favorites (e.g. _The Shawshank Redemption_, _The Godfather_, _Schindler's List_)
+- **All Time Great** — top-rated classics and modern favorites
 - **Upcoming Releases** — countdown-style cards with synopsis and "Remind Me" action
 - **Browse by Genre** — genre tiles (Action, Comedy, Horror, Drama, Sci-fi, Romance, Documentary, Thriller, Animation)
 - **Title detail banners** — "Now Streaming" hero banners with rating, runtime, genres, synopsis, and "Watch now" / "Add to list" actions
@@ -31,8 +30,8 @@ Ham+Hum is a movie/series streaming demo site — "your own screening room, buil
 
 ## Contact
 
-- GitHub: `https://github.com/your-repo` (placeholder link on the live site)
-- Email: hello@hamhum.app
+- GitHub: `https://github.com/humbledog30/` (placeholder link on the live site)
+- Email: hamhum.plus2026@gmail.com
 
 ## Disclaimer
 
